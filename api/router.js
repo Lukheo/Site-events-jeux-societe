@@ -1,0 +1,7 @@
+const express = require('express')
+const router = express.Router()
+const homeController = require('../api/controllers/homeController')
+const userController = require('../api/controllers/userController')
+const gameController = require('../api/controllers/gameController')
+const eventController = require('../api/controllers/eventController')
+const { body, param } = require('express-validator')
