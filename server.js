@@ -22,7 +22,16 @@ const port = 3000
 
 
 
-
+try {
+    config.sequelize.authenticate();
+    console.log('Connection has been established successfully.');
+  } catch (error) {
+    console.error('Unable to connect to the database:', error);
+  }
+  
+  const Handlebars = require("handlebars");
+  const MomentHandler = require("handlebars.moment");
+  MomentHandler.registerHelpers(Handlebars);
 
 
 
