@@ -15,6 +15,9 @@ router.route('/')
 router.route('/inscription')
     .get(userController.get)
 
+router.route('/log_in')
+    .get(userController.getLogin)
+
 
 router.route('/events/list')
     .get(eventController.list)
@@ -22,6 +25,7 @@ router.route('/events/list')
 
 
 router.route('/event/create')
+    .get(eventController.createEvent)
 
 
 

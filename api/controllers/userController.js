@@ -16,5 +16,9 @@ module.exports = {
     getAccount: async (req,res) => {
         const account = await User.findByPk(req.params.id,{raw:true})
         res.render('my_account', { account })
+    },
+    getLogin: async(req, res) => { //
+    
+        res.render('log_in')
     }
 }
