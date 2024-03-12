@@ -22,6 +22,5 @@ const Event = config.sequelize.define('events', {
 })
 
 Event.hasOne(Game)
-Event.hasMany(Categorie)
 
 module.exports = Event
