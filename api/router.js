@@ -14,6 +14,7 @@ router.route('/')
 
 
 router.route('/events/list')
+    .get(eventController.list)
 
 
 
