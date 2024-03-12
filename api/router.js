@@ -38,6 +38,7 @@ router.route('/user/register')
 
 
 router.route('/user/read/:id')
+    .get(userController.getAccount)
 
 
 
