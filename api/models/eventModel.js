@@ -1,5 +1,8 @@
-const { DataTypes } = require('sequelize')
+
+const { DataTypes} = require('sequelize')
 const config = require('../../config')
+const config = require('../../config')
+const Game = require('./gameModel')
 const User = require('./userModel')
 
 const Event = config.sequelize.define('events', {
@@ -12,10 +15,16 @@ const Event = config.sequelize.define('events', {
         type: DataTypes.DATE,
         allowNull: false
     },
-    player_number: {
+
+    players_number: {
         type: DataTypes.INTEGER,
         allowNull: false
     }
 })
 
+
+Event.hasOne(Game)
+Event.hasMany(User)
+
 module.exports = Event
+

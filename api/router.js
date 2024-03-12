@@ -17,6 +17,7 @@ router.route('/inscription')
 
 
 router.route('/events/list')
+    .get(eventController.list)
 
 
 
