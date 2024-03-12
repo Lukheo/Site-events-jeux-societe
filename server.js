@@ -14,7 +14,21 @@ const config = require('./config')
 const app = express()
 const port = 3000
 
+app.engine('hbs', engine({
+    extname: '.hbs',
+    helpers: {
+        ifCond: function (v1, v2, option) {
+            if (v1 === v2) {
+                return option.fn(this)
+            }
+            return option.inverse(this)
+        }
+    }
+}))
+app.set('view engine', 'hbs')
 
+app.use('/css', express.static(path.join(__dirname, 'assets/css')))
+app.use('/js', express.static(path.join(__dirname, 'assets/js')))
 
 
 
@@ -35,7 +49,26 @@ MomentHandler.registerHelpers(Handlebars);
 
 
 
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
 
+app.use(session({
+    secret: config.sessionSecret,
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false },
+    store: new SequelizeStore({ db: config.sequelize })
+}))
+
+app.use('*', (req, res, next) => {
+    if (req.session.username) {
+        res.locals.username = req.session.username
+        if (req.session.isAdmin) {
+            res.locals.isAdmin = true
+        }
+    }
+    next()
+})
 
 
 
