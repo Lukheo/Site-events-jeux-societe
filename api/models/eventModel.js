@@ -1,7 +1,6 @@
 
 const { DataTypes} = require('sequelize')
 const config = require('../../config')
-const config = require('../../config')
 const Game = require('./gameModel')
 const User = require('./userModel')
 
