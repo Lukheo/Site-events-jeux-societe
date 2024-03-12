@@ -12,8 +12,12 @@ const authMW = require("./middleware/auth")
 router.route('/')
     .get(homeController.get)
 
+router.route('/inscription')
+    .get(userController.get)
+
 
 router.route('/events/list')
+    .get(eventController.list)
 
 
 
@@ -34,6 +38,7 @@ router.route('/user/register')
 
 
 router.route('/user/read/:id')
+    .get(userController.getAccount)
 
 
 
