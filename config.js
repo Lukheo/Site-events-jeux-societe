@@ -8,7 +8,7 @@ handlebars.registerHelper('formatContent', function(content) {
 
 
 // Option 3: Passing parameters separately (other dialects)
-const sequelize = new Sequelize('blog', 'root', '', {
+const sequelize = new Sequelize('table a jeux', 'root', '', {
   host: 'localhost',
   dialect:'mysql'
 });

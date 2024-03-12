@@ -11,6 +11,9 @@
                     <a class="nav-link dynapuff {{#if navHome}}active{{/if}}" aria-current="page" href="/FAQ">FAQ</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link dynapuff {{#if navHome}}active{{/if}}" aria-current="page" href="/game/read/">Game page</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link dynapuff {{#if navList}}active{{/if}}" href="/events/list">Évènements</a>
                 </li>
                 <li class="nav-item">
@@ -36,12 +39,13 @@
 
             <ul class="navbar-nav d-flex me-3">
                 <li class="nav-item me-2">
-                    <a class="btn btn-success px-4 d-flex me-3" href="/user/login"><i class="bi bi-person-fill-check me-1"></i> <span>  Se connecter</span></a>
+                    <a class="btn btn-success px-4 d-flex me-3" href="/user/login"><i
+                            class="bi bi-person-fill-check me-1"></i> <span> Se connecter</span></a>
                 </li>
             </ul>
             <form class="d-flex" role="search" action="/article/search" method="post">
-                <input class="form-control me-2" type="search" placeholder="Un jeu ou un évènement" id="searchInput" name="search"
-                    aria-label="Search">
+                <input class="form-control me-2" type="search" placeholder="Un jeu ou un évènement" id="searchInput"
+                    name="search" aria-label="Search">
                 <button class="btn btn-success" type="submit">Rechercher</button>
             </form>
         </div>
