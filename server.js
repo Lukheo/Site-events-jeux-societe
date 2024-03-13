@@ -14,6 +14,8 @@ const config = require('./config')
 const app = express()
 const port = 3000
 
+
+
 app.engine('hbs', engine({
     extname: '.hbs',
     helpers: {
@@ -29,10 +31,7 @@ app.set('view engine', 'hbs')
 
 app.use('/css', express.static(path.join(__dirname, 'assets/css')))
 app.use('/js', express.static(path.join(__dirname, 'assets/js')))
-
-
-
-
+app.use('/pictures', express.static(path.join(__dirname, 'views/pictures')))
 
 
 
