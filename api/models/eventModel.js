@@ -1,9 +1,8 @@
+
 const { DataTypes} = require('sequelize')
-const bcrypt = require('bcrypt')
 const config = require('../../config')
 const Game = require('./gameModel')
-const Categorie = require('./categorieModel')
-
+const User = require('./userModel')
 
 const Event = config.sequelize.define('events', {
     id: {
@@ -15,13 +14,18 @@ const Event = config.sequelize.define('events', {
         type: DataTypes.DATE,
         allowNull: false
     },
+
     players_number: {
         type: DataTypes.INTEGER,
         allowNull: false
     }
 })
 
-// Event.hasOne(Game)
-Event.hasMany(Categorie)
+
+
+Event.hasOne(Game)
+
 
 module.exports = Event
+
+

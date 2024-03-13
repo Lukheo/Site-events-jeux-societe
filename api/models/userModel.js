@@ -46,6 +46,7 @@ const User = config.sequelize.define('users', {
 })
 
 User.hasMany(Event)
+Event.belongsTo(User)
 
 
 

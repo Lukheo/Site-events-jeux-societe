@@ -1,6 +1,9 @@
-const { DataTypes} = require('sequelize')
-const bcrypt = require('bcrypt')
+
+const { DataTypes } = require('sequelize')
 const config = require('../../config')
+const Game = require('./gameModel')
+
+
 
 const Categorie = config.sequelize.define('categories', {
     id: {
@@ -14,7 +17,7 @@ const Categorie = config.sequelize.define('categories', {
     }
 })
 
-
+// Categorie.hasMany(Game)
 
 
 module.exports = Categorie

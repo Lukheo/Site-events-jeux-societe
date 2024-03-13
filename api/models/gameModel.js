@@ -2,6 +2,7 @@ const { DataTypes} = require('sequelize')
 const bcrypt = require('bcrypt')
 const config = require('../../config')
 const Event = require('./eventModel')
+const Categorie = require('./categorieModel')
 
 
 const Game = config.sequelize.define('games', {
@@ -25,6 +26,6 @@ const Game = config.sequelize.define('games', {
     }
 })
 
-
+Game.belongsTo(Categorie)
 
 module.exports = Game
