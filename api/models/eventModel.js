@@ -22,7 +22,9 @@ const Event = config.sequelize.define('events', {
 })
 
 
+
 Event.hasOne(Game)
+
 
 module.exports = Event
 
