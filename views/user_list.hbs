@@ -1,0 +1,48 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nom</th>
+                        <th class="col">Prénom</th>
+                        <th scope="col">Adresse mail</th>
+                        <th class="col"></th>
+                        <th class="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{!-- {{#each users}} --}}
+                    <tr>
+                        <th scope="row">{{id}}1</th>
+                        <td {{#if isAdmin}}
+                            class="fw-bold"
+                        {{/if}}>{{#if isAdmin}}
+                            <i class="bi bi-shield-lock"></i>
+                        {{/if}}{{Nom}}nom</td>
+                        <td {{#if isAdmin}}
+                            class="fw-bold"
+                        {{/if}}>{{#if isAdmin}}
+                            <i class="bi bi-shield-lock"></i>
+                        {{/if}}{{Prenom}}prenom</td>
+                        <td><em>{{email}}mail</em></td>
+                        
+                        <td>
+                                <a class="btn btn-warning rounded-pill" href="/user/update/{{id}}" ><i class="bi bi-arrow-repeat" ></i></a>
+                        </td>
+                        <td>
+                            <form action="/user/delete/{{id}}" method="post">
+                                <button class="btn btn-danger rounded-pill"
+                                    onclick="return confirm('Voulez vous vraiment supprimer ?')" type="submit"><i
+                                        class="bi bi-trash3"></i></button>
+                            </form>
+
+                        </td>
+                    </tr>
+                    {{!-- {{/each}} --}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

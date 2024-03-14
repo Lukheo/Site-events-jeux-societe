@@ -9,10 +9,11 @@
 
     {{!-- EVENTS --}}
 
-    <div class="row">
+    <div class="row py-2">
+        <h3 class="dynapuff">Events auxquels vous êtes inscrit</h3>
         {{!-- {{#each events}} --}}
         <div class="col-3">
-            <div class="card">
+            <div class="card border-success">
                 <div class="card-body">
                     <h5 class="card-title dynapuff"><i class="bi bi-dice-2"></i> Event name <i class="bi bi-dice-2"></i>
                     </h5>
@@ -20,7 +21,8 @@
                         01/01/2024 à 12:00</h6>
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
                         card's content.</p>
-                    <a href="#" class="card-link btn btn-danger">Se désincrire</a>
+                    <a href="#" class="card-link btn btn-danger rounded-pill">Se désincrire</a>
+                    <a href="" class="card-link btn btn-warning rounded-pill"><i class="bi bi-alarm"></i>Ajouter un rappel</a>
                     <a href="#" class="card-link">Jeu joué</a>
                 </div>
             </div>

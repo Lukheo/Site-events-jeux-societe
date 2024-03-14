@@ -6,7 +6,7 @@ module.exports = {
   get: async (req, res) => {
     // console.log(req.session);
     // const latest = await Article.findOne({ order: [['id', 'DESC']], raw: true });
-    // const navHome = true
+    const navHome = true
 
     // if (!latest) {
     //   res.render('home', { navHome})
