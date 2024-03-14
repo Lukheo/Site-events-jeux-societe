@@ -1,0 +1,27 @@
+<H1 class="dynapuff text-center">Connexion</H1>
+<div class="row my-5">
+    <div class="col-6 mx-auto">
+        <form action="/user/login" method="post">
+            {{#if error}}
+            <div class="mb-3">
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{error}} <button type="button" class="btn-close" data-bs-dismiss="alert"
+                        aria-label="Close"></button>
+                </div>
+            </div>
+            {{/if}}
+            <div class="mb-3">
+                <label for="email" class="form-label">Rentrer votre adresse email</label>
+                <input name="email" type="email" class="form-control" id="email" placeholder="nom@exemple.fr">
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Rentrer votre mot de passe</label>
+                <input name="password" type="password" class="form-control" id="password">
+            </div>
+            <div class="mb-3">
+                <button class="btn btn-outline-success" type="submit">Se connecter</button>
+            </div>
+        </form>
+        <span> Pas encore inscris ? <a href="/user/register"> Inscris-toi</a></span>
+    </div>
+</div>

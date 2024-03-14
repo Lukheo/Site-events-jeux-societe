@@ -14,6 +14,8 @@ const config = require('./config')
 const app = express()
 const port = 3000
 
+
+
 app.engine('hbs', engine({
     extname: '.hbs',
     helpers: {
@@ -29,10 +31,7 @@ app.set('view engine', 'hbs')
 
 app.use('/css', express.static(path.join(__dirname, 'assets/css')))
 app.use('/js', express.static(path.join(__dirname, 'assets/js')))
-
-
-
-
+app.use('/pictures', express.static(path.join(__dirname, 'views/pictures')))
 
 
 
@@ -61,8 +60,8 @@ app.use(session({
 }))
 
 app.use('*', (req, res, next) => {
-    if (req.session.username) {
-        res.locals.username = req.session.username
+    if (req.session.prenom) {
+        res.locals.prenom = req.session.prenom
         if (req.session.isAdmin) {
             res.locals.isAdmin = true
         }
