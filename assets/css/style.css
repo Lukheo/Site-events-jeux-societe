@@ -1,0 +1,48 @@
+main{
+    margin: 3em 0;
+}
+
+:root {
+
+    --bg-light: #F8F8F8;
+    --bg-light-grey: #f4f4f4;
+    --bg-orange: #FFAE35;
+    --bg-darkblue: #0064A3;
+    --bg-green: #5CD451;
+    --title-font: "DynaPuff", system-ui;
+    --main-font: "Roboto", sans-serif;
+}
+
+body{
+    background-color: var(--bg-light);
+}
+
+.dynapuff, h1 {
+    font-family: "DynaPuff", system-ui;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+}
+
+.navStyle{
+    background-color: var(--bg-orange);
+}
+
+.footerStyle{
+    background-color: var(--bg-darkblue);
+    color: var(--bg-light);
+}
+
+.lightFont{
+    color: var(--bg-light);
+}
+
+.lightGreyBg{
+ background-color: var(--bg-light-grey);
+}
+
+.inputStyle{
+    border: 1px solid #0064A3;
+    background-color: var(--bg-light-grey);
+}
