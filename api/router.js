@@ -50,6 +50,10 @@ router.route('/user/delete/:id')
 
 
 
+router.route('/user/list')
+    .get(userController.list)
+
+
 router.route('/game/read/:id')
 
 

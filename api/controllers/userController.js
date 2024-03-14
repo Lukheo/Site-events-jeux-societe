@@ -12,6 +12,8 @@ const User = require('../models/userModel')
 module.exports = {
   list: async (req,res) => {
 
+
+    res.render('user_list')
     },
     get: (req, res) => { //
     
