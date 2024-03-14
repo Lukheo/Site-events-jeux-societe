@@ -30,7 +30,8 @@ module.exports = {
         const user = await User.findOne({
             where: {
                 [Op.or]: [
-                    { email: email }
+                    { email: email },
+                    { prenom: req.body.prenom }
                 ]
             }
         })

@@ -1,4 +1,4 @@
-const { Op} = require('sequelize')
+const {Op} = require('sequelize')
 const Game = require('../models/gameModel')
 
 module.exports = {
