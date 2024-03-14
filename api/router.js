@@ -61,5 +61,8 @@ router.route('/game/read/')
 router.route('/FAQ')
 .get(homeController.faq)
 
+// router.route('/picture/update')
+//     .post(gamepictureController.post)
+
 
 module.exports = router

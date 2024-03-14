@@ -2,7 +2,8 @@
     <div class="row">
         {{!-- Image container --}}
         <div class="col-md-6 img-container">
-            <img src="/pictures/picture_test.jpg" alt="" class="w-50 h-auto">
+            <img src="/pictures/picture_test.jpg" alt="" class="w-50 h-auto" id="mainImg">
+            <input type="file" accept="image/*" id="input-file">
         </div>
 
         {{!-- Dates container --}}
@@ -21,25 +22,34 @@
                     </div>
                 </div>
 
-
                 <div class="col-md-4 mx-auto mt-3">
-                    <div class="p-3 bg-light border rounded text-center">
+                    <div class="p-3 pb-1 bg-light border rounded text-center">
                         <p>Date 2</p>
                     </div>
-                    <button type="button" class="btn btn-outline-warning mt-2">Place disponible</button>
+                    <div class="row">
+                        <div class="d-grid">
+
+                            <button type="button" class="btn btn-outline-warning mt-2">Place disponible</button>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="col-md-4 mx-auto mt-3">
-                    <div class="p-3 bg-light border rounded text-center">
+                    <div class="p-3 pb-1 bg-light border rounded text-center">
                         <p>Date 3</p>
                     </div>
-                    <button type="button" class="btn btn-outline-warning mt-2">Place disponible</button>
+                    <div class="row">
+                        <div class="d-grid">
+
+                            <button type="button" class="btn btn-outline-warning mt-2">Place disponible</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
         {{!-- Desc container --}}
-        <div class="desc-container shadow rounded my-5 mx-2">
+        <div class="desc-container shadow rounded my-5">
             <h1>Description</h1>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, dolorem!</p>
         </div>
