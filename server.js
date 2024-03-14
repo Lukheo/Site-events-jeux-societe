@@ -60,8 +60,8 @@ app.use(session({
 }))
 
 app.use('*', (req, res, next) => {
-    if (req.session.username) {
-        res.locals.username = req.session.username
+    if (req.session.prenom) {
+        res.locals.prenom = req.session.prenom
         if (req.session.isAdmin) {
             res.locals.isAdmin = true
         }

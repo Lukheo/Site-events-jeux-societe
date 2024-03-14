@@ -1,0 +1,56 @@
+<div class="container">
+    <div class="row my-5 ">
+        <div class="col-md-6 mx-auto text-center">
+            {{#if user}}
+            <h1>Modifier un compte</h1>
+            {{else}}
+            <h1>Créer votre compte</h1>
+            {{/if}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            {{#if error}}
+            <div class="mb-3">
+                <span>{{error}}</span>
+            </div>
+            {{/if}}
+            {{#if user}}
+            <form action="/user/update/{{user.id}}" method="post">
+                {{else}}
+                <form action="/user/register" method="post">
+                    {{/if}}
+                    <div class="mb-3">
+                        <label for="prenom" class="form-label">Prénom</label>
+                        <input name="prenom" type="username" class="form-control" id="prenom" placeholder="Votre prenom"
+                            value="{{#if user}}{{user.nom}}{{/if}}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="nom" class="form-label">Nom</label>
+                        <input name="nom" type="username" class="form-control" id="nom" placeholder="Votre nom"
+                            value="{{#if user}}{{user.prenom}}{{/if}}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Votre adresse email</label>
+                        <input name="email" type="email" class="form-control" id="email" placeholder="nom@exemple.fr"
+                            value="{{#if user}}{{user.email}}{{/if}}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Votre mot de passe</label>
+                        <input name="password" type="password" class="form-control" id="password">
+                    </div>
+                    {{#unless user}}
+                    <div class="mb-3">
+                        <label for="confPassword" class="form-label">Confirmer votre mot de passe</label>
+                        <input name="confPassword" type="password" class="form-control" id="confPassword">
+                    </div>
+                    {{/unless}}
+                    <div class="mb-3">
+                        <button class="btn btn-outline-success" type="submit">Envoyer</button>
+                    </div>
+                </form>
+                
+               
+        </div>
+    </div>
+</div>
