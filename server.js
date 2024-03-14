@@ -34,7 +34,6 @@ app.use('/js', express.static(path.join(__dirname, 'assets/js')))
 app.use('/pictures', express.static(path.join(__dirname, 'views/pictures')))
 
 
-
 try {
     config.sequelize.authenticate();
     console.log('Connection has been established successfully.');

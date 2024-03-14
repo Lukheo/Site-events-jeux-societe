@@ -73,6 +73,9 @@ module.exports = {
                 } else {
                     //sinon inscription dans la session
                     req.session.prenom = user.prenom
+                    if(user.isAdmin) {
+                        req.session.isAdmin = true
+                    }
                     res.redirect('/')
                 }
             })
