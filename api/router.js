@@ -15,34 +15,7 @@ const authMW = require("./middleware/auth")
 router.route('/')
     .get(homeController.get)
 
-
-//<-----------  Event Routes   ----------->
-
-router.route('/events/list')
-    .get(eventController.list)
-
-
-
-router.route('/event/create')
-    .get(eventController.createEvent)
-
-
-
-router.route('/event/read/:id')
-
-
-
-router.route('/event/update/:id')
-
-
 //<-----------  User Routes   ----------->
-
-router.route('/user/login')
-    .get(userController.getLogin)
-    .post(userController.postLogin)
-    
-router.route('/user/logout')
-    .get(userController.logout)
 
 router.route('/user/register')
     .get(userController.get) 
@@ -73,6 +46,17 @@ router.route('/user/register')
             })
             .trim(),
     ], userController.post);
+ 
+    
+router.route('/user/login')
+    .get(userController.getLogin)
+    .post(userController.postLogin)
+  
+    
+router.route('/user/logout')
+    .get(userController.logout)
+
+
 
 
 router.route('/user/read/:id')
@@ -92,6 +76,51 @@ router.route('/user/list')
 
 router.route('/game/read/')
     .get(gameController.list)
+
+
+//<-----------  Event Routes   ----------->
+
+
+router.route('/event/create')
+    .get(eventController.createEvent)
+     .post( 
+        body('eventName')
+        .exists().trim()
+        .isLength({min:2, max:20}).withMessage('Le champ doit contenir plus de deux caractères ou moins')
+        .notEmpty().withMessage('Ce champ ne doit pas être vide.')
+        .escape(),
+
+        body('eventDescription')
+        .exists().trim()
+        .notEmpty().withMessage('Ce champ ne doit pas être vide.')
+        .isLength({max: 200}).withMessage('Le contenu ne doit pas être supérieur à 200 caractères')
+        .escape(),
+
+        body('eventDate')
+        .isDate().withMessage('la date doit être valide')
+        .notEmpty().withMessage('Vous devez choisir une date'),
+        
+        body('eventTime')
+        .isTime({hourFormat: 'hour24'})
+        .withMessage('L\'heure de l\'événement doit être au format 24 heures.'),
+
+        body('playersNumber')
+        .isInt({ min: 1, max: 12 }).withMessage('Le nombre de joueurs doit être compris entre 1 et 12.')
+        ,
+    eventController.postEvent)
+
+
+router.route('/events/list')
+    .get(eventController.list)
+
+router.route('/event/read/:id')
+
+
+
+router.route('/event/update/:id')
+
+
+
 
 //<-----------  FAQ Routes   ----------->
 

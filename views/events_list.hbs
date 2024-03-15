@@ -4,7 +4,7 @@
         <h2 class="dynapuff">Liste des évènements</h2>
     </div>
     <div class="row">
-        {{!-- {{#each events}} --}}
+         {{#each events}} 
         <div class="col-3">
 
             <div class="card border-success mt-3">
@@ -21,17 +21,17 @@
                     </div>
                 </small>
                 <div class="card-body border-success">
-                    <h5 class="card-title dynapuff"><i class="bi bi-dice-2"></i> Event name <i class="bi bi-dice-2"></i>
+                    <h5 class="card-title dynapuff"><i class="bi bi-dice-2"></i> {{name}} <i class="bi bi-dice-2"></i>
                     </h5>
                     <h6 class="card-subtitle mb-2 text-body-secondary dynapuff"><i class="bi bi-calendar-date"></i> le
-                        01/01/2024 à 12:00</h6>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p>
+                        {{event_date}} <br> à {{event_time}}</h6>
+                    <p class="card-text">{{description}}</p>
+                    <p class="card-text">{{players_number}}</p>
                     <a href="#" class="card-link btn rounded-pill btn-success">S'inscrire à l'évènement</a>
                     <a href="#" class="card-link">Jeu joué</a>
                 </div>
             </div>
         </div>
-        {{!-- {{/each}} --}}
+         {{/each}} 
     </div>
 </div>

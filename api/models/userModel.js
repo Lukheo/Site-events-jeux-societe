@@ -49,8 +49,4 @@ User.hasMany(Event)
 Event.belongsTo(User)
 
 
-
-
-
-
 module.exports = User
