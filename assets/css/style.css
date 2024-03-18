@@ -8,9 +8,11 @@ main {
     --bg-light-grey: #f4f4f4;
     --bg-grey: #c3c3c3;
     --bg-orange: #FFAE35;
+    --bg-orange-light: rgba(255, 174, 53, 0.7);
     --bg-darkblue: #0064A3;
     --bg-darkred: #A30000;
     --bg-green: #5CD451;
+    --bg-black: #222222;
     --title-font: "DynaPuff", system-ui;
     --main-font: "Roboto", sans-serif;
 }
@@ -26,6 +28,15 @@ h1 {
     font-weight: 400;
     font-style: normal;
     font-variation-settings: "wdth" 100;
+    text-align: center;
+}
+h2{
+    font-family: "DynaPuff", system-ui;
+    text-align: center;
+}
+
+h3{
+    margin: 20px 0;
 }
 
 .navStyle {
@@ -39,6 +50,12 @@ h1 {
 
 .lightFont {
     color: var(--bg-light);
+}
+.blueFont {
+    color: var(--bg-darkblue);
+}
+.orangeFont {
+    color: var(--bg-orange);
 }
 
 .lightGreyBg {
@@ -66,6 +83,10 @@ h1 {
     box-shadow: none;
 }
 
+.navOverlap{
+    height: 60px;
+}
+
 .btnOrange{
     background-color: var(--bg-orange);
     border: 2px solid var(--bg-orange);
@@ -82,7 +103,26 @@ h1 {
     color: var(--bg-orange);
     box-shadow: none;
 }
+.btnBleu{
+    color: #0064A3;
+}
 
+/* aspect des badges bleus */
+.text-bg-darkblue {
+    color: var(--bg-light);
+    background-color: var(--bg-darkblue);
+}
+
+/* aspect du dropdown de la FAQ */
+
+.accordion-button:not(.collapsed) {
+    color: var(--bg-black);
+    background-color: var(--bg-orange);
+}
+.accordion-button {
+    color: var(--bg-black);
+    background-color: var(--bg-orange-light);
+}
 /* VERSION MOBILE */
 
 @media screen and (min-width: 300px) and (max-width: 768px) {
@@ -92,5 +132,12 @@ h1 {
 
     h1{
         font-size: 4vh;
+    }
+    
+}
+
+@media(max-width:999px){
+    .navOverlap{
+        height: 150px;
     }
 }
