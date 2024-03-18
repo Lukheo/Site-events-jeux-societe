@@ -16,6 +16,10 @@ const Game = config.sequelize.define('games', {
         allowNull: false,
         unique: true
     },
+    game_desc: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
     player_number: {
         type: DataTypes.INTEGER
     },

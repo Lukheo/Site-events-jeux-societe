@@ -1,4 +1,5 @@
 const { DataTypes} = require('sequelize')
+
 const config = require('../../config')
 const Event = require('./eventModel')
 
@@ -17,5 +18,3 @@ const Room = config.sequelize.define('rooms', {
 
 
 module.exports = Room
-
-
