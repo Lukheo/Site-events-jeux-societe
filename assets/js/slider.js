@@ -23,9 +23,7 @@ const wipeSlide = (wiperTrack, activeSlide, nextSlide, targetIndex) => {
   wiperTrack.style.transform =
     "translateX(-" + (wipeWidth + 24) * (targetIndex - 1) + "px)";
   activeSlide.classList.remove("active-swipe");
-  activeSlide.style.transform = "scale(1)";
   nextSlide.classList.add("active-swipe");
-  nextSlide.style.transform = "scale(1.1)";
 };
 
 wipeNextBtn.addEventListener("click", (e) => {
@@ -42,3 +40,20 @@ wipePrevBtn.addEventListener("click", (e) => {
   wipeSlide(wiperTrack, activeSlide, nextSlide, targetIndex);
   arrowsBehaviour(wipePrevBtn, wipeNextBtn, targetIndex);
 });
+
+// Fonction pour passer à la diapositive suivante
+const goToNextSlide = () => {
+  const activeSlide = wiperTrack.querySelector(".active-swipe");
+  const nextSlide = activeSlide.nextElementSibling || wipes[0]; // Revenir à la première diapositive si la suivante n'existe pas
+  const targetIndex = wipes.findIndex((slide) => slide === nextSlide);
+  wipeSlide(wiperTrack, activeSlide, nextSlide, targetIndex);
+  arrowsBehaviour(wipePrevBtn, wipeNextBtn, targetIndex);
+};
+
+// Fonction pour démarrer le diaporama automatique
+const startAutoSlider = () => {
+  setInterval(goToNextSlide, 4000); // Appel à goToNextSlide toutes les 4 secondes
+};
+
+// Appeler la fonction pour démarrer le diaporama automatique
+startAutoSlider();
