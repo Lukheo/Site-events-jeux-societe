@@ -8,6 +8,7 @@ const { body, param } = require('express-validator')
 
 const isAdminMW = require("./middleware/isAdmin")
 const authMW = require("./middleware/auth")
+const gamepictureController = require('./controllers/gamepictureController')
 
 
 //<-----------  Home Routes   ----------->
@@ -168,8 +169,8 @@ router.route('/event/delete/:id')
 router.route('/FAQ')
     .get(homeController.faq)
 
-// router.route('/picture/update')
-//     .post(gamepictureController.post)
+router.route('/picture/update')
+    .post(gamepictureController.post)
 
 
 module.exports = router
