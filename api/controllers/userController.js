@@ -30,7 +30,8 @@ module.exports = {
         const user = await User.findOne({
             where: {
                 [Op.or]: [
-                    { email: email }
+                    { email: email },
+                    { prenom: req.body.prenom }
                 ]
             }
         })
@@ -72,6 +73,9 @@ module.exports = {
                 } else {
                     //sinon inscription dans la session
                     req.session.prenom = user.prenom
+                    if(user.isAdmin) {
+                        req.session.isAdmin = true
+                    }
                     res.redirect('/')
                 }
             })

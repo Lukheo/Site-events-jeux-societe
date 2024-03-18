@@ -4,7 +4,10 @@
     <div class="row">
         {{!-- Image container --}}
         <div class="col-md-6 img-container">
-            <img src="/pictures/picture_test.jpg" alt="" class="w-50 h-auto">
+            <img src="/pictures/picture_test.jpg" alt="" class="w-50 h-auto" id="mainImg">
+            {{#if isAdmin}}
+            <input type="file" accept="image/*" id="input-file">
+            {{/if}}
         </div>
 
         {{!-- Dates container --}}
@@ -23,19 +26,28 @@
                     </div>
                 </div>
 
-
                 <div class="col-md-4 mx-auto mt-3">
-                    <div class="p-3 bg-light border rounded text-center">
+                    <div class="p-3 pb-1 bg-light border rounded text-center">
                         <p>Date 2</p>
                     </div>
-                    <button type="button" class="btn btn-outline-warning mt-2">Place disponible</button>
+                    <div class="row">
+                        <div class="d-grid">
+
+                            <button type="button" class="btn btn-outline-warning mt-2">Place disponible</button>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="col-md-4 mx-auto mt-3">
-                    <div class="p-3 bg-light border rounded text-center">
+                    <div class="p-3 pb-1 bg-light border rounded text-center">
                         <p>Date 3</p>
                     </div>
-                    <button type="button" class="btn btn-outline-warning mt-2">Place disponible</button>
+                    <div class="row">
+                        <div class="d-grid">
+
+                            <button type="button" class="btn btn-outline-warning mt-2">Place disponible</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
