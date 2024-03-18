@@ -5,16 +5,16 @@ const { Request, Response } = require('express');
 const User = require('../models/userModel')
 
 module.exports = {
-    list: async (req, res) => {
-
-
+    list: async (req, res) => { // <---- 
     res.render('user_list')
     },
-    get: (req, res) => {  // Donne la page d'inscription
+
+    get: (req, res) => {  // <---- Donne la page d'inscription ---->
         const navInscription = true // sert à mettre le lien active 
         res.render('user_create', { navInscription })
     },
-    post: async (req, res) => { // enregistre un user dans la base
+
+    post: async (req, res) => { // <---- enregistre un user dans la base ---->
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.render('user_create', { errors: errors.array() });
@@ -48,14 +48,14 @@ module.exports = {
             return res.redirect('/')
         }
     },
-    getAccount: async (req, res) => {
+    getAccount: async (req, res) => { 
         const account = await User.findByPk(req.params.id, { raw: true })
         res.render('my_account', { account })
     },
-    getLogin: async (req, res) => { // Renvoie la page de connexion
+    getLogin: async (req, res) => { // <---- Donne la page de connexion ---->
         res.render('log_in')
     },
-    postLogin: async (req, res) => { //
+    postLogin: async (req, res) => { // <---- permet de connecter un user au site ---->
         // cherche en base l'utilisateur par son email 
         const user = await User.findOne({
             where: {email: req.body.email}
@@ -83,7 +83,7 @@ module.exports = {
         }
 
     },
-    logout: (req, res) => {
+    logout: (req, res) => { // <---- deconnecte l'user  ---->
         req.session.destroy()
         res.redirect('/')
     }

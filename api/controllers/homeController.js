@@ -1,5 +1,4 @@
 const { Op } = require('sequelize')
-// const Comment = require("../models/commentModel")
 
 
 module.exports = {

@@ -1,0 +1,36 @@
+{{!-- Est-ce qu'on donne seulement l'accès à cette page qu'à l'admin ? --}}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Modifier un évènement</h1>
+            <form action="/event/update/{{event.id}}" method="post">
+                <div class="mb-3">
+                    <label for="eventName" class="form-label">Titre de l'évent</label>
+                    <input name="eventName" type="text" class="form-control" id="eventName" placeholder="Titre de l'event"
+                       value="{{event.name}}">
+                </div>
+                <div class="mb-3">
+                    <label for="eventDescription" class="form-label">Description de l'évènement</label>
+                    <textarea name="eventDescription" class="form-control" id="eventDescription" rows="5">{{event.description}}</textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Date</label>
+                    <input name="eventDate" type="date" class="form-control" id="exampleFormControlInput1"
+                        placeholder="Date" value="{{event.event_date}}">
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Time</label>
+                        <input name="eventTime" type="text" class="form-control" id="exampleFormControlInput1"
+                            placeholder="Heure" value="{{event.event_time}}">
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Time</label>
+                    <input name="playersNumber" type="number" class="form-control" id="exampleFormControlInput1"
+                        placeholder="Nombre de joueur" value="{{event.players_number}}">
+                </div>
+     {{!-- if isAdmin  il peut modif--}} 
+                <button type="submit" class="btn btn-warning">Modifier</button>
+            </form>
+        </div>
+    </div>
+</div>
