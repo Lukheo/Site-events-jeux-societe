@@ -66,6 +66,10 @@ h1 {
     box-shadow: none;
 }
 
+.navOverlap{
+    height: 60px;
+}
+
 .btnOrange{
     background-color: var(--bg-orange);
     border: 2px solid var(--bg-orange);
@@ -82,6 +86,9 @@ h1 {
     color: var(--bg-orange);
     box-shadow: none;
 }
+.btnBleu{
+    color: #0064A3;
+}
 
 /* VERSION MOBILE */
 
@@ -92,5 +99,12 @@ h1 {
 
     h1{
         font-size: 4vh;
+    }
+    
+}
+
+@media(max-width:999px){
+    .navOverlap{
+        height: 150px;
     }
 }

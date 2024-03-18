@@ -49,7 +49,9 @@ module.exports = {
         }
     },
     getAccount: async (req, res) => { 
+        // Chercher l'utilisateur correspondant à l'id -- find the right user in the database according to his id
         const account = await User.findByPk(req.params.id, { raw: true })
+        console.log(account);
         res.render('my_account', { account })
     },
     getLogin: async (req, res) => { // <---- Donne la page de connexion ---->

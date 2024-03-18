@@ -2,9 +2,41 @@
     <div class="row">
         <h2 class="dynapuff">Mon compte</h2>
     </div>
+
+    {{!-- PROFILE MANAGEMENT --}}
+
     <div class="row">
-        <img src="" alt="">
-        <h3 class="dynapuff">Prénom Nom</h3>
+        <div class="col-2">
+            <img src="/pictures/Sample_User_Icon.png" alt="" class="col-12">
+        </div>
+        <div class="col-10">
+            <div class="row align-items-center">
+                {{!-- FIRST MODAL OPENING --}}
+                <button type="button" data-bs-toggle="modal" data-bs-target="#prenomModal"
+                    class="col-lg-1 col-md-2 col-sm-3 col-4 d-inline btn btn-outline-primary">
+                    <i class="bi bi-pencil-square"></i>
+                </button>
+                <h3 class="d-inline col dynapuff">Prénom :  {{account.prenom}}</h3>
+            </div>
+            <div class="row align-items-center">
+                {{!-- SECOND MODAL OPENING --}}
+                <button type="button" data-bs-toggle="modal" data-bs-target="#nomModal"
+                    class="col-lg-1 col-md-2 col-sm-3 col-4 d-inline btn btn-outline-primary">
+                    <i class="bi bi-pencil-square"></i>
+                </button>
+                <h3 class="d-inline col dynapuff">Nom :  {{account.nom}}</h3>
+            </div>
+            <div class="row align-items-center">
+                {{!-- THIRD MODAL OPENING --}}
+                <button type="button" data-bs-toggle="modal" data-bs-target="#mailModal"
+                    class="col-lg-1 col-md-2 col-sm-3 col-4 d-inline btn btn-outline-primary">
+                    <i class="bi bi-pencil-square"></i>
+                </button>
+                <h3 class="col d-inline dynapuff">Mail :  {{account.email}}</h3>
+            </div>
+        </div>
+
+
     </div>
 
     {{!-- EVENTS --}}
@@ -12,21 +44,85 @@
     <div class="row py-2">
         <h3 class="dynapuff">Events auxquels vous êtes inscrit</h3>
         {{!-- {{#each events}} --}}
-        <div class="col-3">
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-9">
             <div class="card border-success">
                 <div class="card-body">
                     <h5 class="card-title dynapuff"><i class="bi bi-dice-2"></i> Event name <i class="bi bi-dice-2"></i>
                     </h5>
                     <h6 class="card-subtitle mb-2 text-body-secondary dynapuff"><i class="bi bi-calendar-date"></i> le
                         01/01/2024 à 12:00</h6>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p>
+                    <div class="card-body row">
+                        <a href="/game/read/" class="col-6"><img src="/pictures/picture_test.jpg" alt="logo du jeu"
+                                class="col-12 mb-2 rounded float-start"></a>
+                        <p class="card-text col-6">Description de l'évènement</p>
+                    </div>
+
                     <a href="#" class="card-link btn btn-danger rounded-pill">Se désincrire</a>
-                    <a href="" class="card-link btn btn-warning rounded-pill"><i class="bi bi-alarm"></i>Ajouter un rappel</a>
-                    <a href="#" class="card-link">Jeu joué</a>
+                    <a href="" class="card-link btn btn-warning rounded-pill"><i class="bi bi-alarm"></i>Ajouter un
+                        rappel</a>
                 </div>
             </div>
         </div>
         {{!-- {{/each}} --}}
     </div>
+</div>
+
+
+{{!-- MODALS --}}
+
+{{!-- FIRST MODAL --}}
+<div class="modal fade" id="prenomModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Nouveau prénom</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <input type="text" class="form-control" placeholder="{{account.prenom}}">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary dynapuff" data-bs-dismiss="modal">Annuler</button>
+        <button type="button" class="btn btn-primary dynapuff">Modifier le prénom</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{!-- SECOND MODAL --}}
+<div class="modal fade" id="nomModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Nouveau nom</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <input type="text" class="form-control" placeholder="{{account.nom}}">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary dynapuff" data-bs-dismiss="modal">Annuler</button>
+        <button type="button" class="btn btn-primary dynapuff">Modifier le nom</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{!-- THIRD MODAL --}}
+<div class="modal fade" id="mailModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Nouvelle adresse mail</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <input type="email" class="form-control" placeholder="{{account.email}}">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary dynapuff" data-bs-dismiss="modal">Annuler</button>
+        <button type="button" class="btn btn-primary dynapuff">Modifier l'email</button>
+      </div>
+    </div>
+  </div>
 </div>
