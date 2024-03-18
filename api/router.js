@@ -9,7 +9,6 @@ const { body, param } = require('express-validator')
 
 const isAdminMW = require("./middleware/isAdmin")
 const authMW = require("./middleware/auth")
-const gamepictureController = require('./controllers/gamepictureController')
 
 
 //<-----------  Home Routes   ----------->
@@ -150,7 +149,9 @@ router.route('/event/update/:id')
             .withMessage('L\'heure de l\'événement doit être au format 24 heures.'),
         // Middleware de validation pour le nombre de joueur de l'event
         body('playersNumber')
-            .isInt({ min: 1, max: 12 }).withMessage('Le nombre de joueurs doit être compris entre 1 et 12.')
+            .isInt({ min: 1, max: 12 }).withMessage('Le nombre de joueurs doit être compris entre 1 et 12.'),
+        body('address').exists().trim()
+            .notEmpty().withMessage('L\'adresse est obligatoire')
 
     ], eventController.postUpdate);
 
@@ -171,13 +172,12 @@ router.route('/search/results')
 
 
 
+
 //<-----------  FAQ Routes   ----------->
 
 router.route('/FAQ')
     .get(homeController.faq)
 
-router.route('/picture/update')
-    .post(gamepictureController.post)
 
 
 module.exports = router

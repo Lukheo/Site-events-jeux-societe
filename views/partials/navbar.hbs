@@ -21,7 +21,7 @@
                     <a class="nav-link dynapuff {{#if navInscription}}active{{/if}}"
                         href="/user/register">Inscription</a>
                 </li>
-
+                {{#if isAdmin}}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
@@ -34,6 +34,7 @@
                         <li><a class="dropdown-item" href="/user/read/1">test account</a></li>
                     </ul>
                 </li>
+                {{/if}}
                 {{#if prenom}}
                 <li class="nav-item">
                     <p> Bonjour <b>{{prenom}}</b></p>

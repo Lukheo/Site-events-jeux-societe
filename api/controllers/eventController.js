@@ -1,4 +1,5 @@
 const { Op } = require('sequelize')
+
 const Event = require('../models/eventModel')
 const { validationResult } = require('express-validator');
 const { Request, Response } = require('express');
@@ -26,9 +27,10 @@ module.exports = {
             }
             const event = await Event.findOne({
                 where: {
-                    name: req.body.eventName,
+                    name: req.body.eventName.trim(),
                     event_time: req.body.eventTime,
-                    event_date: req.body.eventDate
+                    event_date: req.body.eventDate,
+                    address: req.body.address
                 }
             });
 
@@ -39,11 +41,12 @@ module.exports = {
                 return res.render('event_create', { error: error });
             } else {
                 const eventcreated = await Event.create({
-                    name: req.body.eventName,
-                    description: req.body.eventDescription,
+                    name: req.body.eventName.trim(),
+                    description: req.body.eventDescription.trim(),
                     event_date: req.body.eventDate,
                     event_time: req.body.eventTime,
-                    players_number: req.body.playersNumber
+                    players_number: req.body.playersNumber,
+                    address: req.body.address
                 });
                 console.log("Événement créé :", eventcreated); // log confirmation de la création d'un évenement 
                 return res.redirect('/events/list');
@@ -54,7 +57,6 @@ module.exports = {
         }
 
     },
-
     read: async (req, res) => { //<---- fonction pour lire l'event via l'ID ---->
         const navEvent = true;
         try {
@@ -66,17 +68,75 @@ module.exports = {
                 return res.status(404).send("L'événement n'a pas été trouvé.");
             }
             event = event.toJSON();
+            // Appel à la fonction getAvailablePlaces pour obtenir le nombre de places restantes
+            const availablePlaces = await module.exports.getAvailablePlaces(req, res);
             const result = validationResult(req);
             if (!result.isEmpty()) {
                 return res.render('event_read', { event, navEvent, errors: result.errors });
             } else {
-                return res.render('event_read', { event, navEvent });
+                return res.render('event_read', { event, navEvent, availablePlaces });
             }
         } catch (error) {
             console.error("Une erreur s'est produite lors de la lecture de l'événement :", error);
             return res.status(500).send("Une erreur est survenue lors de la lecture de l'événement.");
         }
     },
+    getAvailablePlaces: async (req, res) => { // <------- fonction pour récupèrer le nombre de place disponibles ------>
+        try {
+            const eventId = req.params.id;
+            const event = await Event.findByPk(eventId);
+            
+            if (!event) {
+                return res.status(404).send("L'événement n'a pas été trouvé.");
+            } 
+            
+            const participantsCount = await EventUser.count({
+                where: {
+                    eventId: eventId
+                }
+            });
+            const remainingPlaces = event.players_number - participantsCount;
+    
+            // Si le nombre de places restantes est égal ou inférieur à zéro
+            if (remainingPlaces <= 0) {
+                return res.status(403).json({ message: "Désolé, il n'y a plus de places disponibles." });
+            }
+            return res.status(200).json({ remainingPlaces: remainingPlaces });
+        } catch (error) {
+            console.error("Une erreur s'est produite lors de la récupération du nombre de places restantes :", error);
+            return res.status(500).json({ error: "Erreur lors de la récupération du nombre de places restantes." });
+        }
+    },
+    registerUserToEvent: async (req, res) => { // <----- Fonction pour inscrire l'utilisateur à l'événement ---->
+        try {
+            const eventId = req.params.id;
+            const userId = req.user.id; 
+            
+            // Vérifier si l'utilisateur est déjà inscrit à l'événement
+            const existingParticipant = await EventUser.findOne({
+                where: {
+                    eventId: eventId,
+                    userId: userId
+                }
+            });
+
+            if (existingParticipant) {
+                return res.status(400).json({ message: "Vous êtes déjà inscrit à cet événement." });
+            }
+
+            // Inscrire l'utilisateur à l'événement
+            await EventUser.create({
+                eventId: eventId,
+                userId: userId
+            });
+
+            return res.status(200).json({ message: "Inscription réussie à l'événement." });
+        } catch (error) {
+            console.error("Une erreur s'est produite lors de l'inscription de l'utilisateur à l'événement :", error);
+            return res.status(500).json({ error: "Une erreur est survenue lors de l'inscription à l'événement." });
+        }
+    },
+
     getEventUpdate: async (req, res) => { // <---- fonction récupérer l'event ---->
         const event = await Event.findByPk(req.params.id, { raw: true })
         res.render('event_update', { event })
@@ -108,6 +168,7 @@ module.exports = {
             return res.status(500).send("Une erreur est survenue lors de la mise à jour de l'article.");
         }
     },
+    // Fonction pour obtenir le nombre de places restantes dans un événement
     
     eventDelete: async (req, res) => { // <---- fonction suppression d'event ---->
         await Event.destroy({
