@@ -1,4 +1,4 @@
-main{
+main {
     margin: 3em 0;
 }
 
@@ -6,18 +6,21 @@ main{
 
     --bg-light: #F8F8F8;
     --bg-light-grey: #f4f4f4;
+    --bg-grey: #c3c3c3;
     --bg-orange: #FFAE35;
     --bg-darkblue: #0064A3;
+    --bg-darkred: #A30000;
     --bg-green: #5CD451;
     --title-font: "DynaPuff", system-ui;
     --main-font: "Roboto", sans-serif;
 }
 
-body{
+body {
     background-color: var(--bg-light);
 }
 
-.dynapuff, h1 {
+.dynapuff,
+h1 {
     font-family: "DynaPuff", system-ui;
     font-optical-sizing: auto;
     font-weight: 400;
@@ -25,24 +28,69 @@ body{
     font-variation-settings: "wdth" 100;
 }
 
-.navStyle{
+.navStyle {
     background-color: var(--bg-orange);
 }
 
-.footerStyle{
+.footerStyle {
     background-color: var(--bg-darkblue);
     color: var(--bg-light);
 }
 
-.lightFont{
+.lightFont {
     color: var(--bg-light);
 }
 
-.lightGreyBg{
- background-color: var(--bg-light-grey);
+.lightGreyBg {
+    background-color: var(--bg-light-grey);
 }
 
-.inputStyle{
-    border: 1px solid #0064A3;
-    background-color: var(--bg-light-grey);
+.btnGrey{
+    background-color: var(--bg-grey);
+    padding: 10px 20px;
+    margin-right: 5%;
+    margin-top: 5%;
+    box-shadow: 1px 1px 2px grey;
+}
+
+.btnGrey{
+    background-color: var(--bg-grey);
+    border: 2px solid var(--bg-grey);
+    padding: 10px 20px;
+    margin-right: 5%;
+    margin-top: 5%;
+    box-shadow: 1px 1px 3px grey;
+}
+.btnGrey:hover{
+    border: 2px solid var(--bg-grey);
+    box-shadow: none;
+}
+
+.btnOrange{
+    background-color: var(--bg-orange);
+    border: 2px solid var(--bg-orange);
+    color: var(--bg-light);
+    font-family: var(--main-font);
+    font-weight: bold;
+    padding: 10px 20px;
+    margin-right: 5%;
+    margin-top: 5%;
+    box-shadow: 1px 1px 3px grey;
+}
+.btnOrange:hover{
+    border: 2px solid var(--bg-orange);
+    color: var(--bg-orange);
+    box-shadow: none;
+}
+
+/* VERSION MOBILE */
+
+@media screen and (min-width: 300px) and (max-width: 768px) {
+    .dispNoneMob {
+        display: none;
+    }
+
+    h1{
+        font-size: 4vh;
+    }
 }
