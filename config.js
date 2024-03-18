@@ -12,7 +12,7 @@ handlebars.registerHelper('formatContent', function(content) {
 const sequelize = new Sequelize('tableajeux', 'root', '', {
 
   host: 'localhost',
-  dialect:'mysql'
+  dialect:'mysql',
 });
 
 sequelize.sync()
