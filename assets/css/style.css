@@ -83,6 +83,10 @@ h3{
     box-shadow: none;
 }
 
+.navOverlap{
+    height: 60px;
+}
+
 .btnOrange{
     background-color: var(--bg-orange);
     border: 2px solid var(--bg-orange);
@@ -98,6 +102,9 @@ h3{
     border: 2px solid var(--bg-orange);
     color: var(--bg-orange);
     box-shadow: none;
+}
+.btnBleu{
+    color: #0064A3;
 }
 
 /* aspect des badges bleus */
@@ -125,5 +132,12 @@ h3{
 
     h1{
         font-size: 4vh;
+    }
+    
+}
+
+@media(max-width:999px){
+    .navOverlap{
+        height: 150px;
     }
 }
