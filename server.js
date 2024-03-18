@@ -69,6 +69,10 @@ app.use('*', (req, res, next) => {
 })
 
 
+app.post('/upload', (req, res) => {
+    const imgUrl = req.body.image_url;
+    console.log('Image URL received', imgUrl);
+})
 
 
 app.use('/', router)
