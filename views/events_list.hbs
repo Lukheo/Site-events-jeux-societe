@@ -26,7 +26,7 @@
                         {{event_date}} <br> à {{event_time}}</h6>
                     <p class="card-text text-truncate">{{description}}</p>
                     <p class="card-text">{{players_number}}</p>
-                    <a href="/event/read/{{id}}" class="card-link btn rounded-pill btn-success m-1">S'inscrire à
+                    <a href="{{#if prenom}}/event/read/{{id}}{{else}}/user/login{{/if}}" class="card-link btn rounded-pill btn-success m-1">S'inscrire à
                         l'évènement</a>
 
                     {{#if isAdmin}} 

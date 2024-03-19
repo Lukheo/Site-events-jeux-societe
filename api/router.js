@@ -64,6 +64,10 @@ router.route('/user/read/:id')
     .get(userController.getAccount)
 
 
+router.route('/alarm/:id')
+    .get(userController.addalarm)
+
+
 router.route('/user/update/:id')
 
 

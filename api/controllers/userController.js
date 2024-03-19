@@ -53,6 +53,7 @@ module.exports = {
         // Chercher l'utilisateur correspondant à l'id -- find the right user in the database according to his id
         const account = await User.findByPk(req.params.id, { raw: true })
         console.log(account);
+        console.log(req.session);
         res.render('my_account', { account })
     },
     getLogin: async (req, res) => { // <---- Donne la page de connexion ---->
@@ -89,5 +90,14 @@ module.exports = {
     logout: (req, res) => { // <---- deconnecte l'user  ---->
         req.session.destroy()
         res.redirect('/')
+    },
+    addalarm: (req,res) => {
+        req.session.alarm = true
+        res.redirect('/user/read/'+req.params.id)
+        // res.render('my_account')
+    },
+    removealarm: (req,res) => {
+        const alarm = false
+        res.redirect('back')
     }
 }
