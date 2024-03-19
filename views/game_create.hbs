@@ -1,0 +1,54 @@
+<h1 class="dynapuff text-center">Créer un jeu</h1>
+
+<div class="container mt-5">
+    <form action="/game/create" method="POST">
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="gameName" class="mb-2 fs-4"><i class="bi bi-vector-pen"></i> Nom du jeu</label>
+                    <input type="text" id="gameName" name="gameName" class="form-control border-warning-subtle">
+                </div>
+            </div>
+
+        </div>
+
+        <div class="form-group mt-4">
+            <label for="gameDescription" class="mb-2 fs-4"><i class="bi bi-vector-pen"></i> Description du jeu</label>
+            <textarea id="gameDescription" name="gameDescription" class="form-control border-warning-subtle"
+                rows="4"></textarea>
+        </div>
+        <div class="row">
+            {{!-- <div class="form-group col-4 mt-4">
+                <label for="catName" class="mb-2 fs-4"><i class="bi bi-dice-5"></i> Catégorie du jeu</label>
+                {{!--  METTRE UN DROPDOWN, créer des caté --}}
+            </div> --}}
+    
+            <div class="form-group col-3 mx-auto mt-4">
+                <label for="playerNumber" class="mb-2 fs-4"><i class="bi bi-person-fill-add m-2"></i> Nombre de
+                    joueurs</label>
+                <input type="number" id="playerNumber" name="playerNumber" class="form-control border-warning-subtle">
+            </div>
+            <div class="form-group col-4 mt-4">
+                <label for="imgGame" class="mb-2 fs-4"><i class="bi bi-image-fill"></i> Url de l'image</label>
+                <input type="text" id="imgGame" name="imgGame" class="form-control border-warning-subtle">
+            </div>
+        </div>
+        {{#if errors}}
+        <div class="mb-3">
+            {{#each errors}}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{msg}} <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {{/each}}
+        </div>
+        {{/if}}
+        {{#if error}}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{error}}<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {{/if}}
+
+
+        <button type="text" class="btn btn-warning mt-5 mb-2">Créer le jeu</button>
+    </form>
+</div>

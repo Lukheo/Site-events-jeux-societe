@@ -8,11 +8,15 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link dynapuff {{#if navHome}}active{{/if}}" aria-current="page" href="/FAQ">FAQ</a>
+                    <a class="nav-link dynapuff {{#if navHome}}active{{/if}}" aria-current="FAQ page" href="/FAQ">FAQ</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link dynapuff {{#if navHome}}active{{/if}}" aria-current="page"
-                        href="/game/read/">Game page</a>
+                    <a class="nav-link dynapuff {{#if navHome}}active{{/if}}" aria-current="Game page"
+                        href="/game/page/">Game page</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link dynapuff {{#if navHome}}active{{/if}}" aria-current="Game list"
+                        href="/game/list/">Games</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link dynapuff {{#if navList}}active{{/if}}" href="/events/list">Évènements</a>
@@ -29,6 +33,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item {{#if navEventCreate}} active {{/if}}"  href="/event/create">Créer un event</a></li>
+                        <li><a class="dropdown-item {{#if navEventCreate}} active {{/if}}"  href="/game/create">Créer un jeu</a></li>
                         <li><a class="dropdown-item {{#if navUserList}}active{{/if}}" href="/user/list">Vois les
                                 gens</a></li>
                         <li><a class="dropdown-item" href="/user/read/1">test account</a></li>
