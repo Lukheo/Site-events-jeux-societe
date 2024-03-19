@@ -87,7 +87,8 @@ h1 {
     box-shadow: none;
 }
 .btnBleu{
-    color: #0064A3;
+    background-color: #0064A3;
+    color: #f4f4f4;
 }
 
 /* VERSION MOBILE */

@@ -13,20 +13,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {{!-- {{#each users}} --}}
+                    {{#each users}}
                     <tr>
-                        <th scope="row">{{id}}1</th>
+                        <th scope="row">{{id}}</th>
                         <td {{#if isAdmin}}
-                            class="fw-bold"
-                        {{/if}}>{{#if isAdmin}}
-                            <i class="bi bi-shield-lock"></i>
-                        {{/if}}{{nom}}nom</td>
+                            class="fw-bold">
+                            <i class="bi bi-shield-lock"></i
+                        {{/if}}> {{nom}}</td>
                         <td {{#if isAdmin}}
-                            class="fw-bold"
-                        {{/if}}>{{#if isAdmin}}
-                            <i class="bi bi-shield-lock"></i>
-                        {{/if}}{{prenom}}prenom</td>
-                        <td><em>{{email}}mail</em></td>
+                            class="fw-bold">
+                            <i class="bi bi-shield-lock"></i
+                        {{/if}}> {{prenom}}</td>
+                        <td><em>{{email}}</em></td>
                         
                         <td>
                                 <a class="btn btn-warning rounded-pill" href="/user/update/{{id}}" ><i class="bi bi-arrow-repeat" ></i></a>
@@ -40,7 +38,7 @@
 
                         </td>
                     </tr>
-                    {{!-- {{/each}} --}}
+                    {{/each}}
                 </tbody>
             </table>
         </div>

@@ -13,7 +13,7 @@
             <div class="row align-items-center">
                 {{!-- FIRST MODAL OPENING --}}
                 <button type="button" data-bs-toggle="modal" data-bs-target="#prenomModal"
-                    class="col-lg-1 col-md-2 col-sm-3 col-4 d-inline btn btn-outline-primary">
+                    class="col-lg-1 col-md-2 col-sm-3 col-4 d-inline btn btn-outline-primary btnBleu">
                     <i class="bi bi-pencil-square"></i>
                 </button>
                 <h3 class="d-inline col dynapuff">Prénom :  {{account.prenom}}</h3>
@@ -21,7 +21,7 @@
             <div class="row align-items-center">
                 {{!-- SECOND MODAL OPENING --}}
                 <button type="button" data-bs-toggle="modal" data-bs-target="#nomModal"
-                    class="col-lg-1 col-md-2 col-sm-3 col-4 d-inline btn btn-outline-primary">
+                    class="col-lg-1 col-md-2 col-sm-3 col-4 d-inline btn btn-outline-primary btnBleu">
                     <i class="bi bi-pencil-square"></i>
                 </button>
                 <h3 class="d-inline col dynapuff">Nom :  {{account.nom}}</h3>
@@ -29,7 +29,7 @@
             <div class="row align-items-center">
                 {{!-- THIRD MODAL OPENING --}}
                 <button type="button" data-bs-toggle="modal" data-bs-target="#mailModal"
-                    class="col-lg-1 col-md-2 col-sm-3 col-4 d-inline btn btn-outline-primary">
+                    class="col-lg-1 col-md-2 col-sm-3 col-4 d-inline btn btn-outline-primary btnBleu">
                     <i class="bi bi-pencil-square"></i>
                 </button>
                 <h3 class="col d-inline dynapuff">Mail :  {{account.email}}</h3>
@@ -58,8 +58,8 @@
                     </div>
 
                     <a href="#" class="card-link btn btn-danger rounded-pill">Se désincrire</a>
-                    <a href="" class="card-link btn btn-warning rounded-pill"><i class="bi bi-alarm"></i>Ajouter un
-                        rappel</a>
+                    <button type="button" data-bs-toggle="modal" data-bs-target="#alarmModal" class="card-link btn btn-warning rounded-pill"><i class="bi bi-alarm"></i>Ajouter un
+                        rappel</button>
                 </div>
             </div>
         </div>
@@ -126,3 +126,30 @@
     </div>
   </div>
 </div>
+
+
+{{!-- {{#each events }} --}}
+
+<div class="modal fade" id="alarmModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Ajouter un rappel</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Ajouter un rappel vous permettra d'être notifié par mail quand :</p>
+        <ul>
+          <li>l'évènement approche</li>
+          <li>l'évènement est annulé</li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary dynapuff" data-bs-dismiss="modal">Annuler</button>
+        <button type="button" class="btn btn-primary dynapuff">Ajouter le rappel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{!-- {{/each}} --}}
