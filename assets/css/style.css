@@ -124,7 +124,13 @@ h3{
     color: var(--bg-black);
     background-color: var(--bg-orange-light);
 }
-/* VERSION MOBILE */
+
+/*position des images*/
+.imgCover{
+    object-fit: cover;
+}
+
+/**************************** VERSION MOBILE ********************************/
 
 @media screen and (min-width: 300px) and (max-width: 768px) {
     .dispNoneMob {
