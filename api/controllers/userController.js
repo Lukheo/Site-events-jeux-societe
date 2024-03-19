@@ -5,8 +5,9 @@ const { Request, Response } = require('express');
 const User = require('../models/userModel')
 
 module.exports = {
-    list: async (req, res) => { // <---- 
-    res.render('user_list')
+    list: async (req, res) => { // <---- montre la liste des utilisateurs existants/displays the existing users list ---->
+        const users = await User.findAll({raw:true})
+    res.render('user_list', {users})
     },
 
     get: (req, res) => {  // <---- Donne la page d'inscription ---->
