@@ -75,12 +75,38 @@ router.route('/user/list')
     .get(userController.list)
 
 //<---------  Game Routes   ----------->
-
-router.route('/game/read/')
+router.route('/game/read')
     .get(gameController.list)
+
+router.route('/game/read/:id')
+    .get(gameController.read);
 
 router.route('/game/list')
     .get(gameController.list)
+
+router.route('/game/create')
+    .get(gameController.createGame)
+    .post(
+        body('gameName')
+            .exists().trim()
+            .isLength({ min: 2, max: 20 }).withMessage('Le champ doit contenir plus de deux caractères.')
+            .notEmpty().withMessage('Ce champ ne doit pas être vide.')
+            .escape(),
+
+        body('gameDescription')
+            .exists().trim()
+            .notEmpty().withMessage('Ce champ ne doit pas être vide.')
+            .isLength({ max: 400 }).withMessage('Le contenu ne doit pas être supérieur à 400 caractères')
+            .escape(),
+
+        body('playerNumber')
+            .isInt({ min: 1, max: 12 }).withMessage('Le nombre de joueurs doit être compris entre 1 et 12.')
+        ,
+        gameController.postGame)
+
+
+
+
 
 //<-----------  Event Routes   ----------->
 
