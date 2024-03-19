@@ -60,9 +60,9 @@ module.exports = {
     read: async (req, res) => { //<---- fonction pour lire l'event via l'ID ---->
         const navEvent = true;
         try {
-            
+
             console.log("ID de l'événement à rechercher :", req.params.id); // log pour afficher l'ID
-    
+
             let event = await Event.findByPk(req.params.id);
             if (!event) {
                 return res.status(404).send("L'événement n'a pas été trouvé.");
@@ -85,18 +85,18 @@ module.exports = {
         try {
             const eventId = req.params.id;
             const event = await Event.findByPk(eventId);
-            
+
             if (!event) {
                 return res.status(404).send("L'événement n'a pas été trouvé.");
-            } 
-            
+            }
+
             const participantsCount = await EventUser.count({
                 where: {
                     eventId: eventId
                 }
             });
             const remainingPlaces = event.players_number - participantsCount;
-    
+
             // Si le nombre de places restantes est égal ou inférieur à zéro
             if (remainingPlaces <= 0) {
                 return res.status(403).json({ message: "Désolé, il n'y a plus de places disponibles." });
@@ -110,8 +110,14 @@ module.exports = {
     registerUserToEvent: async (req, res) => { // <----- Fonction pour inscrire l'utilisateur à l'événement ---->
         try {
             const eventId = req.params.id;
-            const userId = req.user.id; 
-            
+            const userId = req.user.id;
+
+            //Vérifier si il y a encore des places dans l'event
+            const availablePlaces = await module.exports.getAvailablePlaces(req, res);
+
+            if (availablePlaces <= 0) {
+                return res.status(403).json({ message: "Désolé, il n'y a plus de places disponibles." });
+            }
             // Vérifier si l'utilisateur est déjà inscrit à l'événement
             const existingParticipant = await EventUser.findOne({
                 where: {
@@ -154,14 +160,14 @@ module.exports = {
                 where: {
                     id: req.params.id
                 },
-                returning: true 
+                returning: true
             });
-    
+
             if (updatedRowsCount === 0) {
                 return res.status(404).send("L'article à mettre à jour n'a pas été trouvé.");
             }
-    
-            const updatedArticle = updatedRows[0]; 
+
+            const updatedArticle = updatedRows[0];
             res.redirect('/events/list');
         } catch (error) {
             console.error("Une erreur s'est produite lors de la mise à jour de l'article :", error);
@@ -169,7 +175,7 @@ module.exports = {
         }
     },
     // Fonction pour obtenir le nombre de places restantes dans un événement
-    
+
     eventDelete: async (req, res) => { // <---- fonction suppression d'event ---->
         await Event.destroy({
             where: {
