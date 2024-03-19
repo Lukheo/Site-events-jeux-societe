@@ -29,13 +29,13 @@
                     <a href="{{#if prenom}}/event/read/{{id}}{{else}}/user/login{{/if}}" class="card-link btn rounded-pill btn-success m-1">S'inscrire à
                         l'évènement</a>
 
-                    {{!-- if isAdmin --}}
+                    {{#if isAdmin}} 
 
-                    <a href="/event/update/{{id}}" class="btn rounded-pill btn-warning m-1"> modifier l'article</a>
+                    <a href="/event/update/{{id}}" class="btn rounded-pill btn-warning m-1"> modifier l'event</a>
                     <button type="button" class="btn rounded-pill btn-danger m-1" data-bs-toggle="modal"
                         data-bs-target="#Modal{{id}}"> Supprimer l'évènement</button>
 
-                    {{!--/if --}}
+                    {{/if}}
 
                     {{!-- integration du jeu et sa page ou sa modale --}}
                     <br><a href="#" class="card-link">Jeu joué</a>

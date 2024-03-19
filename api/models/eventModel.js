@@ -1,9 +1,6 @@
 
 const { DataTypes} = require('sequelize')
 const config = require('../../config')
-const Game = require('./gameModel')
-const User = require('./userModel')
-const Room = require('./roomModel')
 
 const Event = config.sequelize.define('events', {
     id: {
@@ -29,13 +26,17 @@ const Event = config.sequelize.define('events', {
     players_number: {
         type: DataTypes.INTEGER,
         allowNull: false
-    }
+    },
+    address: {
+        type: DataTypes.STRING,
+        allowNull:false
+    },
 })
 
 
 
-Event.hasOne(Game)
-Event.hasOne(Room)
+
+
 
 
 module.exports = Event

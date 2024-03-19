@@ -4,11 +4,11 @@ const homeController = require('../api/controllers/homeController')
 const userController = require('../api/controllers/userController')
 const gameController = require('../api/controllers/gameController')
 const eventController = require('../api/controllers/eventController')
+const searchController = require('./controllers/searchController')
 const { body, param } = require('express-validator')
 
 const isAdminMW = require("./middleware/isAdmin")
 const authMW = require("./middleware/auth")
-const gamepictureController = require('./controllers/gamepictureController')
 
 
 //<-----------  Home Routes   ----------->
@@ -78,10 +78,13 @@ router.route('/user/delete/:id')
 router.route('/user/list')
     .get(userController.list)
 
+//<---------  Game Routes   ----------->
 
 router.route('/game/read/')
     .get(gameController.list)
 
+router.route('/game/list')
+    .get(gameController.list)
 
 //<-----------  Event Routes   ----------->
 
@@ -118,7 +121,7 @@ router.route('/event/create')
 router.route('/events/list')
     .get(eventController.list)
 
-    router.route("/event/read/:id")
+router.route("/event/read/:id")
     .get([
         param('id').exists().withMessage("L'identifiant de l'événement est requis.")
     ], eventController.read);
@@ -141,16 +144,18 @@ router.route('/event/update/:id')
             .escape(),
 
         // Middleware de validation pour la date de l'event
-            body('eventDate')
+        body('eventDate')
             .isDate().withMessage('la date doit être valide')
             .notEmpty().withMessage('Vous devez choisir une date'),
         // Middleware de validation pour l'heure de l'event
         body('eventTime')
             .isTime({ hourFormat: 'hour24' })
             .withMessage('L\'heure de l\'événement doit être au format 24 heures.'),
-            // Middleware de validation pour le nombre de joueur de l'event
+        // Middleware de validation pour le nombre de joueur de l'event
         body('playersNumber')
-            .isInt({ min: 1, max: 12 }).withMessage('Le nombre de joueurs doit être compris entre 1 et 12.')
+            .isInt({ min: 1, max: 12 }).withMessage('Le nombre de joueurs doit être compris entre 1 et 12.'),
+        body('address').exists().trim()
+            .notEmpty().withMessage('L\'adresse est obligatoire')
 
     ], eventController.postUpdate);
 
@@ -160,8 +165,12 @@ router.route('/event/delete/:id')
 
 
 
+//<---------  Search Routes   ----------->
+router.route('/search')
+    .get(searchController.search)
 
-
+router.route('/search/results')
+    .post(searchController.search)
 
 
 
@@ -173,8 +182,6 @@ router.route('/event/delete/:id')
 router.route('/FAQ')
     .get(homeController.faq)
 
-router.route('/picture/update')
-    .post(gamepictureController.post)
 
 
 module.exports = router

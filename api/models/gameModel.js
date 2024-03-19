@@ -27,6 +27,10 @@ const Game = config.sequelize.define('games', {
         type: DataTypes.BOOLEAN,
         allowNull: false,
         defaultValue: false
+    },
+    imageUrl: {
+        type: DataTypes.STRING,
+        allowNull:false
     }
 })
 
