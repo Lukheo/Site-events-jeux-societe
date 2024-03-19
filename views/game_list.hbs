@@ -1,0 +1,69 @@
+<div class="container-fluid">
+    <div class="row">
+        <h2 class="dynapuff">Liste des jeux</h2>
+    </div>
+    <div class="row">
+        {{#each games}}
+        <div class="col-sm-10 col-md-6 col-lg-4">
+
+            <div class="card border-success mt-3">
+                <small>
+                    <div class="rounded-pill badge text-bg-success float-end">
+                        <i class="bi bi-dice-2"></i>
+                        <span>Catégorie</span>
+                    </div>
+                </small>
+                <small>
+                    <div class="rounded-pill badge text-bg-warning float-end">
+                        <i class="bi bi-geo-alt"></i>
+                        <span>{{player_number}} joueurs</span>
+                    </div>
+                </small>
+                <div class="card" style="width: 18rem;">
+                    <img src="https://images.unsplash.com/photo-1549056572-75914d5d5fd4?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{game_name}}</h5>
+                        <h6 class="card-title">{{player_number}}</h6>
+                        <p class="card-text">{{game_desc}}</p>
+                        <a href="/game/page{{gameId}}" class="btn btnOrange">Voir le jeu</a>
+                    </div>
+                </div>
+
+
+                {{!-- if isAdmin --}}
+
+                <a href="/event/update/{{id}}" class="btn rounded-pill btn-warning m-1"> modifier le jeu</a>
+                <button type="button" class="btn rounded-pill btn-danger m-1" data-bs-toggle="modal"
+                    data-bs-target="#Modal{{id}}"> Supprimer le jeu</button>
+
+                {{!--/if --}}
+
+                {{!-- integration du jeu et sa page ou sa modale --}}
+                <br><a href="#" class="card-link">Jeu joué</a>
+            </div>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="Modal{{id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Confirmation de suppression</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        Fermer</button>
+                </div>
+                <div class="modal-body">
+                    Êtes vous sur de vouloir supprimer ce jeu : <em> {{game_name}} ?</em></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <form action="/event/delete/{{id}}" method="post">
+                        <button type="submit" class="btn btn-danger">Supprimer définitivement</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</div>
+</div>

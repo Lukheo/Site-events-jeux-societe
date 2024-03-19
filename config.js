@@ -8,6 +8,7 @@ handlebars.registerHelper('formatContent', function(content) {
 
 
 // Option 3: Passing parameters separately (other dialects)
+const jwtSecretKey = '45cde5634be77da412855e860ee90a3296dbc8e0ce7542dbbe37b6dbdb92967c'
 
 const sequelize = new Sequelize('tableajeux', 'root', '', {
 
@@ -15,8 +16,12 @@ const sequelize = new Sequelize('tableajeux', 'root', '', {
   dialect:'mysql',
 });
 
+
+
 sequelize.sync()
 
 const sessionSecret = 'keyboard dog'
 
-module.exports = {sequelize, sessionSecret}
+
+
+module.exports = {sequelize, sessionSecret, jwtSecretKey} 

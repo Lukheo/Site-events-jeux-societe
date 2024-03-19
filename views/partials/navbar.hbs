@@ -21,7 +21,7 @@
                     <a class="nav-link dynapuff {{#if navInscription}}active{{/if}}"
                         href="/user/register">Inscription</a>
                 </li>
-
+                {{#if isAdmin}}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
@@ -34,6 +34,7 @@
                         <li><a class="dropdown-item" href="/user/read/1">test account</a></li>
                     </ul>
                 </li>
+                {{/if}}
                 {{#if prenom}}
                 <li class="nav-item">
                     <p> Bonjour <b>{{prenom}}</b></p>
@@ -52,7 +53,7 @@
                             class="bi bi-box-arrow-right text-light"></i>Se connecter</span></a>
             </li>
             {{/if}}
-            <form class="d-flex" role="search" action="/article/search" method="post">
+            <form class="d-flex" role="search" action="/search/results" method="post">
                 <input class="form-control me-2" type="search" placeholder="Un jeu ou un évènement" id="searchInput"
                     name="search" aria-label="Search">
                 <button class="btn btn-success" type="submit">Rechercher</button>

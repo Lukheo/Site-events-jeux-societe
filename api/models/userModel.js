@@ -45,8 +45,11 @@ const User = config.sequelize.define('users', {
     }
 })
 
-User.hasMany(Event)
-Event.belongsTo(User)
+//  User.hasMany(Event)
+//  Event.belongsTo(User)
+
+User.belongsToMany(Event, { through: 'EventUser' });
+Event.belongsToMany(User, { through: 'EventUser' });
 
 
 module.exports = User
