@@ -35,3 +35,4 @@ async function sendUrlToServer(imgUrl) {
         console.error('error');
     }
 }
+
