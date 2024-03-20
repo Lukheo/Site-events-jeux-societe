@@ -1,6 +1,7 @@
 const {Op} = require('sequelize')
 const Game = require('../models/gameModel')
 const {validationResult} = require('express-validator')
+const { Request, Response } = require('express');
 
 module.exports = {
     list: async (req,res) => {
@@ -72,7 +73,47 @@ module.exports = {
             }
         } catch (error) {
             console.error("Une erreur s'est produite lors de la lecture du jeu :", error);
-            return res.status(500).send("Une erreur est survenue lors de la lecture du jeu.");
+            return res.stevenatus(500).send("Une erreur est survenue lors de la lecture du jeu.");
         }
+    },
+
+    getGameUpdate: async (req, res) => { // <---- fonction pour récupérer le jeu à modifier ---->
+        const game = await Game.findByPk(req.params.id, { raw: true })
+        res.render('game_update', { game })
+    },
+
+    postGameUpdate: async (req, res) => { // <---- fonction de modification de jeu ---->
+        try {
+            const [updatedRowsCount, updatedRows] = await Game.update({
+                    game_name: req.body.gameName,
+                    game_desc: req.body.gameDescription,
+                    player_number: req.body.playerNumber,
+                    imageUrl: req.body.imgGame
+            }, {
+                where: {
+                    id: req.params.id
+                },
+                returning: true
+            });
+
+            if (updatedRowsCount === 0) {
+                return res.status(404).send("Le jeu à modifier n'a pas été trouvé.");
+            }
+
+            const updatedGame = updatedRows[0];
+            res.redirect('/game/list');
+        } catch (error) {
+            console.error("Une erreur s'est produite lors de la mise à jour du jeu :", error);
+            return res.status(500).send("Une erreur est survenue lors de la mise à jour du jeu.");
+        }
+    },
+
+    gameDelete: async (req, res) => { // <---- fonction suppression d'un jeu' ---->
+        await Game.destroy({
+            where: {
+                id: req.params.id
+            }
+        })
+        res.redirect('/game/list')
     }
 }
