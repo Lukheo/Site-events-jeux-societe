@@ -9,6 +9,7 @@ const { body, param } = require('express-validator')
 const isAdminMW = require("./middleware/isAdmin")
 const authMW = require("./middleware/auth")
 const gamepictureController = require('./controllers/gamepictureController')
+const gamedescriptionController = require('./controllers/gamedescriptionController')
 
 
 //<-----------  Home Routes   ----------->
@@ -76,7 +77,12 @@ router.route('/user/list')
 
 
 router.route('/game/read/')
-    .get(gameController.list)
+    .get(gameController.get)
+
+
+router.route('/gameDesc/create')
+    // .get(gamedescriptionController.get)
+    .post(gamedescriptionController.post)
 
 
 //<-----------  Event Routes   ----------->

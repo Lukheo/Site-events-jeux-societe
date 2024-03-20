@@ -3,14 +3,14 @@
         <div class="col-md-11 mx-auto">
             <div class="row">
                 {{!-- Image container --}}
-                    <div class="col-md-6 img-container">
-                        <img src="/pictures/picture_test.jpg" alt="" class="w-50 h-auto" id="mainImg">
-                        {{!-- {{#if isAdmin}} --}}
-                        <form action="/picture/update" method="post">
+                <div class="col-md-6 img-container">
+                    <img src="/pictures/picture_test.jpg" alt="" class="w-50 h-auto" id="mainImg">
+                    {{#if isAdmin}}
+                    <form action="/picture/update" method="post">
                         <input type="file" accept="image/*" id="input-file">
-                        </form>
-                        {{!-- {{/if}} --}}
-                    </div>
+                    </form>
+                    {{/if}}
+                </div>
 
                 {{!-- Dates container --}}
                 <div class="col-md-6 shadow rounded p-3">
@@ -57,7 +57,21 @@
                 {{!-- Desc container --}}
                 <div class="desc-container shadow rounded my-5">
                     <h1>Description</h1>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, dolorem!</p>
+                    <p id="descP"> {{gameDesc.desc}} </p>
+                    {{#if isAdmin}}
+                    <div class="row">
+                        <div class="col-md-6">
+                            <form action="/gameDesc/create" method="post">
+                                <div class="mb-3">
+                                    <label for="descriptionInput" class="form-label"></label>
+                                    <textarea name="desc" class="form-control" id="descriptionInput"
+                                        rows="3"></textarea>
+                                </div>
+                                <button class="btn btn-primary" type="submit">Commenter</button>
+                            </form>
+                        </div>
+                    </div>
+                    {{/if}}
                 </div>
 
                 {{!-- Rate container --}}
