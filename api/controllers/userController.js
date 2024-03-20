@@ -99,5 +99,9 @@ module.exports = {
     removealarm: (req,res) => {
         const alarm = false
         res.redirect('back')
+    },
+    update: async (req,res) => {
+        const user = await User.findByPk(req.params.id, { raw: true })
+        res.render("user_create", {user})
     }
 }

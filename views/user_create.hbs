@@ -21,41 +21,39 @@
             {{/if}}
          
             {{#if user}}
-            <form action="/user/update/{{user.id}}" method="post">
-                {{else}}
-                <form action="/user/register" method="post" onsubmit="return userCreateCheck()">
-                    {{/if}}
-                    <div class="mb-3">
-                        <label for="prenom" class="form-label">Prénom</label>
-                        <input name="prenom" type="prenom" class="form-control" id="prenom" placeholder="Votre prenom"
-                            value="{{#if user}}{{user.nom}}{{/if}}">
-                    </div>
-                    <div class="mb-3">
-                        <label for="nom" class="form-label">Nom</label>
-                        <input name="nom" type="prenom" class="form-control" id="nom" placeholder="Votre nom"
-                            value="{{#if user}}{{user.prenom}}{{/if}}">
-                    </div>
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Votre adresse email</label>
-                        <input name="email" type="email" class="form-control" id="email" placeholder="nom@exemple.fr"
-                            value="{{#if user}}{{user.email}}{{/if}}">
-                    </div>
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Votre mot de passe</label>
-                        <input name="password" type="password" class="form-control" id="password">
-                    </div>
-                    {{#unless user}}
-                    <div class="mb-3">
-                        <label for="confPassword" class="form-label">Confirmer votre mot de passe</label>
-                        <input name="confPassword" type="password" class="form-control" id="confPassword">
-                    </div>
-                    {{/unless}}
-                    <div class="mb-3">
-                        <button class="btn btn-outline-success" type="submit">Envoyer</button>
-                    </div>
-                </form>
-
-
+            <form action="/user/update/{{user.id}}" method="post" onsubmit="return userUpdateCheck()">
+            {{else}}
+            <form action="/user/register" method="post" onsubmit="return userCreateCheck()">
+            {{/if}}
+                <div class="mb-3">
+                    <label for="prenom" class="form-label">Prénom</label>
+                    <input name="prenom" type="prenom" class="form-control" id="prenom" placeholder="Votre prénom"
+                        value="{{#if user}}{{user.nom}}{{/if}}" aria-label="Prénom" aria-required="true">
+                </div>
+                <div class="mb-3">
+                    <label for="nom" class="form-label">Nom</label>
+                    <input name="nom" type="prenom" class="form-control" id="nom" placeholder="Votre nom"
+                        value="{{#if user}}{{user.prenom}}{{/if}}" aria-label="Nom" aria-required="true">
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Votre adresse email</label>
+                    <input name="email" type="email" class="form-control" id="email" placeholder="nom@exemple.fr"
+                        value="{{#if user}}{{user.email}}{{/if}}" aria-label="Adresse email" aria-required="true">
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Votre mot de passe</label>
+                    <input name="password" type="password" class="form-control" id="password" aria-label="Mot de passe" aria-required="true">
+                </div>
+                {{#unless user}}
+                <div class="mb-3">
+                    <label for="confPassword" class="form-label">Confirmer votre mot de passe</label>
+                    <input name="confPassword" type="password" class="form-control" id="confPassword" aria-label="Confirmer mot de passe" aria-required="true">
+                </div>
+                {{/unless}}
+                <div class="mb-3">
+                    <button class="btn btn-outline-success" type="submit">Envoyer</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
