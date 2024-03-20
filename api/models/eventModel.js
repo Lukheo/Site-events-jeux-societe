@@ -35,10 +35,6 @@ const Event = config.sequelize.define('events', {
 
 
 
-
-
-
-
 module.exports = Event
 
 

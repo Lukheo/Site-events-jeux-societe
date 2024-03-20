@@ -9,6 +9,7 @@ const { body, param } = require('express-validator')
 
 const isAdminMW = require("./middleware/isAdmin")
 const authMW = require("./middleware/auth")
+const authenticateUser = require('./middleware/authenticateUser')
 
 
 //<-----------  Home Routes   ----------->
@@ -84,13 +85,12 @@ router.route('/game/list')
 
 //<-----------  Event Routes   ----------->
 
-
 router.route('/event/create')
     .get(eventController.createEvent)
     .post(
         body('eventName')
             .exists().trim()
-            .isLength({ min: 2, max: 20 }).withMessage('Le champ doit contenir plus de deux caractères ou moins')
+            .isLength({ min: 2, max: 20 }).withMessage('Le champ doit contenir plus de deux caractères au moins')
             .notEmpty().withMessage('Ce champ ne doit pas être vide.')
             .escape(),
 
@@ -149,16 +149,20 @@ router.route('/event/update/:id')
             .withMessage('L\'heure de l\'événement doit être au format 24 heures.'),
         // Middleware de validation pour le nombre de joueur de l'event
         body('playersNumber')
-            .isInt({ min: 1, max: 12 }).withMessage('Le nombre de joueurs doit être compris entre 1 et 12.'),
+            .isInt({ min: 1, max: 60 }).withMessage('Le nombre de joueurs doit être compris entre 1 et 60.'),
         body('address').exists().trim()
             .notEmpty().withMessage('L\'adresse est obligatoire')
 
     ], eventController.postUpdate);
 
-
 router.route('/event/delete/:id')
     .post(eventController.eventDelete)
 
+router.route('/event/:id/places')
+    .get(eventController.getAvailablePlaces)
+
+router.route('/event/:id/register')
+    .post(authenticateUser.authenticateUser, eventController.registerUserToEvent);
 
 
 //<---------  Search Routes   ----------->
