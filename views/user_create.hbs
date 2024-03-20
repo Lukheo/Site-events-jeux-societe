@@ -23,7 +23,7 @@
             {{#if user}}
             <form action="/user/update/{{user.id}}" method="post">
                 {{else}}
-                <form action="/user/register" method="post">
+                <form action="/user/register" method="post" onsubmit="return userCreateCheck()">
                     {{/if}}
                     <div class="mb-3">
                         <label for="prenom" class="form-label">Prénom</label>
@@ -59,3 +59,4 @@
         </div>
     </div>
 </div>
+<script src="/js/userCheck.js" defer></script>
