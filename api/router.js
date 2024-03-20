@@ -79,8 +79,6 @@ router.route('/user/list')
     .get(userController.list)
 
 //<---------  Game Routes   ----------->
-router.route('/game/read')
-    .get(gameController.list)
 
 router.route('/game/read/:id')
     .get(gameController.read);
@@ -108,8 +106,11 @@ router.route('/game/create')
         ,
         gameController.postGame)
 
+router.route('/game/rate')
+    .post(gameController.rate)
 
-
+router.route('/game/page/:id')
+    .get(gameController.getGameDetail)
 
 
 //<-----------  Event Routes   ----------->

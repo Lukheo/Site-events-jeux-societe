@@ -2,15 +2,15 @@
     <div class="row">
         <div class="col-md-11 mx-auto">
             <div class="row">
+                {{#if isAdmin}}
+                <div class="col-md-12">
+                    <button class="btn btn-outline-warning mt-2">Mettre à jour la page</button>
+                </div>
+                {{/if}}
                 {{!-- Image container --}}
-                    <div class="col-md-6 img-container">
-                        <img src="/pictures/picture_test.jpg" alt="" class="w-50 h-auto" id="mainImg">
-                        {{#if isAdmin}} 
-                        <form action="/picture/update" method="post">
-                        <input type="file" accept="image/*" id="input-file">
-                        </form>
-                         {{/if}}
-                    </div>
+                <div class="col-md-6 img-container">
+                    <img src="{{game.imageUrl}}" alt="" class="w-50 h-auto" id="mainImg">
+                </div>
 
                 {{!-- Dates container --}}
                 <div class="col-md-6 shadow rounded p-3">
@@ -57,7 +57,7 @@
                 {{!-- Desc container --}}
                 <div class="desc-container shadow rounded my-5">
                     <h1>Description</h1>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, dolorem!</p>
+                    <p>{{game.game_desc}}</p>
                 </div>
 
                 {{!-- Rate container --}}

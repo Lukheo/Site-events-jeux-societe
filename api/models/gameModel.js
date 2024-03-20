@@ -31,6 +31,10 @@ const Game = config.sequelize.define('games', {
     imageUrl: {
         type: DataTypes.STRING,
         allowNull:false
+    },
+    rate: {
+        type: DataTypes.INTEGER,
+        defaultValue: false
     }
 })
 
