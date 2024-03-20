@@ -73,7 +73,7 @@ module.exports = {
             }
         } catch (error) {
             console.error("Une erreur s'est produite lors de la lecture du jeu :", error);
-            return res.stevenatus(500).send("Une erreur est survenue lors de la lecture du jeu.");
+            return res.status(500).send("Une erreur est survenue lors de la lecture du jeu.");
         }
     },
 
