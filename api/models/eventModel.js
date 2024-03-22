@@ -1,6 +1,7 @@
 
 const { DataTypes} = require('sequelize')
 const config = require('../../config')
+const Game = require('./gameModel')
 
 const Event = config.sequelize.define('events', {
     id: {
@@ -33,7 +34,7 @@ const Event = config.sequelize.define('events', {
     },
 })
 
-
+Event.belongsTo(Game)
 
 module.exports = Event
 

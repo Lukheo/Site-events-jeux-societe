@@ -1,6 +1,9 @@
 const { Op } = require('sequelize')
 
 const Event = require('../models/eventModel')
+const Game = require('../models/gameModel')
+const User = require('../models/userModel')
+const Categorie = require('../models/categorieModel')
 const EventUser = require('../models/eventUserModel')
 const { validationResult } = require('express-validator');
 const { Request, Response } = require('express');
@@ -8,7 +11,17 @@ const { Request, Response } = require('express');
 
 module.exports = {
     list: async (req, res) => { //  <---- fonction affichage de tous les events ---->
-        const events = await Event.findAll({ raw: true })
+        const events = await Event.findAll(
+            {
+                include:
+                    [{
+                        model: Game,
+                        raw: true,
+                        include: Categorie
+                    },
+                    ]
+            },
+        )
         const navEvents = true
         console.log(events)
         res.render('events_list', { events, navEvents })
@@ -62,25 +75,30 @@ module.exports = {
         const navEvent = true;
         // try {
 
-            console.log("ID de l'événement à rechercher :", req.params.id); // log pour afficher l'ID
+        console.log("ID de l'événement à rechercher :", req.params.id); // log pour afficher l'ID
 
-            let event = await Event.findByPk(req.params.id);
-            if (!event) {
-                return res.status(404).send("L'événement n'a pas été trouvé.");
+        let event = await Event.findByPk(req.params.id, {
+            include: {
+                model: Game,
+                include : Categorie
+            },
+        });
+        if (!event) {
+            return res.status(404).send("L'événement n'a pas été trouvé.");
+        } else {
+            event = event.toJSON();
+            // Appel à la fonction getAvailablePlaces pour obtenir le nombre de places restantes
+            const availablePlaces = await module.exports.getAvailablePlaces(req, res);
+            const result = validationResult(req);
+
+            if (!result.isEmpty()) {
+                console.log('resultat de :')
+                return res.render('event_read', { event, navEvent, errors: result.errors });
             } else {
-                event = event.toJSON();
-                // Appel à la fonction getAvailablePlaces pour obtenir le nombre de places restantes
-                const availablePlaces = await module.exports.getAvailablePlaces(req, res);
-                const result = validationResult(req);
-
-                if (!result.isEmpty()) {
-                    console.log('resultat de :')
-                    return res.render('event_read', { event, navEvent, errors: result.errors });
-                } else {
-                    console.log(availablePlaces)
-                    res.render('event_read', { event, navEvent, availablePlaces });
-                }
+                console.log(availablePlaces)
+                res.render('event_read', { event, navEvent, availablePlaces });
             }
+        }
         // } catch (error) {
         //     console.error("Une erreur s'est produite lors de la lecture de l'événement :", error);
         //     return res.status(500).send("Une erreur est survenue lors de la lecture de l'événement.");
@@ -104,7 +122,7 @@ module.exports = {
                 if (remainingPlaces <= 0) {
                     return res.status(403).json({ message: "Désolé, il n'y a plus de places disponibles." });
                 } else {
-                    return remainingPlaces ;
+                    return remainingPlaces;
                 }
             }
         } catch (error) {
@@ -115,7 +133,7 @@ module.exports = {
     registerUserToEvent: async (req, res) => { // <----- Fonction pour inscrire l'utilisateur à l'événement ---->
         try {
             const eventId = req.params.id;
-            const userId = req.user.id;
+            const userId = req.session.uid;
 
             //Vérifier si il y a encore des places dans l'event
             const availablePlaces = await module.exports.getAvailablePlaces(req, res);
@@ -126,14 +144,20 @@ module.exports = {
 
                 // Vérifier si l'utilisateur est déjà inscrit à l'événement
                 const existingParticipant = await EventUser.findOne({
-                    where: {
+                    
+                    where: { [Op.and] : 
+                        {
                         eventId: eventId,
                         userId: userId
+                        }
+                        
                     }
                 });
 
                 if (existingParticipant) {
-                    return res.status(400).json({ message: "Vous êtes déjà inscrit à cet événement." });
+                     const event = await Event.findByPk(eventId,{raw:true})
+
+                    return res.render('event_read', {event, availablePlaces, message: "Vous êtes déjà inscrit à cet événement." });
                 } else {
                     // Inscrire l'utilisateur à l'événement
                     await EventUser.create({
@@ -141,7 +165,9 @@ module.exports = {
                         userId: userId
                     });
 
-                    return res.status(200).json({ message: "Inscription réussie à l'événement." });
+                    const event = await Event.findByPk(eventId ,{raw:true})
+                    res.render('event_read', { event, availablePlaces, message: "Inscription validée" })
+                     
                 }
             }
         } catch (error) {

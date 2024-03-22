@@ -77,6 +77,7 @@ module.exports = {
                 } else {
                     //sinon inscription dans la session
                     req.session.prenom = user.prenom
+                    req.session.uid = user.id
                     if(user.isAdmin) {
                         req.session.isAdmin = true
                     }
