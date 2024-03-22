@@ -2,14 +2,10 @@
     <div class="row">
         <div class="col-md-11 mx-auto">
             <div class="row">
-                {{#if isAdmin}}
-                <div class="col-md-12">
-                    <button class="btn btn-outline-warning mt-2">Mettre à jour la page</button>
-                </div>
-                {{/if}}
                 {{!-- Image container --}}
-                <div class="col-md-6 img-container">
-                    <img src="{{game.imageUrl}}" alt="" class="w-50 h-auto" id="mainImg">
+                <h1>{{game.game_name}}</h1>
+                <div class="col-md-6 img-container" style="height: 300px;" id="img-container">
+                    <img src="{{game.imageUrl}}" alt="" id="mainImg">
                 </div>
 
                 {{!-- Dates container --}}

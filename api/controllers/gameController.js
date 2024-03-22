@@ -80,9 +80,9 @@ module.exports = {
         }
         else {
             const gameId = req.body.gameId;
-            const newRate = req.body.gameRate;
-            // Récupérer valeur laissée par user dans input pour remplacer valeur 2 
-            await Game.update({rate: newRate}, {
+            const rating = req.body.rating;
+
+            await Game.update({rate: rating}, {
                 where: {
                     id: gameId
                 }

@@ -106,7 +106,7 @@ router.route('/game/create')
         ,
         gameController.postGame)
 
-router.route('/game/rate')
+router.route('/game/rate/')
     .post(gameController.rate)
 
 router.route('/game/page/:id')

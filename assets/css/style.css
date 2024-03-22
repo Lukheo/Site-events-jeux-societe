@@ -30,12 +30,13 @@ h1 {
     font-variation-settings: "wdth" 100;
     text-align: center;
 }
-h2{
+
+h2 {
     font-family: "DynaPuff", system-ui;
     text-align: center;
 }
 
-h3{
+h3 {
     margin: 20px 0;
 }
 
@@ -51,9 +52,11 @@ h3{
 .lightFont {
     color: var(--bg-light);
 }
+
 .blueFont {
     color: var(--bg-darkblue);
 }
+
 .orangeFont {
     color: var(--bg-orange);
 }
@@ -62,7 +65,7 @@ h3{
     background-color: var(--bg-light-grey);
 }
 
-.btnGrey{
+.btnGrey {
     background-color: var(--bg-grey);
     padding: 10px 20px;
     margin-right: 5%;
@@ -70,7 +73,7 @@ h3{
     box-shadow: 1px 1px 2px grey;
 }
 
-.btnGrey{
+.btnGrey {
     background-color: var(--bg-grey);
     border: 2px solid var(--bg-grey);
     padding: 10px 20px;
@@ -78,16 +81,17 @@ h3{
     margin-top: 5%;
     box-shadow: 1px 1px 3px grey;
 }
-.btnGrey:hover{
+
+.btnGrey:hover {
     border: 2px solid var(--bg-grey);
     box-shadow: none;
 }
 
-.navOverlap{
+.navOverlap {
     height: 60px;
 }
 
-.btnOrange{
+.btnOrange {
     background-color: var(--bg-orange);
     border: 2px solid var(--bg-orange);
     color: var(--bg-light);
@@ -98,12 +102,14 @@ h3{
     margin-top: 5%;
     box-shadow: 1px 1px 3px grey;
 }
-.btnOrange:hover{
+
+.btnOrange:hover {
     border: 2px solid var(--bg-orange);
     color: var(--bg-orange);
     box-shadow: none;
 }
-.btnBleu{
+
+.btnBleu {
     background-color: #0064A3;
     color: #f4f4f4;
 }
@@ -120,16 +126,60 @@ h3{
     color: var(--bg-black);
     background-color: var(--bg-orange);
 }
+
 .accordion-button {
     color: var(--bg-black);
     background-color: var(--bg-orange-light);
 }
 
 /*position des images*/
-.imgCover{
+.imgCover {
     object-fit: cover;
 }
 
+/* Etoiles de notation (game_list)*/
+.rating-stars {
+    border: thin solid #999;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.gameRate {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.gameRate span {
+    cursor: pointer;
+    transition: color .2s;
+    font-size: 50px;
+}
+
+.gameRate span:hover {
+    color: orange;
+}
+
+.gameRate span:hover~span {
+    color: orange;
+}
+
+.gameRate span[data-clicked] {
+    color: orange;
+}
+
+.gameRate span[data-clicked]~span {
+    color: orange;
+}
+
+#img-container {
+    display: flex;
+    justify-content: center;
+}
+
+#mainImg {
+    width: auto;
+}
+  
 /**************************** VERSION MOBILE ********************************/
 
 @media screen and (min-width: 300px) and (max-width: 768px) {
@@ -137,14 +187,14 @@ h3{
         display: none;
     }
 
-    h1{
+    h1 {
         font-size: 4vh;
     }
-    
+
 }
 
-@media(max-width:999px){
-    .navOverlap{
+@media(max-width:999px) {
+    .navOverlap {
         height: 150px;
     }
 }
