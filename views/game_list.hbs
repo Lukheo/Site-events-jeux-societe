@@ -25,7 +25,28 @@
                 <div class="card-body">
                     <h5 class="card-title mt-1">{{game_name}}</h5>
                     <p class="card-text">{{game_desc}}</p><br><br>
-                    <a href="/game/read/{{id}}" class="btn btnOrange m-2 float-end">Voir le jeu</a>
+                    <form action="/game/rate" method="post" id="ratingForm">
+                        <label for="gameRate" class="mb-2 fs-4">Noter</label>
+                        {{!-- <input type="number" id="gameRate" name="gameRate"
+                            class="form-control border-warning-subtle"> --}}
+
+                        <div class="rating">
+                            <div data-productID="{{id}}" class="gameRate">
+                                {{!-- <button class="btn btn-outline-success" type="submit"
+                                    id="submitRate">Envoyer</button> --}}
+                                {{!-- <a href="/game/rate" class="btn btn-outline-success" id="submitRate"
+                                    type="submit">Envoyer</a> --}}
+                                <input type="submit" class="btn btn-outline-success">
+                                <span data-rating="3" id="star-rate" class="star-rate">★</span>
+                                <span data-rating="2" id="star-rate" class="star-rate">★</span>
+                                <span data-rating="1" id="star-rate" class="star-rate">★</span>
+                                <input type="hidden" name="gameId" value="{id}">
+                                <input type="hidden" name="rating" id="submitRate">
+                            </div>
+                        </div>
+
+                    </form>
+                    <a href="/game/page/{{id}}" class="btn btnOrange m-2 float-end">Voir le jeu</a>
 
                 </div>
                 <div class="card-header">{{!-- integration du jeu et sa page ou sa modale --}}

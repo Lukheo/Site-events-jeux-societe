@@ -81,8 +81,10 @@ router.route('/user/list')
     .get(userController.list)
 
 //<---------  Game Routes   ----------->
-router.route('/game/read')
-    .get(gameController.list)
+
+router.route('/game/read/:id')
+    .get(gameController.read);
+
 router.route('/game/list')
     .get(gameController.list)
 
@@ -109,6 +111,12 @@ router.route('/game/create')
         ,
         gameController.postGame)
 
+router.route('/game/rate/')
+    .post(gameController.rate)
+
+router.route('/game/page/:id')
+    .get(gameController.getGameDetail)
+
 router.route('/game/update/:id')
     .get(gameController.getGameUpdate)
     .post([
@@ -129,6 +137,7 @@ router.route('/game/update/:id')
             .isInt({ min: 1, max: 60 }).withMessage('Le nombre de joueurs doit être compris entre 1 et 12.')
         ,
     ],gameController.postGameUpdate)
+
 
 
 router.route('/game/delete/:id')
