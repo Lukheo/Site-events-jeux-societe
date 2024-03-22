@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Nom de la catégorie</th>
+                        <th class="col">Modification</th>
+                        <th class="col">Suppression</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each categories}}
+                    <tr>
+                        <th scope="row">{{id}}</th>
+                        <td {{#if isAdmin}}
+                            class="fw-bold">
+                            <i class="bi bi-shield-lock"></i
+                        {{/if}}> {{cat_name}}</td>
+                        
+                        
+                        <td>
+                                <a class="btn btn-warning rounded-pill" href="/category/update/{{id}}" ><i class="bi bi-arrow-repeat" ></i></a>
+                        </td>
+                        <td>
+                            <form action="/category/delete/{{id}}" method="post">
+                                <button class="btn btn-danger rounded-pill"
+                                    onclick="return confirm('Voulez vous vraiment supprimer ?')" type="submit"><i
+                                        class="bi bi-trash3"></i></button>
+                            </form>
+
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

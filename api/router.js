@@ -5,6 +5,7 @@ const userController = require('../api/controllers/userController')
 const gameController = require('../api/controllers/gameController')
 const eventController = require('../api/controllers/eventController')
 const searchController = require('./controllers/searchController')
+const categorieController = require('./controllers/categorieController')
 const { body, param } = require('express-validator')
 
 const isAdminMW = require("./middleware/isAdmin")
@@ -81,8 +82,10 @@ router.route('/user/list')
     .get(userController.list)
 
 //<---------  Game Routes   ----------->
-router.route('/game/read')
-    .get(gameController.list)
+
+router.route('/game/read/:id')
+    .get(gameController.read);
+
 router.route('/game/list')
     .get(gameController.list)
 
@@ -109,6 +112,12 @@ router.route('/game/create')
         ,
         gameController.postGame)
 
+router.route('/game/rate/')
+    .post(gameController.rate)
+
+router.route('/game/page/:id')
+    .get(gameController.getGameDetail)
+
 router.route('/game/update/:id')
     .get(gameController.getGameUpdate)
     .post([
@@ -128,7 +137,8 @@ router.route('/game/update/:id')
         body('playerNumber')
             .isInt({ min: 1, max: 60 }).withMessage('Le nombre de joueurs doit être compris entre 1 et 12.')
         ,
-    ],gameController.postGameUpdate)
+    ], gameController.postGameUpdate)
+
 
 
 router.route('/game/delete/:id')
@@ -212,7 +222,9 @@ router.route('/event/:id/places')
     .get(eventController.getAvailablePlaces)
 
 router.route('/event/:id/register')
-    .post(eventController.registerUserToEvent);
+    .post(authenticateUser.authenticateUser, eventController.registerUserToEvent)
+
+
 
 //<---------  Search Routes   ----------->
 router.route('/search')
@@ -222,6 +234,33 @@ router.route('/search/results')
     .post(searchController.search)
 
 
+//<-----------  Categories Routes   ----------->
+
+router.route('/category/create')
+    .get(categorieController.createCat)
+    .post([
+        body('catName')
+            .exists().trim()
+            .isLength({ min: 2, max: 20 }).withMessage('Le champ doit contenir plus de deux caractères ou moins')
+            .notEmpty().withMessage('Ce champ ne doit pas être vide.')
+            .escape()],
+        categorieController.postCat)
+
+router.route('/category/list')
+    .get(categorieController.listCat)
+
+router.route('/category/update/:id')
+    .get(categorieController.getCatUpdate)
+    .post([
+        body('catName')
+            .exists().trim()
+            .isLength({ min: 2, max: 20 }).withMessage('Le champ doit contenir plus de deux caractères ou moins')
+            .notEmpty().withMessage('Ce champ ne doit pas être vide.')
+            .escape()],
+        categorieController.postCatUpdate)
+
+router.route('/category/delete/:id')
+    .post(categorieController.catDelete)
 //<-----------  FAQ Routes   ----------->
 
 router.route('/FAQ')

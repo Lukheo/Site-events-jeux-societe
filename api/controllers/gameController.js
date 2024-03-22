@@ -2,6 +2,7 @@ const {Op} = require('sequelize')
 const Game = require('../models/gameModel')
 const {validationResult} = require('express-validator')
 const { Request, Response } = require('express');
+const gameCat = require('../models/categorieModel')
 
 module.exports = {
     list: async (req,res) => {
@@ -9,9 +10,6 @@ module.exports = {
         console.log(games);
         res.render('game_list', {games})
     }, 
-    get: async (req,res) => {
-    },
-
     createGame: async (req, res) => { // <---- fonction affichage de la page game ---->
         const navGameCreate = true
         res.render('game_create', { navGameCreate })
@@ -21,15 +19,20 @@ module.exports = {
             const errors = validationResult(req);
             if (!errors.isEmpty()) {
                 return res.render('game_create', { errors: errors.array() });
-
             }
             const game = await Game.findOne({
                 where: {
                     game_name: req.body.gameName.trim(),
                     game_desc: req.body.gameDescription.trim(),
                     player_number: req.body.playerNumber,
-                    imageUrl: req.body.imgGame
+                    imageUrl: req.body.imgGame,
+                    // rate: req.body.rate
                 }
+            }, {
+                where: {
+                    id: req.params.id
+                },
+                returning: true
             });
 
             console.log("Correspondance trouvé :", game); // log affichage de la correspondance
@@ -42,10 +45,11 @@ module.exports = {
                     game_name: req.body.gameName.trim(),
                     game_desc: req.body.gameDescription.trim(),
                     player_number: req.body.playerNumber,
-                    imageUrl: req.body.imgGame
+                    imageUrl: req.body.imgGame,
+                    // rate: req.body.rate
                 });
                 console.log("Jeu créé :", gamecreated); // log confirmation de la création d'un jeu
-                return res.redirect('/game/read/'+ req.params.id);
+                return res.redirect('/game/list');
             }
         } catch (error) {
             console.error("Erreur lors de la création du jeu :", error);
@@ -54,9 +58,24 @@ module.exports = {
 
     },
     read: async (req, res) => { //<---- fonction pour voir le jeu via l'ID ---->
+
+        // let gameCat = await Game.findByPk(req.params.id, {
+        //     include: [{
+        //       model: Category,
+        //       separate: true,
+        //       order: [['createdAt', 'DESC']],
+        //       //le nom du model suffit car on a pas d'autres éléments à préciser
+        //       include: Category
+        //     },{
+        //       //il suffit de rajouter le model user
+        //       model: Category
+        //     } ]
+        //   })
+
+        //   gameCat = gameCat.toJSON()
         const navGame = true;
         try {
-
+            
             console.log("ID du jeu à rechercher :", req.params.id); // log pour afficher l'ID
 
             let game = await Game.findByPk(req.params.id);
@@ -76,6 +95,28 @@ module.exports = {
             return res.status(500).send("Une erreur est survenue lors de la lecture du jeu.");
         }
     },
+    rate: async(req, res) => {
+        const result = validationResult(req)
+        if (!result.isEmpty()) {
+            res.redirect('/')
+        }
+        else {
+            const gameId = req.body.gameId;
+            const rating = req.body.rating;
+
+            await Game.update({rate: rating}, {
+                where: {
+                    id: gameId
+                }
+            })
+            return res.redirect('back')
+        }
+    },
+    getGameDetail: async (req,res) => {
+        const game = await Game.findByPk(req.params.id, {raw: true})
+        res.render('game_page', {game})
+    },
+
 
     getGameUpdate: async (req, res) => { // <---- fonction pour récupérer le jeu à modifier ---->
         const game = await Game.findByPk(req.params.id, { raw: true })

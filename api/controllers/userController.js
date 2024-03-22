@@ -57,7 +57,7 @@ module.exports = {
         res.render('my_account', { account })
     },
     getLogin: async (req, res) => { // <---- Donne la page de connexion ---->
-        res.render('log_in')
+        res.render('login')
     },
     postLogin: async (req, res) => { // <---- permet de connecter un user au site ---->
         // cherche en base l'utilisateur par son email 
