@@ -29,7 +29,8 @@ module.exports = {
 
     createEvent: async (req, res) => { // <---- fonction affichage de la page event ---->
         const navEventCreate = true
-        res.render('event_create', { navEventCreate })
+        const games = await Game.findAll({raw:true})
+        res.render('event_create', { navEventCreate, games })
     },
 
     postEvent: async (req, res) => { // <---- fonction de création d'event ---->

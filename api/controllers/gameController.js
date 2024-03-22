@@ -1,18 +1,23 @@
-const {Op} = require('sequelize')
+const {Op, Model} = require('sequelize')
 const Game = require('../models/gameModel')
 const {validationResult} = require('express-validator')
 const { Request, Response } = require('express');
-const gameCat = require('../models/categorieModel')
+const gameCat = require('../models/categorieModel');
+const Categorie = require('../models/categorieModel');
 
 module.exports = {
     list: async (req,res) => {
-        const games = await Game.findAll({raw:true})
+        const games = await Game.findAll({
+            include: [{ model: Categorie}],
+            raw: true
+          })
         console.log(games);
         res.render('game_list', {games})
     }, 
     createGame: async (req, res) => { // <---- fonction affichage de la page game ---->
         const navGameCreate = true
-        res.render('game_create', { navGameCreate })
+        const categories = await Categorie.findAll({raw:true})
+        res.render('game_create', { navGameCreate, categories })
     },
     postGame: async (req, res) => { // <---- fonction de création de jeu---->
         try {
@@ -46,6 +51,7 @@ module.exports = {
                     game_desc: req.body.gameDescription.trim(),
                     player_number: req.body.playerNumber,
                     imageUrl: req.body.imgGame,
+                    categoryId: req.body.catId
                     // rate: req.body.rate
                 });
                 console.log("Jeu créé :", gamecreated); // log confirmation de la création d'un jeu
