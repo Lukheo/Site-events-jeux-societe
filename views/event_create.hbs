@@ -1,7 +1,7 @@
 <h1 class="dynapuff text-center">Créer un évènement</h1>
 
 <div class="container mt-5">
-    <form action="/event/create" method="POST">
+    <form action="/event/create" method="POST" onsubmit="return eventCheck()">
         <div class="row">
             <div class="col-6">
                 <div class="form-group">
@@ -52,7 +52,7 @@
         {{/if}}
 
 
-        <button type="button" class="btn btn-warning mt-5 mb-2" onclick="eventCheck()">Créer l'événement</button>
+        <button type="submit" class="btn btn-warning mt-5 mb-2" >Créer l'événement</button>
     </form>
 </div>
-<script defer src="/js/eventCheck.js"></script>
+<script src="/js/eventCheck.js" defer></script>

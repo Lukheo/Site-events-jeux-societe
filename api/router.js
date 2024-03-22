@@ -134,8 +134,6 @@ router.route('/game/update/:id')
 router.route('/game/delete/:id')
     .post(gameController.gameDelete)
 
-
-
 //<-----------  Event Routes   ----------->
 
 router.route('/event/create')
@@ -165,7 +163,6 @@ router.route('/event/create')
             .isInt({ min: 1, max: 12 }).withMessage('Le nombre de joueurs doit être compris entre 1 et 12.')
         ,
         eventController.postEvent)
-
 
 router.route('/events/list')
     .get(eventController.list)
@@ -215,8 +212,7 @@ router.route('/event/:id/places')
     .get(eventController.getAvailablePlaces)
 
 router.route('/event/:id/register')
-    .post(authenticateUser.authenticateUser, eventController.registerUserToEvent);
-
+    .post(eventController.registerUserToEvent);
 
 //<---------  Search Routes   ----------->
 router.route('/search')
@@ -224,10 +220,6 @@ router.route('/search')
 
 router.route('/search/results')
     .post(searchController.search)
-
-
-
-
 
 
 //<-----------  FAQ Routes   ----------->
