@@ -70,6 +70,7 @@ router.route('/alarm/:id')
 
 
 router.route('/user/update/:id')
+.get(userController.update)
 
 
 router.route('/user/delete/:id')

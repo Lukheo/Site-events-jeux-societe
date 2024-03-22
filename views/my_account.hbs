@@ -10,30 +10,33 @@
       <img src="/pictures/Sample_User_Icon.png" alt="" class="col-12">
     </div>
     <div class="col-10">
-      <div class="row align-items-center">
+      <div class="row">
         {{!-- FIRST MODAL OPENING --}}
-        <button type="button" data-bs-toggle="modal" data-bs-target="#prenomModal"
+        {{!-- <button type="button" data-bs-toggle="modal" data-bs-target="#prenomModal"
           class="col-lg-1 col-md-2 col-sm-3 col-4 d-inline btn btn-outline-primary btnBleu">
           <i class="bi bi-pencil-square"></i>
-        </button>
-        <h3 class="d-inline col dynapuff">Prénom : {{account.prenom}}</h3>
+        </button> --}}
+        <h3 class="text-start dynapuff">Prénom : {{account.prenom}}</h3>
       </div>
-      <div class="row align-items-center">
+      <div class="row">
         {{!-- SECOND MODAL OPENING --}}
-        <button type="button" data-bs-toggle="modal" data-bs-target="#nomModal"
+        {{!-- <button type="button" data-bs-toggle="modal" data-bs-target="#nomModal"
           class="col-lg-1 col-md-2 col-sm-3 col-4 d-inline btn btn-outline-primary btnBleu">
           <i class="bi bi-pencil-square"></i>
-        </button>
-        <h3 class="d-inline col dynapuff">Nom : {{account.nom}}</h3>
+        </button> --}}
+        <h3 class="text-start dynapuff">Nom : {{account.nom}}</h3>
       </div>
-      <div class="row align-items-center">
+      <div class="row">
         {{!-- THIRD MODAL OPENING --}}
-        <button type="button" data-bs-toggle="modal" data-bs-target="#mailModal"
+        {{!-- <button type="button" data-bs-toggle="modal" data-bs-target="#mailModal"
           class="col-lg-1 col-md-2 col-sm-3 col-4 d-inline btn btn-outline-primary btnBleu">
           <i class="bi bi-pencil-square"></i>
-        </button>
-        <h3 class="col d-inline dynapuff">Mail : {{account.email}}</h3>
+        </button> --}}
+        <h3 class="text-start dynapuff">Mail : {{account.email}}</h3>
       </div>
+      <a href="/user/update/{{account.id}}" class="col btn btn-outline-primary btnBleu">
+      <h4 class="dynapuff">Modifier mon compte <i class="bi bi-pencil-square"></i></h4>
+      </a>
     </div>
 
 
@@ -59,7 +62,8 @@
 
           <a href="#" class="card-link btn btn-danger rounded-pill">Se désincrire</a>
           {{!-- POSSIBLY ADD VISUAL INDICATIONS FOR ALARM TOGGLE --}}
-          <button type="button" data-bs-toggle="modal" data-bs-target="#alarmModal" class="card-link btn btn-warning rounded-pill"><i class="bi bi-alarm"></i>Ajouter un
+          <button type="button" data-bs-toggle="modal" data-bs-target="#alarmModal"
+            class="card-link btn btn-warning rounded-pill"><i class="bi bi-alarm"></i>Ajouter un
             rappel</button>
         </div>
       </div>
