@@ -1,0 +1,34 @@
+<h1 class="dynapuff text-center">Créer un jeu</h1>
+
+<div class="container mt-5">
+    <form action="/category/create" method="POST">
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="catName" class="mb-2 fs-4"><i class="bi bi-vector-pen"></i> Nom de la catégorie</label>
+                    <input type="text" id="catName" name="catName" class="form-control border-warning-subtle">
+                </div>
+            </div>
+        </div>
+    
+        {{#if errors}}
+        <div class="mb-3">
+            {{#each errors}}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{msg}} <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {{/each}}
+        </div>
+        {{/if}}
+        {{#if error}}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{error}}<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {{/if}}
+
+
+        <button type="text" class="btn btn-warning mt-5 mb-2">Créer la catégorie</button>
+    </form>
+</div>
+
+<script src="/js/userCheck.js" defer></script>

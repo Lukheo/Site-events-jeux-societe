@@ -7,7 +7,8 @@
                         <div class="row">
                             <div class="d-flex align-items-center justify-content-center ">
                                 <h3 class=""><i class="bi bi-dice-2 fs-1 m-1"></i> <span
-                                        class="text-center">{{event.name}}</span><i class="bi bi-dice-2 fs-1 m-1"></i>
+                                        class="text-center">{{game.game_name}}</span><i
+                                        class="bi bi-dice-2 fs-1 m-1"></i>
                                 </h3>
                             </div>
                         </div>
@@ -16,7 +17,7 @@
                                 <h4 class="">
                                     <small><em> <span class="badge rounded-pill text-bg-darkblue text-center">Créé le
                                                 {{moment event.createdAt format="DD/MM/YYYY
-                                                HH:mm:ss"}}</span></em></small>
+                                                HH:mm"}}</span></em></small>
                                 </h4>
                             </div>
                         </div>
@@ -28,102 +29,47 @@
                 <img src="" alt="">
 
                 --}}
-
+                <div class="panel-body mt-4 row">
+                    <img src="{{game.imageUrl}}" class="card-img-top imgCover" alt="image du jeu">
+                </div>
 
                 <div class="panel-body m-2 row">
                     <div
                         class=" col-sm-4 col-md-4 col-lg-4 mx-auto text-break d-flex align-items-center justify-content-center">
-                        <p class="text-center">{{event.description}}</p>
-                    </div>
-                </div>
-                <div class="panel-body mt-4 row">
-                    <div class=" col-sm-4  col-md-4 col-lg-4 mx-auto d-flex align-items-center justify-content-center">
-                        <p class="text-center"> Le <b>{{event.event_date}}</b> à <b>{{event.event_time}}</b></p>
-                    </div>
-                </div>
-                <div class="panel-body m-2 row">
-                    <div class="  col-sm-4 col-md-4 col-lg-4 mx-auto d-flex align-items-center justify-content-center">
-                        <span class="text-center"> Places restantes : <b>{{ availablePlaces }} / {{event.players_number}}</b> </span>
+                        <p class="text-center">{{game.game_desc}}</p>
                     </div>
                 </div>
                 <hr>
-                <div class="row">
-                    <form action="" method="post">
-                        <button type="button" class="btn btn-outline-success m-2" data-bs-toggle="modal"
-                            data-bs-target="#ModalEventInscrip{{event.id}}">S'inscrire</button>
-                    </form>
-                    {{#if isAdmin}}
-                    <div class="col d-flex align-items-center justify-content-center">
-                        <a href="/event/{{event.id}}" type="button" class="btn btn-outline-warning m-2 "
-                            data-bs-toggle="modal" data-bs-target="#ModalEventModif{{event.id}}"> Modifier
-                            l'événement</a>
 
-                        <button type="button" class="btn btn-outline-danger m-2" data-bs-toggle="modal"
-                            data-bs-target="#ModalEventSupp{{event.id}}"> Supprimer l'événement</button>
-                    </div>
-                    {{/if}}
+                {{#if isAdmin}}
+                <div class="col d-flex align-items-center justify-content-center">
+                    <a href="/game/update/{{game.id}}" class="btn btn-outline-warning m-1"> modifier
+                        le jeu</a>
+
+                    <button type="button" class="btn btn-outline-danger m-1" data-bs-toggle="modal"
+                        data-bs-target="#Modal{{game.id}}"> Supprimer le jeu</button>
                 </div>
+                {{/if}}
+            </div>
 
-                {{!-- pop up pour modifier --}}
-
-                <div class="modal fade" id="ModalEventModif{{event.id}}" tabindex="-1"
-                    aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4>Modifier L'événement</h4>
-                            </div>
-                            <div class="modal-body">
-                                <form action="/event/update/{{event.id}}" method="post">
-                                    <div class="mb-3">
-                                        <label for="exampleFormControlInput1" class="form-label">Titre</label>
-                                        <input name="eventName" type="text" class="form-control"
-                                            id="exampleFormControlInput1" placeholder="name" value="{{event.name}}">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="exampleFormControlTextarea1" class="form-label">Description</label>
-                                        <textarea name="eventDescription" class="form-control"
-                                            id="exampleFormControlTextarea1" rows="3">{{event.description}}</textarea>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="exampleFormControlInput1" class="form-label">Date</label>
-                                        <input name="eventDate" type="date" class="form-control"
-                                            id="exampleFormControlInput1" placeholder="Date"
-                                            value="{{event.event_date}}">
-                                        <label for="exampleFormControlInput1" class="form-label">Time</label>
-                                        <input name="eventTime" type="text" class="form-control"
-                                            id="exampleFormControlInput1" placeholder="Heure"
-                                            value="{{event.event_time}}">
-                                        <label for="exampleFormControlInput1" class="form-label">Nombre de
-                                            joueurs</label>
-                                        <input name="playersNumber" type="number" class="form-control"
-                                            id="exampleFormControlInput1" placeholder="Nombre de joueurs"
-                                            value="{{event.players_number}}">
-                                    </div>
-
-                                    <button type="submit" class="btn btn-warning">Modifier</button>
-                                </form>
-                            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="Modal{{game.id}}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Confirmation de suppression</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                Fermer</button>
                         </div>
-                    </div>
-                </div>
-                {{!-- fin pop up Modif --}}
-
-                {{!-- pop up pour supprimer --}}
-
-                <div class="modal fade" id="ModalEventSupp{{event.id}}" tabindex="-1"
-                    aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <form action="/event/delete/{{event.id}}" method="post">
-                                <div class="modal-header">
-                                    <h4>Êtes-vous sûr de vouloir supprimer ?</h4>
-                                </div>
-                                <button type="submit" class="btn btn-danger">Supprimer</button>
+                        <div class="modal-body">
+                            Êtes vous sur de vouloir supprimer ce jeu : <em> {{game.game_name}} ?</em></div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <form action="/game/delete/{{id}}" method="post">
+                                <button type="submit" class="btn btn-danger">Supprimer définitivement</button>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>

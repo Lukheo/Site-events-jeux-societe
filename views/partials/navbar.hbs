@@ -12,7 +12,7 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link dynapuff {{#if navHome}}active{{/if}}" aria-current="Game list"
-                        href="/game/list/">Games</a>
+                        href="/game/list/">Jeux</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link dynapuff {{#if navList}}active{{/if}}" href="/events/list">Évènements</a>
@@ -29,9 +29,10 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item {{#if navEventCreate}} active {{/if}}"  href="/event/create">Créer un event</a></li>
-                        <li><a class="dropdown-item {{#if navEventCreate}} active {{/if}}"  href="/game/create">Créer un jeu</a></li>
-                        <li><a class="dropdown-item {{#if navUserList}}active{{/if}}" href="/user/list">Vois les
-                                gens</a></li>
+                        <li><a class="dropdown-item {{#if navGameCreate}} active {{/if}}"  href="/game/create">Créer un jeu</a></li>
+                        <li><a class="dropdown-item {{#if navCatCreate}} active {{/if}}"  href="/category/create">Créer une catégorie</a></li>
+                        <li><a class="dropdown-item {{#if navCatList}}active{{/if}}" href="/category/list">Liste des catégories</a></li>
+                        <li><a class="dropdown-item {{#if navUserList}}active{{/if}}" href="/user/list">Vois les gens</a></li>
                         <li><a class="dropdown-item" href="/user/read/1">test account</a></li>
                     </ul>
                 </li>
