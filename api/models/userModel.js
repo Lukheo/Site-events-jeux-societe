@@ -3,6 +3,8 @@ const bcrypt = require('bcrypt')
 const config = require('../../config')
 const Event = require('./eventModel')
 
+const Eventuser = require('./eventUserModel')
+
 
 const User = config.sequelize.define('users', {
     id: {
@@ -46,9 +48,9 @@ const User = config.sequelize.define('users', {
     }
 })
 
+User.belongsToMany(Event, { through: Eventuser });
+Event.belongsToMany(User, { through: Eventuser });
 
-User.belongsToMany(Event, { through: "eventusers" });
-Event.belongsToMany(User, { through: "eventusers" });
 
 
 module.exports = User
