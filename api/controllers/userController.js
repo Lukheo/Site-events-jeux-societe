@@ -73,7 +73,7 @@ module.exports = {
                 //si faux 
                 if (!result) {
                     // -> renvoie sur la page login
-                    res.status(401).render('log_in', { 'error': 'identifiant incorrect' })
+                    res.status(401).render('login', { 'error': 'identifiant incorrect' })
                 } else {
                     //sinon inscription dans la session
                     req.session.prenom = user.prenom
