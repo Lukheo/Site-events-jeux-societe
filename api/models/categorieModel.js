@@ -17,4 +17,5 @@ const Categorie = config.sequelize.define('categories', {
     }
 })
 
+
 module.exports = Categorie

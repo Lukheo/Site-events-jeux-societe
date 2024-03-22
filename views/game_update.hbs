@@ -1,12 +1,14 @@
-<h1 class="dynapuff text-center">Créer un jeu</h1>
-
-<div class="container mt-5">
-    <form action="/game/create" method="POST">
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Modifier un jeu</h1>
+            <div class="container mt-5">
+    <form action="/game/update/{{game.id}}" method="post">
         <div class="row">
             <div class="col-6">
                 <div class="form-group">
                     <label for="gameName" class="mb-2 fs-4"><i class="bi bi-vector-pen"></i> Nom du jeu</label>
-                    <input type="text" id="gameName" name="gameName" class="form-control border-warning-subtle">
+                    <input type="text" id="gameName" name="gameName" class="form-control border-warning-subtle" value="{{game.game_name}}">
                 </div>
             </div>
 
@@ -15,7 +17,7 @@
         <div class="form-group mt-4">
             <label for="gameDescription" class="mb-2 fs-4"><i class="bi bi-vector-pen"></i> Description du jeu</label>
             <textarea id="gameDescription" name="gameDescription" class="form-control border-warning-subtle"
-                rows="4"></textarea>
+                rows="4">{{game.game_desc}}</textarea>
         </div>
         <div class="row">
             <div class="form-group col-4 mt-4">
@@ -36,11 +38,11 @@
             <div class="form-group col-3 mx-auto mt-4">
                 <label for="playerNumber" class="mb-2 fs-4"><i class="bi bi-person-fill-add m-2"></i> Nombre de
                     joueurs</label>
-                <input type="number" id="playerNumber" name="playerNumber" class="form-control border-warning-subtle">
+                <input type="number" id="playerNumber" name="playerNumber" class="form-control border-warning-subtle" value="{{game.player_number}}">
             </div>
             <div class="form-group col-4 mt-4">
                 <label for="imgGame" class="mb-2 fs-4"><i class="bi bi-image-fill"></i> Url de l'image</label>
-                <input type="text" id="imgGame" name="imgGame" class="form-control border-warning-subtle">
+                <input type="text" id="imgGame" name="imgGame" class="form-control border-warning-subtle" value="{{game.imageUrl}}">
             </div>
         </div>
         {{#if errors}}
@@ -59,8 +61,6 @@
         {{/if}}
 
 
-        <button type="text" class="btn btn-warning mt-5 mb-2">Créer le jeu</button>
+        <button type="text" class="btn btn-warning mt-5 mb-2">Modifier le jeu</button>
     </form>
 </div>
-
-<script src="/js/userCheck.js" defer></script>

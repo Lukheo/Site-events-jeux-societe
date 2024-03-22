@@ -77,7 +77,9 @@ module.exports = {
                 } else {
                     //sinon inscription dans la session
                     req.session.prenom = user.prenom
+
                     req.session.uid = user.id
+
                     if(user.isAdmin) {
                         req.session.isAdmin = true
                     }
@@ -100,5 +102,9 @@ module.exports = {
     removealarm: (req,res) => {
         const alarm = false
         res.redirect('back')
+    },
+    update: async (req,res) => {
+        const user = await User.findByPk(req.params.id, { raw: true })
+        res.render("user_create", {user})
     }
 }
