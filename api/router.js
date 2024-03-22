@@ -71,6 +71,7 @@ router.route('/alarm/:id')
 
 
 router.route('/user/update/:id')
+.get(userController.update)
 
 
 router.route('/user/delete/:id')
@@ -81,8 +82,10 @@ router.route('/user/list')
     .get(userController.list)
 
 //<---------  Game Routes   ----------->
-router.route('/game/read')
-    .get(gameController.list)
+
+router.route('/game/read/:id')
+    .get(gameController.read);
+
 router.route('/game/list')
     .get(gameController.list)
 
@@ -109,6 +112,12 @@ router.route('/game/create')
         ,
         gameController.postGame)
 
+router.route('/game/rate/')
+    .post(gameController.rate)
+
+router.route('/game/page/:id')
+    .get(gameController.getGameDetail)
+
 router.route('/game/update/:id')
     .get(gameController.getGameUpdate)
     .post([
@@ -131,10 +140,9 @@ router.route('/game/update/:id')
     ], gameController.postGameUpdate)
 
 
+
 router.route('/game/delete/:id')
     .post(gameController.gameDelete)
-
-
 
 //<-----------  Event Routes   ----------->
 
@@ -165,7 +173,6 @@ router.route('/event/create')
             .isInt({ min: 1, max: 12 }).withMessage('Le nombre de joueurs doit être compris entre 1 et 12.')
         ,
         eventController.postEvent)
-
 
 router.route('/events/list')
     .get(eventController.list)
@@ -218,6 +225,7 @@ router.route('/event/:id/register')
     .post(authenticateUser.authenticateUser, eventController.registerUserToEvent)
 
 
+
 //<---------  Search Routes   ----------->
 router.route('/search')
     .get(searchController.search)
@@ -253,8 +261,6 @@ router.route('/category/update/:id')
 
 router.route('/category/delete/:id')
     .post(categorieController.catDelete)
-
-
 //<-----------  FAQ Routes   ----------->
 
 router.route('/FAQ')

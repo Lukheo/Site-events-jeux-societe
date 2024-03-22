@@ -1,10 +1,9 @@
- const { DataTypes } = require('sequelize');
-const config = require('../../config');
+const { DataTypes } = require('sequelize')
+const config = require('../../config')
 
-const EventUser = config.sequelize.define('EventUser', {
- 
-});
+const Eventuser = config.sequelize.define('eventusers', {
+    
+})
 
-module.exports = EventUser;
-
+module.exports = Eventuser
 

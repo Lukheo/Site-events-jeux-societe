@@ -15,9 +15,10 @@
                             <div class=" d-flex align-items-center justify-content-center ">
                                 <h4 class="">
                                     <small><em> <span class="badge rounded-pill text-bg-primary text-center"
-                                                aria-label="Créé le {{moment event.createdAt format=" DD/MM/YYYY
+
+                                                aria-label="Créé le {{moment event.createdAt format=" DD/MM/YYYY à
                                                 HH:mm"}}">Créé le
-                                                {{moment event.createdAt format="DD/MM/YYYY
+                                                {{moment event.createdAt format="DD/MM/YYYY à
                                                 HH:mm"}}</span></em></small>
                                 </h4>
                             </div>
@@ -41,7 +42,8 @@
                 <div class="panel-body mt-4 row">
                     <div class=" col-sm-4  col-md-4 col-lg-4 mx-auto d-flex align-items-center justify-content-center">
                         <p class="text-center" aria-label="Le {{event.event_date}} à {{event.event_time}}"> Le
-                            <b>{{event.event_date}}</b> à <b>{{event.event_time}}</b></p>
+                            <b>{{moment event.event_date format="DD/MM/YYYY"}}</b> à <b>{{event.event_time}}</b>
+                        </p>
                     </div>
                 </div>
                 <div class="panel-body m-2 row">
@@ -53,8 +55,18 @@
                     </div>
                 </div>
                 <hr>
+                <form action="/event/{{event.id}}/register" method="post">
+                    <button id="registerButton" class="btn btn-success" type="submit"
+                        aria-label="S'inscrire">S'inscrire</button>
+                </form>
+                {{#if message}}
+                <div class="alert alert-warning alert-dismissible fade show mt-2" role="alert">
+                    {{{message}}} <button type="button" class="btn-close" data-bs-dismiss="alert"
+                        aria-label="Close"></button>
+                </div>
+                {{/if}}
 
-              <button id="registerButton" class="btn btn-success" onclick="incriptionEvent({{event.id}})"  aria-label="S'inscrire">S'inscrire</button>
+
 
                 {{#if isAdmin}}
                 <div class="row">

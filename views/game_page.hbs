@@ -3,14 +3,10 @@
         <div class="col-md-11 mx-auto">
             <div class="row">
                 {{!-- Image container --}}
-                    <div class="col-md-6 img-container">
-                        <img src="/pictures/picture_test.jpg" alt="" class="w-50 h-auto" id="mainImg">
-                        {{#if isAdmin}} 
-                        <form action="/picture/update" method="post">
-                        <input type="file" accept="image/*" id="input-file">
-                        </form>
-                         {{/if}}
-                    </div>
+                <h1>{{game.game_name}}</h1>
+                <div class="col-md-6 img-container" style="height: 300px;" id="img-container">
+                    <img src="{{game.imageUrl}}" alt="" id="mainImg">
+                </div>
 
                 {{!-- Dates container --}}
                 <div class="col-md-6 shadow rounded p-3">
@@ -57,7 +53,7 @@
                 {{!-- Desc container --}}
                 <div class="desc-container shadow rounded my-5">
                     <h1>Description</h1>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, dolorem!</p>
+                    <p>{{game.game_desc}}</p>
                 </div>
 
                 {{!-- Rate container --}}

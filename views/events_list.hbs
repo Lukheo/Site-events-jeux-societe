@@ -20,13 +20,13 @@
                     </div>
                 </small>
                 <div class="card-body border-success">
-                    <h5 class="card-title dynapuff"><i class="bi bi-dice-2"></i> {{name}} <i class="bi bi-dice-2"></i>
+                    <h5 class="card-title dynapuff"><i class="bi bi-dice-2"></i> {{dataValues.name}} <i class="bi bi-dice-2"></i>
                     </h5>
                     <h6 class="card-subtitle mb-2 text-body-secondary dynapuff"><i class="bi bi-calendar-date"></i> le
-                        {{event_date}} <br> à {{event_time}}</h6>
-                    <p class="card-text text-truncate">{{description}}</p>
-                    <p class="card-text">{{players_number}}</p>
-                    <a href="{{#if prenom}}/event/read/{{id}}{{else}}/user/login{{/if}}" class="card-link btn rounded-pill btn-success m-1">S'inscrire à
+                        {{dataValues.event_date}} <br> à {{dataValues.event_time}}</h6>
+                    <p class="card-text text-truncate">{{dataValues.description}}</p>
+                    <p class="card-text">{{dataValues.players_number}}</p>
+                    <a href="{{#if @root.prenom}}/event/read/{{dataValues.id}}{{else}}/user/login{{/if}}" class="card-link btn rounded-pill btn-success m-1">S'inscrire à
                         l'évènement</a>
 
                     {{#if @root.isAdmin}} 
