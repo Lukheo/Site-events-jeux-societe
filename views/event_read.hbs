@@ -15,10 +15,10 @@
                             <div class=" d-flex align-items-center justify-content-center ">
                                 <h4 class="">
                                     <small><em> <span class="badge rounded-pill text-bg-primary text-center"
-                                                aria-label="Créé le {{moment event.createdAt format=" DD/MM/YYYY
-                                                HH:mm:ss"}}">Créé le
-                                                {{moment event.createdAt format="DD/MM/YYYY
-                                                HH:mm:ss"}}</span></em></small>
+                                                aria-label="Créé le {{moment event.createdAt format=" DD/MM/YYYY à
+                                                HH:mm"}}">Créé le
+                                                {{moment event.createdAt format="DD/MM/YYYY à
+                                                HH:mm"}}</span></em></small>
                                 </h4>
                             </div>
                         </div>
@@ -41,7 +41,7 @@
                 <div class="panel-body mt-4 row">
                     <div class=" col-sm-4  col-md-4 col-lg-4 mx-auto d-flex align-items-center justify-content-center">
                         <p class="text-center" aria-label="Le {{event.event_date}} à {{event.event_time}}"> Le
-                            <b>{{event.event_date}}</b> à <b>{{event.event_time}}</b>
+                            <b>{{moment event.event_date format="DD/MM/YYYY"}}</b> à <b>{{event.event_time}}</b>
                         </p>
                     </div>
                 </div>
