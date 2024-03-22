@@ -38,6 +38,7 @@ const Game = config.sequelize.define('games', {
     }
 })
 
+
 Game.belongsTo(Categorie)
 
 module.exports = Game

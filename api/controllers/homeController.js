@@ -12,7 +12,7 @@ module.exports = {
     // }else{
     //   res.render('home', { latest, navHome })
     // }
-    
+    console.log(req.session)
     res.render('index')
 
     // useless -----------------------------------------------------------

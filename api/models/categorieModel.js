@@ -17,7 +17,5 @@ const Categorie = config.sequelize.define('categories', {
     }
 })
 
-// Categorie.hasMany(Game)
-
 
 module.exports = Categorie

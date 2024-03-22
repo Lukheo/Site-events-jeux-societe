@@ -1,5 +1,5 @@
 const session = require('express-session')
-
+const multer = require('multer')
 
 let SequelizeStore = require("connect-session-sequelize")(session.Store);
 
@@ -41,11 +41,42 @@ try {
     console.error('Unable to connect to the database:', error);
 }
 
+//Handlebars moment 
 const Handlebars = require("handlebars");
 const MomentHandler = require("handlebars.moment");
 MomentHandler.registerHelpers(Handlebars);
 
+//<--------Multer--------->
 
+//Define storage
+const uploadDestination = path.join(__dirname, 'assets', 'images')
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        // Use the define path
+        cb(null, uploadDestination);
+    },
+    filename: function (req, file, cb) {
+        // Generate a unique name
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E3);
+        // Use unique name for this file
+        const ext = path.extname(file.originalname);
+        cb(null, file.fieldname + '-' + uniqueSuffix + ext);
+    }
+});
+
+//  Multer Config
+const upload = multer({
+    storage: storage,
+    // Ajouter une vérification de type de fichier si nécessaire
+    fileFilter: function (req, file, cb) {
+        // Vérifier si le fichier est une image
+        if (file.mimetype.startsWith('image/') && ['image/jpeg', 'image/jpg', 'image/png'].includes(file.mimetype)) {
+            return cb(new Error('Seules les images au format jpeg jpg et png.'));
+        }
+        cb(null, true);
+    }
+});
 
 
 app.use(express.urlencoded({ extended: true }))
@@ -82,3 +113,4 @@ app.use('/', router)
 app.listen(port, () => {
     console.log(`Example app listening at 127.0.0.1:${port}`)
 })
+

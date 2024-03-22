@@ -1,4 +1,4 @@
-<div class="container box">
+<div class="container box" aria-live="polite">
     <div class="row">
         <div id="postlist">
             <div class="panel">
@@ -6,7 +6,7 @@
                     <div class="text-center">
                         <div class="row">
                             <div class="d-flex align-items-center justify-content-center ">
-                                <h3 class=""><i class="bi bi-dice-2 fs-1 m-1"></i> <span
+                                <h3 class=""><i class="bi bi-dice-2 fs-1 m-1"></i><span
                                         class="text-center">{{event.name}}</span><i class="bi bi-dice-2 fs-1 m-1"></i>
                                 </h3>
                             </div>
@@ -14,9 +14,11 @@
                         <div class="row">
                             <div class=" d-flex align-items-center justify-content-center ">
                                 <h4 class="">
-                                    <small><em> <span class="badge rounded-pill text-bg-darkblue text-center">Créé le
-                                                {{moment event.createdAt format="DD/MM/YYYY
-                                                HH:mm:ss"}}</span></em></small>
+                                    <small><em> <span class="badge rounded-pill text-bg-primary text-center"
+                                                aria-label="Créé le {{moment event.createdAt format=" DD/MM/YYYY à
+                                                HH:mm"}}">Créé le
+                                                {{moment event.createdAt format="DD/MM/YYYY à
+                                                HH:mm"}}</span></em></small>
                                 </h4>
                             </div>
                         </div>
@@ -38,21 +40,35 @@
                 </div>
                 <div class="panel-body mt-4 row">
                     <div class=" col-sm-4  col-md-4 col-lg-4 mx-auto d-flex align-items-center justify-content-center">
-                        <p class="text-center"> Le <b>{{event.event_date}}</b> à <b>{{event.event_time}}</b></p>
+                        <p class="text-center" aria-label="Le {{event.event_date}} à {{event.event_time}}"> Le
+                            <b>{{moment event.event_date format="DD/MM/YYYY"}}</b> à <b>{{event.event_time}}</b>
+                        </p>
                     </div>
                 </div>
                 <div class="panel-body m-2 row">
                     <div class="  col-sm-4 col-md-4 col-lg-4 mx-auto d-flex align-items-center justify-content-center">
-                        <span class="text-center"> Places restantes : <b>{{ availablePlaces }} / {{event.players_number}}</b> </span>
+                        <span class="text-center"
+                            aria-label="le nombre de participants : {{availablePlaces}} sur {{event.players_number}}">
+                            le nombre de participants : <span
+                                class="text-danger"><b>{{availablePlaces}}</b></span>/<b>{{event.players_number}}</b></span>
                     </div>
                 </div>
                 <hr>
+                <form action="/event/{{event.id}}/register" method="post">
+                    <button id="registerButton" class="btn btn-success" type="submit"
+                        aria-label="S'inscrire">S'inscrire</button>
+                </form>
+                {{#if message}}
+                <div class="alert alert-warning alert-dismissible fade show mt-2" role="alert">
+                    {{{message}}} <button type="button" class="btn-close" data-bs-dismiss="alert"
+                        aria-label="Close"></button>
+                </div>
+                {{/if}}
+
+
+
+                {{#if isAdmin}}
                 <div class="row">
-                    <form action="" method="post">
-                        <button type="button" class="btn btn-outline-success m-2" data-bs-toggle="modal"
-                            data-bs-target="#ModalEventInscrip{{event.id}}">S'inscrire</button>
-                    </form>
-                    {{#if isAdmin}}
                     <div class="col d-flex align-items-center justify-content-center">
                         <a href="/event/{{event.id}}" type="button" class="btn btn-outline-warning m-2 "
                             data-bs-toggle="modal" data-bs-target="#ModalEventModif{{event.id}}"> Modifier
@@ -61,8 +77,9 @@
                         <button type="button" class="btn btn-outline-danger m-2" data-bs-toggle="modal"
                             data-bs-target="#ModalEventSupp{{event.id}}"> Supprimer l'événement</button>
                     </div>
-                    {{/if}}
                 </div>
+                {{/if}}
+
 
                 {{!-- pop up pour modifier --}}
 
@@ -127,3 +144,4 @@
             </div>
         </div>
     </div>
+</div>

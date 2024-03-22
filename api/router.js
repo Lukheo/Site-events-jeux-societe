@@ -9,6 +9,7 @@ const { body, param } = require('express-validator')
 
 const isAdminMW = require("./middleware/isAdmin")
 const authMW = require("./middleware/auth")
+const authenticateUser = require('./middleware/authenticateUser')
 
 
 //<-----------  Home Routes   ----------->
@@ -69,6 +70,7 @@ router.route('/alarm/:id')
 
 
 router.route('/user/update/:id')
+.get(userController.update)
 
 
 router.route('/user/delete/:id')
@@ -86,12 +88,15 @@ router.route('/game/read/:id')
 router.route('/game/list')
     .get(gameController.list)
 
+router.route('/game/read/:id')
+    .get(gameController.read)
+
 router.route('/game/create')
     .get(gameController.createGame)
     .post(
         body('gameName')
             .exists().trim()
-            .isLength({ min: 2, max: 20 }).withMessage('Le champ doit contenir plus de deux caractères.')
+            .isLength({ min: 2, max: 50 }).withMessage('Le champ doit contenir plus de deux caractères.')
             .notEmpty().withMessage('Ce champ ne doit pas être vide.')
             .escape(),
 
@@ -102,7 +107,7 @@ router.route('/game/create')
             .escape(),
 
         body('playerNumber')
-            .isInt({ min: 1, max: 12 }).withMessage('Le nombre de joueurs doit être compris entre 1 et 12.')
+            .isInt({ min: 1, max: 60 }).withMessage('Le nombre de joueurs doit être compris entre 1 et 12.')
         ,
         gameController.postGame)
 
@@ -112,16 +117,40 @@ router.route('/game/rate/')
 router.route('/game/page/:id')
     .get(gameController.getGameDetail)
 
+router.route('/game/update/:id')
+    .get(gameController.getGameUpdate)
+    .post([
+        // utilisation du middleware pour n'autoriser la modification qu'à l'admin
+        body('gameName')
+            .exists().trim()
+            .isLength({ min: 2, max: 50 }).withMessage('Le champ doit contenir plus de deux caractères.')
+            .notEmpty().withMessage('Ce champ ne doit pas être vide.')
+            .escape(),
+
+        body('gameDescription')
+            .exists().trim()
+            .notEmpty().withMessage('Ce champ ne doit pas être vide.')
+            .isLength({ max: 400 }).withMessage('Le contenu ne doit pas être supérieur à 400 caractères')
+            .escape(),
+
+        body('playerNumber')
+            .isInt({ min: 1, max: 60 }).withMessage('Le nombre de joueurs doit être compris entre 1 et 12.')
+        ,
+    ],gameController.postGameUpdate)
+
+
+
+router.route('/game/delete/:id')
+    .post(gameController.gameDelete)
 
 //<-----------  Event Routes   ----------->
-
 
 router.route('/event/create')
     .get(eventController.createEvent)
     .post(
         body('eventName')
             .exists().trim()
-            .isLength({ min: 2, max: 20 }).withMessage('Le champ doit contenir plus de deux caractères ou moins')
+            .isLength({ min: 2, max: 20 }).withMessage('Le champ doit contenir plus de deux caractères au moins')
             .notEmpty().withMessage('Ce champ ne doit pas être vide.')
             .escape(),
 
@@ -143,7 +172,6 @@ router.route('/event/create')
             .isInt({ min: 1, max: 12 }).withMessage('Le nombre de joueurs doit être compris entre 1 et 12.')
         ,
         eventController.postEvent)
-
 
 router.route('/events/list')
     .get(eventController.list)
@@ -180,17 +208,20 @@ router.route('/event/update/:id')
             .withMessage('L\'heure de l\'événement doit être au format 24 heures.'),
         // Middleware de validation pour le nombre de joueur de l'event
         body('playersNumber')
-            .isInt({ min: 1, max: 12 }).withMessage('Le nombre de joueurs doit être compris entre 1 et 12.'),
+            .isInt({ min: 1, max: 60 }).withMessage('Le nombre de joueurs doit être compris entre 1 et 60.'),
         body('address').exists().trim()
             .notEmpty().withMessage('L\'adresse est obligatoire')
 
     ], eventController.postUpdate);
 
-
 router.route('/event/delete/:id')
     .post(eventController.eventDelete)
 
+router.route('/event/:id/places')
+    .get(eventController.getAvailablePlaces)
 
+router.route('/event/:id/register')
+    .post(eventController.registerUserToEvent);
 
 //<---------  Search Routes   ----------->
 router.route('/search')
@@ -198,10 +229,6 @@ router.route('/search')
 
 router.route('/search/results')
     .post(searchController.search)
-
-
-
-
 
 
 //<-----------  FAQ Routes   ----------->

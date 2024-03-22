@@ -114,6 +114,13 @@ h3 {
     color: #f4f4f4;
 }
 
+.error{
+    margin-top: 0px;
+    font-size: .75rem;
+    color: red;
+    margin-bottom: 10px;
+}
+
 /* aspect des badges bleus */
 .text-bg-darkblue {
     color: var(--bg-light);

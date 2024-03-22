@@ -2,9 +2,10 @@
     <div class="row">
         <h2 class="dynapuff">Liste des jeux</h2>
     </div>
+    {{#each games}}
     <div class="row">
-        {{#each games}}
-        <div class="col-sm-10 col-md-6 col-lg-4">
+        
+        <div class="col-sm-10 col-md-4 col-lg-4">
             <div class="card" style="width: 22rem;">
                 <img src="{{imageUrl}}" class="card-img-top imgCover" alt="...">
                 <div class="card-header">
@@ -55,7 +56,7 @@
                 <div class="row ">
                     <div class="col-md-6">
 
-                        <a href="/event/update/{{id}}" class="btn btn-outline-warning m-1"> modifier
+                        <a href="/game/update/{{id}}" class="btn btn-outline-warning m-1"> modifier
                             le jeu</a>
                     </div>
 
@@ -82,7 +83,7 @@
                     Êtes vous sur de vouloir supprimer ce jeu : <em> {{game_name}} ?</em></div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <form action="/event/delete/{{id}}" method="post">
+                    <form action="/game/delete/{{id}}" method="post">
                         <button type="submit" class="btn btn-danger">Supprimer définitivement</button>
                     </form>
                 </div>
@@ -90,5 +91,4 @@
         </div>
     </div>
     {{/each}}
-</div>
 </div>
