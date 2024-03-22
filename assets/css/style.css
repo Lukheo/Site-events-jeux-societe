@@ -135,6 +135,7 @@ h3{
 /*position des images*/
 .imgCover{
     object-fit: cover;
+    height: 200px;
 }
 
 /**************************** VERSION MOBILE ********************************/

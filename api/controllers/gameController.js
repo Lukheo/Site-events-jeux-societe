@@ -2,6 +2,7 @@ const {Op} = require('sequelize')
 const Game = require('../models/gameModel')
 const {validationResult} = require('express-validator')
 const { Request, Response } = require('express');
+const gameCat = require('../models/categorieModel')
 
 module.exports = {
     list: async (req,res) => {
@@ -30,6 +31,11 @@ module.exports = {
                     player_number: req.body.playerNumber,
                     imageUrl: req.body.imgGame
                 }
+            }, {
+                where: {
+                    id: req.params.id
+                },
+                returning: true
             });
 
             console.log("Correspondance trouvé :", game); // log affichage de la correspondance
@@ -45,7 +51,7 @@ module.exports = {
                     imageUrl: req.body.imgGame
                 });
                 console.log("Jeu créé :", gamecreated); // log confirmation de la création d'un jeu
-                return res.redirect('/game/read/'+ req.params.id);
+                return res.redirect('/game/list');
             }
         } catch (error) {
             console.error("Erreur lors de la création du jeu :", error);
@@ -54,6 +60,21 @@ module.exports = {
 
     },
     read: async (req, res) => { //<---- fonction pour voir le jeu via l'ID ---->
+
+        // let gameCat = await Game.findByPk(req.params.id, {
+        //     include: [{
+        //       model: Category,
+        //       separate: true,
+        //       order: [['createdAt', 'DESC']],
+        //       //le nom du model suffit car on a pas d'autres éléments à préciser
+        //       include: Category
+        //     },{
+        //       //il suffit de rajouter le model user
+        //       model: Category
+        //     } ]
+        //   })
+
+        //   gameCat = gameCat.toJSON()
         const navGame = true;
         try {
 
