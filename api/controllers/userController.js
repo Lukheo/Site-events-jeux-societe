@@ -60,6 +60,11 @@ module.exports = {
         res.render('login')
     },
     postLogin: async (req, res) => { // <---- permet de connecter un user au site ---->
+        
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.render('login', {errors: errors.array() });
+        }
         // cherche en base l'utilisateur par son email 
         const user = await User.findOne({
             where: {email: req.body.email}
@@ -73,7 +78,7 @@ module.exports = {
                 //si faux 
                 if (!result) {
                     // -> renvoie sur la page login
-                    res.status(401).render('log_in', { 'error': 'identifiant incorrect' })
+                    res.status(401).render('login', {errors: errors.array()})
                 } else {
                     //sinon inscription dans la session
                     req.session.prenom = user.prenom

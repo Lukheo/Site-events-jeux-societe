@@ -92,10 +92,9 @@ module.exports = {
             const result = validationResult(req);
 
             if (!result.isEmpty()) {
-                console.log('resultat de :')
                 return res.render('event_read', { event, navEvent, errors: result.errors });
             } else {
-                console.log(availablePlaces)
+                console.log(event)
                 res.render('event_read', { event, navEvent, availablePlaces });
             }
         }
