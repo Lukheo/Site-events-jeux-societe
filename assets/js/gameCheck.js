@@ -3,8 +3,11 @@ function gameCheck(){
     const gameName = document.getElementById('gameName').value.trim();
     const gameDescription = document.getElementById('gameDescription').value.trim();
     const playerNumber = document.getElementById('playerNumber').value;
-    const imgUrl = document.getElementById('imgUrl').value.trim();
+    const imgUrl = document.getElementById('imgGame').value.trim();
 
+
+
+    resetErrors()
     // Vérification du champ gameName
     if (!gameName || gameName.length < 2 || gameName.length > 50) {
         error("Le nom du jeu doit comporter entre 2 et 50 caractères", "gameName");
