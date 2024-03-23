@@ -180,7 +180,8 @@ module.exports = {
 
     getEventUpdate: async (req, res) => { // <---- fonction récupérer l'event ---->
         const event = await Event.findByPk(req.params.id, { raw: true })
-        res.render('event_update', { event })
+        const games = await Game.findAll({raw: true})
+        res.render('event_update', { event, games })
     },
 
     postUpdate: async (req, res) => { // <---- fonction modification d'event ---->
