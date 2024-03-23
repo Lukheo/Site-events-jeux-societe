@@ -170,7 +170,7 @@ router.route('/event/create')
             .withMessage('L\'heure de l\'événement doit être au format 24 heures.'),
 
         body('playersNumber')
-            .isInt({ min: 1, max: 12 }).withMessage('Le nombre de joueurs doit être compris entre 1 et 12.')
+            .isInt({ min: 1, max: 60 }).withMessage('Le nombre de joueurs doit être compris entre 1 et 12.')
         ,
         eventController.postEvent)
 
