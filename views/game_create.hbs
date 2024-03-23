@@ -1,7 +1,7 @@
 <h1 class="dynapuff text-center">Créer un jeu</h1>
 
 <div class="container mt-5">
-    <form action="/game/create" method="POST">
+    <form action="/game/create" method="POST" onsubmit="return gameCheck()">
         <div class="row">
             <div class="col-6">
                 <div class="form-group">
@@ -19,16 +19,13 @@
         </div>
         <div class="row">
             <div class="form-group col-4 mt-4">
-                <label for="catName" class="mb-2 fs-4"></label>
+                <label for="catId" class="mb-2 fs-4"><i class="bi bi-dice-5"></i> Choisissez une catégorie</label>
                 <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        <i class="bi bi-dice-5"></i> Catégorie du jeu
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><button class="dropdown-item" type="button">Action</button></li>
-                        <li><button class="dropdown-item" type="button">Another action</button></li>
-                        <li><button class="dropdown-item" type="button">Something else here</button></li>
+                    <select id="catId" name="catId" class="form-select border-warning-subtle" aria-label="Default select example">
+                        {{#each categories}}
+                            <option value="{{id}}">{{cat_name}}</option>
+                        {{/each}}
+                    </select>
                     </ul>
                 </div>
             </div>
@@ -59,8 +56,8 @@
         {{/if}}
 
 
-        <button type="text" class="btn btn-warning mt-5 mb-2">Créer le jeu</button>
+        <button type="submit" class="btn btn-warning mt-5 mb-2">Créer le jeu</button>
     </form>
 </div>
 
-<script src="/js/userCheck.js" defer></script>
+<script src="/js/gameCheck.js" defer></script>

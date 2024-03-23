@@ -78,7 +78,9 @@ module.exports = {
                 //si faux 
                 if (!result) {
                     // -> renvoie sur la page login
+
                     res.status(401).render('login', {errors: errors.array()})
+
                 } else {
                     //sinon inscription dans la session
                     req.session.prenom = user.prenom
