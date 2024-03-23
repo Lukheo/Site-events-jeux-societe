@@ -16,7 +16,7 @@
                 <small>
                     <div class="rounded-pill badge text-bg-warning float-end">
                         <i class="bi bi-geo-alt"></i>
-                        <span>Room</span>
+                        <span>{{address}}</span>
                     </div>
                 </small>
                 <div class="card-body border-success">
@@ -36,8 +36,6 @@
 
                     {{/if}}
 
-                    {{!-- integration du jeu et sa page ou sa modale --}}
-                    <br><a href="#" class="card-link">Jeu joué</a>
                 </div>
             </div>
         </div>
@@ -46,14 +44,12 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                            Close</button>
+                        <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">Supprimer évènement</h1>
                     </div>
                     <div class="modal-body">
                         Êtes vous sûr de vouloir supprimer l'évènement :<em> {{name}}</em></div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
                         <form action="/event/delete/{{id}}" method="post">
                             <button type="submit" class="btn btn-danger">Supprimer définitivement</button>
                         </form>
