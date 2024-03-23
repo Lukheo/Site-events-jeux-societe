@@ -18,8 +18,9 @@ module.exports = {
                         model: Game,
                         raw: true,
                         include: Categorie
-                    },
-                    ]
+                    }
+                    ], 
+                    raw : true
             },
         )
         const navEvents = true
@@ -61,7 +62,8 @@ module.exports = {
                     event_date: req.body.eventDate,
                     event_time: req.body.eventTime,
                     players_number: req.body.playersNumber,
-                    address: req.body.address
+                    address: req.body.address,
+                    gameId: req.body.gameID
                 });
                 console.log("Événement créé :", eventcreated); // log confirmation de la création d'un évenement 
                 return res.redirect('/events/list');
