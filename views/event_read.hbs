@@ -3,20 +3,20 @@
 
         <div class=" col-8 col-lg-8 col-md-10  mx-auto mt-5 mb-2">
             <div class="card border-0">
-                <img src="{{ event.game.imageUrl}}" class="card-img-top imgCover" alt="GameImg" />
+                <img src="{{event.game.imageUrl}}" class="card-img-top imgCover" alt="GameImg" />
                 <div class="card-header">
                     <small>
                         <div class="rounded-pill badge text-bg-primary ms-2">
-                            <i class="bi bi-person-plus-fill"></i>
-                            <span aria-label='Créé le {{moment event.createdAt format="DD/MM/YYYY"}}'>
-                                Créé le {{moment event.createdAt format="DD/MM/YYYY HH:mm"}}
-                            </span>
+                            
+                            <h6 aria-label='Créé le {{moment event.createdAt format="DD/MM/YYYY"}}'>
+                            <i class="bi bi-person-plus-fill"></i>  Créé le  {{moment event.createdAt format="DD/MM/YYYY HH:mm"}}
+                            </h6>
                         </div>
                     </small>
                     <small>
                         <div class="rounded-pill badge text-bg-warning float-end ms-2">
-                            <i class="bi bi-person-plus-fill"></i>
-                            <span class="text-danger">{{availablePlaces}}</b></span>/<b>{{event.players_number}}joueurs</span>
+                            
+                            <h6><i class="bi bi-person-plus-fill"></i> <span class="text-danger"><b>{{availablePlaces}}</b></span>/{{event.players_number}} joueurs</h6>
                         </div>
                     </small>
                 </div>
@@ -31,7 +31,7 @@
                     </button>
                 </div>
                 <div class="card-body">{{!-- integration du jeu et sa page ou sa modale --}}
-                    <a href="/game/page/{{id}}" class="card-link"> jeu joué : {{event.game.name}}</a>
+                    <a href="/game/page/{{event.game.id}}" class="card-link"> jeu joué : {{event.game.game_name}}</a>
                 </div>
 
                 {{#if isAdmin}}
