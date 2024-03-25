@@ -18,8 +18,8 @@
                     <td>{{dataValues.prenom}}</td>
                     <td>{{dataValues.email}}</td>
                     <td>
-                        <form action="/event/{{@root.events.dataValues.id}}/user/{{dataValues.id}}/delete" method="post">
-                            <button class="btn btn-danger"> <i class="bi bi-x-circle-fill"></i>Supprimer</button>
+                        <form action="/event/{{../dataValues.id}}/user/{{dataValues.id}}/delete" method="post">
+                            <button type="submit" class="btn btn-danger"> <i class="bi bi-x-circle-fill"></i>Supprimer</button>
                         </form>
                     </td>
                 </tr>

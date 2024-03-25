@@ -74,8 +74,8 @@ router.route('/user/read/:id')
     .get(userController.getAccount)
 
 
-router.route('/alarm/:id')
-    .get(userController.addalarm)
+router.route('/user/unregister/:userId/:eventId')
+    .get(userController.removeregister)
 
 
 router.route('/user/update/:id')
@@ -237,6 +237,8 @@ router.route('/event/:id/register')
     .get(eventController.getRegistratedUsers)
 router.route('/event/:eventId/user/:userId/delete')
     .post(eventController.deleteRegistratedUsers)
+
+    
 
 
 

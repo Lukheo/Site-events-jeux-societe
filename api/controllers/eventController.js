@@ -238,7 +238,13 @@ module.exports = {
         res.render('event_registration', { events, navEventUser });
     },
     deleteRegistratedUsers: async(req,res)=>{ //<----- fonction pour supprimer l'utilisateur inscris à un event ---->
-        const { eventId , userId} = req.params.id
-        await EventUser.destroy( { where: {eventId, userId} } )
+        
+        await EventUser.destroy( { where: {
+            [Op.and]: [
+                { userId: req.params.userId },
+                { eventId: req.params.eventId }
+            ]
+        } } )
+        res.redirect('/event/registrated/users')
     } ,
 }
