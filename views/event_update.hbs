@@ -4,32 +4,45 @@
         <div class="col-md-12">
             <h1>Modifier un évènement</h1>
             <form action="/event/update/{{event.id}}" method="post">
-                <div class="mb-3">
+                <div class="mb-2 fs-4">
                     <label for="eventName" class="form-label">Titre de l'évent</label>
-                    <input name="eventName" type="text" class="form-control" id="eventName" placeholder="Titre de l'event"
-                       value="{{event.name}}">
+                    <input name="eventName" type="text" class="form-control" id="eventName"
+                        placeholder="Titre de l'event" value="{{event.name}}">
+                </div>
+                <div class="form-group col-4 mt-4">
+                    <label for="gameId" class="mb-2 fs-4"><i class="bi bi-dice-5"></i> Choisissez un jeu</label>
+                    <div class="dropdown">
+                        <select id="gameId" name="gameID" class="form-select border-warning-subtle"
+                            aria-label="Default select example">
+                            {{#each games}}
+                            <option value="{{id}}">{{game_name}}</option>
+                            {{/each}}
+                        </select>
+                        </ul>
+                    </div>
                 </div>
                 <div class="mb-3">
-                    <label for="eventDescription" class="form-label">Description de l'évènement</label>
-                    <textarea name="eventDescription" class="form-control" id="eventDescription" rows="5">{{event.description}}</textarea>
+                    <label for="eventDescription" class="form-label mb-2 fs-4">Description de l'évènement</label>
+                    <textarea name="eventDescription" class="form-control" id="eventDescription"
+                        rows="5">{{event.description}}</textarea>
                 </div>
                 <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Date</label>
+                    <label for="exampleFormControlInput1" class="form-label mb-2 fs-4">Date</label>
                     <input name="eventDate" type="date" class="form-control" id="exampleFormControlInput1"
                         placeholder="Date" value="{{event.event_date}}">
                     <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Time</label>
+                        <label for="exampleFormControlInput1" class="form-label mb-2 fs-4">Time</label>
                         <input name="eventTime" type="text" class="form-control" id="exampleFormControlInput1"
                             placeholder="Heure" value="{{event.event_time}}">
                     </div>
                 </div>
                 <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Time</label>
+                    <label for="exampleFormControlInput1" class="form-label mb-2 fs-4">Time</label>
                     <input name="playersNumber" type="number" class="form-control" id="exampleFormControlInput1"
                         placeholder="Nombre de joueur" value="{{event.players_number}}">
                 </div>
-     {{!-- if isAdmin  il peut modif--}} 
-                <button type="submit" class="btn btn-warning">Modifier</button>
+                {{!-- if isAdmin il peut modif--}}
+                <button type="submit" class="btn btnOrange">Modifier</button>
             </form>
         </div>
     </div>

@@ -18,8 +18,9 @@ module.exports = {
                         model: Game,
                         raw: true,
                         include: Categorie
-                    },
-                    ]
+                    }
+                    ], 
+                    raw : true
             },
         )
         const navEvents = true
@@ -61,7 +62,8 @@ module.exports = {
                     event_date: req.body.eventDate,
                     event_time: req.body.eventTime,
                     players_number: req.body.playersNumber,
-                    address: req.body.address
+                    address: req.body.address,
+                    gameId: req.body.gameID
                 });
                 console.log("Événement créé :", eventcreated); // log confirmation de la création d'un évenement 
                 return res.redirect('/events/list');
@@ -93,10 +95,9 @@ module.exports = {
             const result = validationResult(req);
 
             if (!result.isEmpty()) {
-                console.log('resultat de :')
                 return res.render('event_read', { event, navEvent, errors: result.errors });
             } else {
-                console.log(availablePlaces)
+                console.log(event)
                 res.render('event_read', { event, navEvent, availablePlaces });
             }
         }
@@ -179,7 +180,8 @@ module.exports = {
 
     getEventUpdate: async (req, res) => { // <---- fonction récupérer l'event ---->
         const event = await Event.findByPk(req.params.id, { raw: true })
-        res.render('event_update', { event })
+        const games = await Game.findAll({raw: true})
+        res.render('event_update', { event, games })
     },
 
     postUpdate: async (req, res) => { // <---- fonction modification d'event ---->

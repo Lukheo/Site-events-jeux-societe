@@ -53,7 +53,15 @@ router.route('/user/register')
 
 router.route('/user/login')
     .get(userController.getLogin)
-    .post(userController.postLogin)
+    .post(
+        body('email')
+            .notEmpty().withMessage('L\'adresse e-mail est requise')
+            .isEmail().withMessage('L\'adresse e-mail n\'est pas valide')
+            .trim(),
+        body('password')
+            .notEmpty().withMessage('Le mot de passe invalide')
+            .trim()
+    ,userController.postLogin)
 
 
 router.route('/user/logout')

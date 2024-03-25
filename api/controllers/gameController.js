@@ -64,21 +64,6 @@ module.exports = {
 
     },
     read: async (req, res) => { //<---- fonction pour voir le jeu via l'ID ---->
-
-        // let gameCat = await Game.findByPk(req.params.id, {
-        //     include: [{
-        //       model: Category,
-        //       separate: true,
-        //       order: [['createdAt', 'DESC']],
-        //       //le nom du model suffit car on a pas d'autres éléments à préciser
-        //       include: Category
-        //     },{
-        //       //il suffit de rajouter le model user
-        //       model: Category
-        //     } ]
-        //   })
-
-        //   gameCat = gameCat.toJSON()
         const navGame = true;
         try {
             
@@ -126,7 +111,8 @@ module.exports = {
 
     getGameUpdate: async (req, res) => { // <---- fonction pour récupérer le jeu à modifier ---->
         const game = await Game.findByPk(req.params.id, { raw: true })
-        res.render('game_update', { game })
+        const categories = await Categorie.findAll({raw:true})
+        res.render('game_update', { game, categories })
     },
 
     postGameUpdate: async (req, res) => { // <---- fonction de modification de jeu ---->
@@ -135,7 +121,8 @@ module.exports = {
                     game_name: req.body.gameName,
                     game_desc: req.body.gameDescription,
                     player_number: req.body.playerNumber,
-                    imageUrl: req.body.imgGame
+                    imageUrl: req.body.imgGame,
+                    categoryId: req.body.catId
             }, {
                 where: {
                     id: req.params.id

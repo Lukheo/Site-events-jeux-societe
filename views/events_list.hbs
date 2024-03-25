@@ -9,36 +9,33 @@
             <div class="card border-success mt-3">
                 <small>
                     <div class="rounded-pill badge text-bg-success float-end">
-                        <i class="bi bi-dice-2"></i>
-                        <span>Catégorie</span>
-                    </div>
+                            <i class="bi bi-dice-2"></i>
+                            <span>{{'game.category.cat_name'}}</span>
+                        </div>
                 </small>
                 <small>
                     <div class="rounded-pill badge text-bg-warning float-end">
                         <i class="bi bi-geo-alt"></i>
-                        <span>Room</span>
+                        <span>{{address}}</span>
                     </div>
                 </small>
                 <div class="card-body border-success">
-                    <h5 class="card-title dynapuff"><i class="bi bi-dice-2"></i> {{dataValues.name}} <i class="bi bi-dice-2"></i>
+                    <h5 class="card-title dynapuff"><i class="bi bi-dice-2"></i> {{name}} <i class="bi bi-dice-2"></i>
                     </h5>
                     <h6 class="card-subtitle mb-2 text-body-secondary dynapuff"><i class="bi bi-calendar-date"></i> le
-                        {{dataValues.event_date}} <br> à {{dataValues.event_time}}</h6>
-                    <p class="card-text text-truncate">{{dataValues.description}}</p>
-                    <p class="card-text">{{dataValues.players_number}}</p>
-                    <a href="{{#if @root.prenom}}/event/read/{{dataValues.id}}{{else}}/user/login{{/if}}" class="card-link btn rounded-pill btn-success m-1">S'inscrire à
-                        l'évènement</a>
+                        {{event_date}} <br> à {{event_time}}</h6>
+                    <p class="card-text text-truncate">{{description}}</p>
+                    <p class="card-text">{{players_number}}</p>
+                    <a href="{{#if @root.prenom}}/event/read/{{id}}{{else}}/user/login{{/if}}" class="card-link btn rounded-pill btn-success m-1">Voir l'évènement</a>
 
                     {{#if @root.isAdmin}} 
 
-                    <a href="/event/update/{{id}}" class="btn rounded-pill btn-warning m-1"> modifier l'event</a>
+                    <a href="/event/update/{{id}}" class="btn rounded-pill btn-warning m-1">Modifier l'event</a>
                     <button type="button" class="btn rounded-pill btn-danger m-1" data-bs-toggle="modal"
                         data-bs-target="#Modal{{id}}"> Supprimer l'évènement</button>
 
                     {{/if}}
 
-                    {{!-- integration du jeu et sa page ou sa modale --}}
-                    <br><a href="#" class="card-link">Jeu joué</a>
                 </div>
             </div>
         </div>
@@ -47,14 +44,12 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                            Close</button>
+                        <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">Supprimer évènement</h1>
                     </div>
                     <div class="modal-body">
-                        Êtes vous sur de supprimer votre évèvement <em> {{name}}</em></div>
+                        Êtes vous sûr de vouloir supprimer l'évènement :<em> {{name}}</em></div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
                         <form action="/event/delete/{{id}}" method="post">
                             <button type="submit" class="btn btn-danger">Supprimer définitivement</button>
                         </form>

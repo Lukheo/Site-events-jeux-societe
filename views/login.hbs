@@ -1,13 +1,14 @@
 <H1 class="dynapuff text-center">Connexion</H1>
 <div class="row my-5">
     <div class="col-6 mx-auto">
-        <form action="/user/login" method="post">
-            {{#if error}}
+        <form action="/user/login" method="post" onsubmit="return loginCheck()">
+            {{#if errors}}
             <div class="mb-3">
+                {{#each errors}}
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    {{error}} <button type="button" class="btn-close" data-bs-dismiss="alert"
-                        aria-label="Close"></button>
+                    {{msg}} <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
+                {{/each}}
             </div>
             {{/if}}
             <div class="mb-3">
@@ -25,3 +26,4 @@
         <span> Pas encore inscris ? <a href="/user/register"> Inscris-toi</a></span>
     </div>
 </div>
+<script src="/js/loginCheck.js" defer></script>
