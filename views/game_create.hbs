@@ -1,7 +1,7 @@
 <h1 class="dynapuff text-center">Créer un jeu</h1>
 
 <div class="container mt-5">
-    <form action="/game/create" method="POST">
+    <form action="/game/create" method="POST" onsubmit="return gameCheck()">
         <div class="row">
             <div class="col-6">
                 <div class="form-group">
@@ -21,7 +21,7 @@
             <div class="form-group col-4 mt-4">
                 <label for="catId" class="mb-2 fs-4"><i class="bi bi-dice-5"></i> Choisissez une catégorie</label>
                 <div class="dropdown">
-                    <select id="catId" name="catId" class="form-select" aria-label="Default select example">
+                    <select id="catId" name="catId" class="form-select border-warning-subtle" aria-label="Default select example">
                         {{#each categories}}
                             <option value="{{id}}">{{cat_name}}</option>
                         {{/each}}
@@ -56,7 +56,7 @@
         {{/if}}
 
 
-        <button type="text" class="btn btn-warning mt-5 mb-2">Créer le jeu</button>
+        <button type="submit" class="btn btn-warning mt-5 mb-2">Créer le jeu</button>
     </form>
 </div>
 
