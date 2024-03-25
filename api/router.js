@@ -233,6 +233,12 @@ router.route('/event/:id/register')
     .post(authMW, eventController.registerUserToEvent)
 
 
+    router.route('/event/registrated/users')
+    .get(eventController.getRegistratedUsers)
+router.route('/event/:eventId/user/:userId/delete')
+    .post(eventController.deleteRegistratedUsers)
+
+
 
 //<---------  Search Routes   ----------->
 router.route('/search')

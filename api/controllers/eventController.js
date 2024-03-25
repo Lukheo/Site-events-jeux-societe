@@ -220,4 +220,25 @@ module.exports = {
         })
         res.redirect('/events/list')
     },
+    getRegistratedUsers: async (req, res) => { // <---- fonction pour récuperer la liste des utilisateurs inscris aux évenements ---->
+        const navEventUser = true;
+        // Récupérer tous les utilisateurs avec leurs événements inscrits
+        const events = await Event.findAll({
+            // include: [{
+            //     model: EventUser,
+            //     // through: EventUser // Assurez-vous que le nom du modèle est correctement orthographié
+            // }]
+
+            include: [{
+                model: User,
+                through: EventUser
+            }]
+        });
+        console.log(events);
+        res.render('event_registration', { events, navEventUser });
+    },
+    deleteRegistratedUsers: async(req,res)=>{ //<----- fonction pour supprimer l'utilisateur inscris à un event ---->
+        const { eventId , userId} = req.params.id
+        await EventUser.destroy( { where: {eventId, userId} } )
+    } ,
 }
