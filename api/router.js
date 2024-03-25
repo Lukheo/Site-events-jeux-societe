@@ -230,7 +230,7 @@ router.route('/event/:id/places')
     .get(eventController.getAvailablePlaces)
 
 router.route('/event/:id/register')
-    .post(authenticateUser.authenticateUser, eventController.registerUserToEvent)
+    .post(authMW, eventController.registerUserToEvent)
 
 
 
