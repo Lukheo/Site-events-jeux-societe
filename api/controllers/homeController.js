@@ -1,4 +1,6 @@
 const { Op } = require('sequelize')
+const Event = require('../models/eventModel')
+const Game = require('../models/gameModel')
 
 
 module.exports = {
@@ -6,6 +8,9 @@ module.exports = {
     // console.log(req.session);
     // const latest = await Article.findOne({ order: [['id', 'DESC']], raw: true });
     const navHome = true
+    const events = await Event.findAll({
+      include: Game
+    })
 
     // if (!latest) {
     //   res.render('home', { navHome})
@@ -13,7 +18,8 @@ module.exports = {
     //   res.render('home', { latest, navHome })
     // }
     console.log(req.session)
-    res.render('index')
+    console.log(events)
+    res.render('index', {events})
 
     // useless -----------------------------------------------------------
     // const articles = await Article.findAll({ raw: true })

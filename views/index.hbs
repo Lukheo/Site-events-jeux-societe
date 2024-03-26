@@ -22,12 +22,15 @@
                 </button>
                 <div class="wiper-wrapper">
                     <ul class="wiper-track">
+                        {{#each events}}
                         <li class="wiper-item">
-                            <img class="wiper__image" src="https://pic.clubic.com/v1/images/1719003/raw"
+                            <img class="wiper__image" src="{{dataValues.game.dataValues.imageUrl}}"
                                 alt="background-image" />
-                            <a href="#" class="swiper__image-button">Soirée Magic le 15 mars à 19h !</a>
+                            <a href="#" class="swiper__image-button">{{dataValues.name}} le
+                        {{dataValues.event_date}} <br> à {{dataValues.event_time}}</a>
                         </li>
-                        <li class="wiper-item active-swipe">
+                        {{/each}}
+                        {{!-- <li class="wiper-item active-swipe">
                             <img class="wiper__image"
                                 src="https://cherry.img.pmdstatic.net/fit/https.3A.2F.2Fimg.2Egaming.2Egentside.2Ecom.2Fs3.2Ffrgsg.2F1280.2Fpokemon.2Fdefault_2021-09-17_71ac89a8-ee41-4567-a8be-75a41188302a.2Epng/1200x675/quality/80/cartes-pokemon.jpg"
                                 alt="background-image" />
@@ -56,7 +59,7 @@
                                 src="https://m.media-amazon.com/images/I/91CmDNtRSOL._AC_UF1000,1000_QL80_.jpg"
                                 alt="background-image" />
                             <a href="#" class="swiper__image-button">Soirée Zombicide le XX mars à XXh !</a>
-                        </li>
+                        </li> --}}
                     </ul>
                 </div>
                 <button class="wiper-button wiper-button__left">
