@@ -15,10 +15,6 @@ const updateImage = async function (inputFile) {
     return url
 }
 
-inputFile.onchange = function() {
-    updateImage(inputFile)
-}
-
 async function sendUrlToServer(imgUrl) {
     // Send a POST request to the server with the img URL
     try {

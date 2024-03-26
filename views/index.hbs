@@ -27,7 +27,7 @@
                             <img class="wiper__image" src="{{dataValues.game.dataValues.imageUrl}}"
                                 alt="background-image" />
                             <a href="#" class="swiper__image-button">{{dataValues.name}} le
-                        {{dataValues.event_date}} <br> à {{dataValues.event_time}}</a>
+                        {{moment dataValues.event_date format="DD/MM/YYYY"}} <br> à {{dataValues.event_time}}</a>
                         </li>
                         {{/each}}
                         {{!-- <li class="wiper-item active-swipe">
