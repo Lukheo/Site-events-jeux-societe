@@ -36,11 +36,11 @@ router.route('/user/register')
             .isEmail().withMessage('L\'adresse e-mail n\'est pas valide')
             .trim(),
         body('password')
-            .isLength({ min: 8 }).withMessage('Le mot de passe doit contenir au moins 8 caractères')
-            .matches(/[a-z]/).withMessage('Le mot de passe doit contenir au moins une lettre minuscule')
-            .matches(/[A-Z]/).withMessage('Le mot de passe doit contenir au moins une lettre majuscule')
-            .matches(/[0-9]/).withMessage('Le mot de passe doit contenir au moins un chiffre')
-            .matches(/[!@#$%^&*(),.?":{}|<>]/).withMessage('Le mot de passe doit contenir au moins un caractère spécial')
+            .isLength({ min: 8 }).withMessage('les données entrées sont incorrectes')
+            .matches(/[a-z]/).withMessage('les données entrées sont incorrectes')
+            .matches(/[A-Z]/).withMessage('les données entrées sont incorrectes')
+            .matches(/[0-9]/).withMessage('les données entrées sont incorrectes')
+            .matches(/[!@#$%^&*(),.?":{}|<>]/).withMessage('les données entrées sont incorrectes')
             .custom((value, { req }) => {
                 if (value !== req.body.confPassword) {
                     throw new Error('Les mots de passe ne correspondent pas');
