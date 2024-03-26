@@ -2,7 +2,9 @@ const { Op } = require('sequelize');
 const bcrypt = require("bcrypt");
 const { validationResult } = require('express-validator');
 const { Request, Response } = require('express');
-const User = require('../models/userModel')
+const User = require('../models/userModel');
+const Event = require('../models/eventModel')
+const EventUser = require('../models/eventUserModel');
 
 module.exports = {
     list: async (req, res) => { // <---- montre la liste des utilisateurs existants/displays the existing users list ---->
@@ -51,7 +53,14 @@ module.exports = {
     },
     getAccount: async (req, res) => { 
         // Chercher l'utilisateur correspondant à l'id -- find the right user in the database according to his id
-        const account = await User.findByPk(req.params.id, { raw: true })
+        const account = await User.findOne({
+            where: { id: req.params.id }, 
+            include: [{
+                model: Event,
+                through: { model: EventUser } // Utilisation de `model` pour spécifier le modèle de liaison
+            }],
+        });
+
         console.log(account);
         console.log(req.session);
         res.render('my_account', { account })
@@ -106,9 +115,16 @@ module.exports = {
         res.redirect('/user/read/'+req.params.id)
         // res.render('my_account')
     },
-    removealarm: (req,res) => {
-        const alarm = false
-        res.redirect('back')
+    removeregister: async (req,res) => {
+        await EventUser.destroy({
+            where: {
+                [Op.and]: [
+                    { userId: req.params.userId },
+                    { eventId: req.params.eventId }
+                ]
+            }
+        })
+        res.redirect('/')
     },
     update: async (req,res) => {
         const user = await User.findByPk(req.params.id, { raw: true })

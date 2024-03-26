@@ -36,11 +36,11 @@ router.route('/user/register')
             .isEmail().withMessage('L\'adresse e-mail n\'est pas valide')
             .trim(),
         body('password')
-            // .isLength({ min: 8 }).withMessage('Le mot de passe doit contenir au moins 8 caractères')
-            // .matches(/[a-z]/).withMessage('Le mot de passe doit contenir au moins une lettre minuscule')
-            // .matches(/[A-Z]/).withMessage('Le mot de passe doit contenir au moins une lettre majuscule')
-            // .matches(/[0-9]/).withMessage('Le mot de passe doit contenir au moins un chiffre')
-            // .matches(/[!@#$%^&*(),.?":{}|<>]/).withMessage('Le mot de passe doit contenir au moins un caractère spécial')
+            .isLength({ min: 8 }).withMessage('Le mot de passe doit contenir au moins 8 caractères')
+            .matches(/[a-z]/).withMessage('Le mot de passe doit contenir au moins une lettre minuscule')
+            .matches(/[A-Z]/).withMessage('Le mot de passe doit contenir au moins une lettre majuscule')
+            .matches(/[0-9]/).withMessage('Le mot de passe doit contenir au moins un chiffre')
+            .matches(/[!@#$%^&*(),.?":{}|<>]/).withMessage('Le mot de passe doit contenir au moins un caractère spécial')
             .custom((value, { req }) => {
                 if (value !== req.body.confPassword) {
                     throw new Error('Les mots de passe ne correspondent pas');
@@ -74,8 +74,8 @@ router.route('/user/read/:id')
     .get(userController.getAccount)
 
 
-router.route('/alarm/:id')
-    .get(userController.addalarm)
+router.route('/user/unregister/:userId/:eventId')
+    .get(userController.removeregister)
 
 
 router.route('/user/update/:id')
@@ -105,18 +105,18 @@ router.route('/game/create')
     .post(
         body('gameName')
             .exists().trim()
-            .isLength({ min: 2, max: 50 }).withMessage('Le champ doit contenir plus de deux caractères.')
+            .isLength({ min: 2, max: 50 }).withMessage('les données entrées sont incorrectes.')
             .notEmpty().withMessage('Ce champ ne doit pas être vide.')
             .escape(),
 
         body('gameDescription')
             .exists().trim()
             .notEmpty().withMessage('Ce champ ne doit pas être vide.')
-            .isLength({ max: 400 }).withMessage('Le contenu ne doit pas être supérieur à 400 caractères')
+            .isLength({ max: 400 }).withMessage('Le contenu incorrect')
             .escape(),
 
         body('playerNumber')
-            .isInt({ min: 1, max: 60 }).withMessage('Le nombre de joueurs doit être compris entre 1 et 12.')
+            .isInt({ min: 1, max: 60 }).withMessage('Nombre de joueur incorrect')
         ,
         gameController.postGame)
 
@@ -132,18 +132,18 @@ router.route('/game/update/:id')
         // utilisation du middleware pour n'autoriser la modification qu'à l'admin
         body('gameName')
             .exists().trim()
-            .isLength({ min: 2, max: 50 }).withMessage('Le champ doit contenir plus de deux caractères.')
+            .isLength({ min: 2, max: 50 }).withMessage('les données entrées sont incorrectes')
             .notEmpty().withMessage('Ce champ ne doit pas être vide.')
             .escape(),
 
         body('gameDescription')
             .exists().trim()
             .notEmpty().withMessage('Ce champ ne doit pas être vide.')
-            .isLength({ max: 400 }).withMessage('Le contenu ne doit pas être supérieur à 400 caractères')
+            .isLength({ max: 400 }).withMessage('Contenu incorrect')
             .escape(),
 
         body('playerNumber')
-            .isInt({ min: 1, max: 60 }).withMessage('Le nombre de joueurs doit être compris entre 1 et 12.')
+            .isInt({ min: 1, max: 60 }).withMessage('Nombre de joueurs incorrect')
         ,
     ], gameController.postGameUpdate)
 
@@ -159,26 +159,26 @@ router.route('/event/create')
     .post(
         body('eventName')
             .exists().trim()
-            .isLength({ min: 2, max: 20 }).withMessage('Le champ doit contenir plus de deux caractères au moins')
+            .isLength({ min: 2, max: 20 }).withMessage('Les données entrées sont incorrectes')
             .notEmpty().withMessage('Ce champ ne doit pas être vide.')
             .escape(),
 
         body('eventDescription')
             .exists().trim()
             .notEmpty().withMessage('Ce champ ne doit pas être vide.')
-            .isLength({ max: 200 }).withMessage('Le contenu ne doit pas être supérieur à 200 caractères')
+            .isLength({ max: 200 }).withMessage('Le contenu incorrecte')
             .escape(),
 
         body('eventDate')
-            .isDate().withMessage('la date doit être valide')
-            .notEmpty().withMessage('Vous devez choisir une date'),
+            .isDate().withMessage('la date invalide')
+            .notEmpty().withMessage('Une date est requise'),
 
         body('eventTime')
             .isTime({ hourFormat: 'hour24' })
-            .withMessage('L\'heure de l\'événement doit être au format 24 heures.'),
+            .withMessage('heure de l\'événement incorrecte'),
 
         body('playersNumber')
-            .isInt({ min: 1, max: 60 }).withMessage('Le nombre de joueurs doit être compris entre 1 et 12.')
+            .isInt({ min: 1, max: 60 }).withMessage('Le nombre de joueurs incorrect')
         ,
         eventController.postEvent)
 
@@ -196,7 +196,7 @@ router.route('/event/update/:id')
         // Middleware de validation pour le titre de l'event
         body('eventName')
             .exists().trim()
-            .isLength({ min: 2, max: 20 }).withMessage('Le champ doit contenir plus de deux caractères ou moins')
+            .isLength({ min: 2, max: 20 }).withMessage('les données entrées sont incorrectes')
             .notEmpty().withMessage('Ce champ ne doit pas être vide.')
             .escape(),
 
@@ -204,20 +204,20 @@ router.route('/event/update/:id')
         body('eventDescription')
             .exists().trim()
             .notEmpty().withMessage('Ce champ ne doit pas être vide.')
-            .isLength({ max: 200 }).withMessage('Le contenu ne doit pas être supérieur à 200 caractères')
+            .isLength({ max: 200 }).withMessage('Le contenu incorrecte')
             .escape(),
 
         // Middleware de validation pour la date de l'event
         body('eventDate')
-            .isDate().withMessage('la date doit être valide')
-            .notEmpty().withMessage('Vous devez choisir une date'),
+            .isDate().withMessage('la date invalide')
+            .notEmpty().withMessage('Ce champ ne doit pas être vide'),
         // Middleware de validation pour l'heure de l'event
         body('eventTime')
             .isTime({ hourFormat: 'hour24' })
-            .withMessage('L\'heure de l\'événement doit être au format 24 heures.'),
+            .withMessage('L\'heure de l\'événement est incorrecte'),
         // Middleware de validation pour le nombre de joueur de l'event
         body('playersNumber')
-            .isInt({ min: 1, max: 60 }).withMessage('Le nombre de joueurs doit être compris entre 1 et 60.'),
+            .isInt({ min: 1, max: 60 }).withMessage('Le nombre de joueurs incorrecte.'),
         body('address').exists().trim()
             .notEmpty().withMessage('L\'adresse est obligatoire')
 
@@ -231,6 +231,14 @@ router.route('/event/:id/places')
 
 router.route('/event/:id/register')
     .post(authMW, eventController.registerUserToEvent)
+
+
+    router.route('/event/registrated/users')
+    .get(eventController.getRegistratedUsers)
+router.route('/event/:eventId/user/:userId/delete')
+    .post(eventController.deleteRegistratedUsers)
+
+    
 
 
 
@@ -249,7 +257,7 @@ router.route('/category/create')
     .post([
         body('catName')
             .exists().trim()
-            .isLength({ min: 2, max: 20 }).withMessage('Le champ doit contenir plus de deux caractères ou moins')
+            .isLength({ min: 2, max: 20 }).withMessage('Contenu incorrecte')
             .notEmpty().withMessage('Ce champ ne doit pas être vide.')
             .escape()],
         categorieController.postCat)
@@ -262,7 +270,7 @@ router.route('/category/update/:id')
     .post([
         body('catName')
             .exists().trim()
-            .isLength({ min: 2, max: 20 }).withMessage('Le champ doit contenir plus de deux caractères ou moins')
+            .isLength({ min: 2, max: 20 }).withMessage('Contenu incorrecte')
             .notEmpty().withMessage('Ce champ ne doit pas être vide.')
             .escape()],
         categorieController.postCatUpdate)

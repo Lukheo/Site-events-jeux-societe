@@ -1,0 +1,31 @@
+<div class="container">
+    {{#each events}}
+    <h4 class="dynapuff">Liste des Utilisateurs Inscrits à l'Événement {{ dataValues.name }}</h4>
+    <div class="col-md-8 mx-auto">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Prénom</th>
+                    <th scope="col">Adresse Email</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each dataValues.users}}
+                <tr>
+                    <td>{{dataValues.nom}}</td>
+                    <td>{{dataValues.prenom}}</td>
+                    <td>{{dataValues.email}}</td>
+                    <td>
+                        <form action="/event/{{../dataValues.id}}/user/{{dataValues.id}}/delete" method="post">
+                            <button type="submit" class="btn btn-danger"> <i class="bi bi-x-circle-fill"></i>Supprimer</button>
+                        </form>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+    {{/each}}
+</div>

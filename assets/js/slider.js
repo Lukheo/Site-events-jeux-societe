@@ -50,10 +50,17 @@ const goToNextSlide = () => {
   arrowsBehaviour(wipePrevBtn, wipeNextBtn, targetIndex);
 };
 
-// Fonction pour démarrer le diaporama automatique
+// // Fonction pour démarrer le diaporama automatique ancienne fonction
+// const startAutoSlider = () => {
+//   setInterval(goToNextSlide, 4000); // Appel à goToNextSlide toutes les 4 secondes
+// };
+
+// Appeler la fonction pour démarrer le diaporama automatique
+
 const startAutoSlider = () => {
+  const secondWiperItem = wiperTrack.querySelector(".wiper-item:nth-child(2)"); // Sélectionne le deuxième élément avec la classe "wiper-item"
+  secondWiperItem.classList.add("active-swipe"); // Ajoute la classe "active-swipe" au deuxième élément
   setInterval(goToNextSlide, 4000); // Appel à goToNextSlide toutes les 4 secondes
 };
 
-// Appeler la fonction pour démarrer le diaporama automatique
 startAutoSlider();
