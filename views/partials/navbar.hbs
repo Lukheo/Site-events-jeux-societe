@@ -43,6 +43,12 @@
                     <p> Bonjour <b>{{prenom}}</b></p>
                 </li>
                 {{/if}}
+                {{#if uid}}
+                <li class="nav-item">
+                    <a class="nav-link dynapuff"
+                        href="/user/read/{{uid}}">Mon compte</a>
+                </li>
+                {{/if}}
             </ul>
             {{#if prenom}}
             <li class="nav-item">
