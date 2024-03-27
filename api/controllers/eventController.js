@@ -157,8 +157,13 @@ module.exports = {
                 });
 
                 if (existingParticipant) {
-                     const event = await Event.findByPk(eventId,{raw:true})
-
+                    let event = await Event.findByPk(req.params.id, {
+                        include: {
+                            model: Game,
+                            include : Categorie
+                        },
+                    });
+                    event = event.toJSON()
                     return res.render('event_read', {event, availablePlaces, message: "Vous êtes déjà inscrit à cet événement." });
                 } else {
                     // Inscrire l'utilisateur à l'événement
@@ -167,7 +172,13 @@ module.exports = {
                         userId: userId
                     });
 
-                    const event = await Event.findByPk(eventId ,{raw:true})
+                    let event = await Event.findByPk(req.params.id, {
+                        include: {
+                            model: Game,
+                            include : Categorie
+                        },
+                    });
+                    event = event.toJSON()
                     res.render('event_read', { event, availablePlaces, message: "Inscription validée" })
                      
                 }
