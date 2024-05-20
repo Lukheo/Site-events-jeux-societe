@@ -1,7 +1,7 @@
 
 const { DataTypes } = require('sequelize')
 const config = require('../../config')
-const Game = require('./gameModel')
+const Game = require('./taskModel')
 
 
 

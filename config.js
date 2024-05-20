@@ -9,7 +9,7 @@ handlebars.registerHelper('formatContent', function(content) {
 
 // Option 3: Passing parameters separately (other dialects)
 
-const sequelize = new Sequelize('tableajeux', 'root', '', {
+const sequelize = new Sequelize('osevc', 'root', '', {
 
   host: 'localhost',
   dialect:'mysql',

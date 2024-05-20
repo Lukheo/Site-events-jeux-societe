@@ -1,29 +1,35 @@
-<div class="container">
-    <h2 class="m-5">Vos résultats de recherche</h2>
-    <h3>Il y a {{eventCount}} résultat(s) parmi les évènements organisés :</h3>
-    {{#each eventResults }}
-    <div class="card" style="width: 18rem;">
-        <img src="https://images.unsplash.com/photo-1632931124386-2576db31ab97?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title blueFont">{{name}}</h5>
-            <h6 class="card-title orangeFont">Le {{event_date}} à {{event_time}} pour {{players_number}} joueurs</h6>
-            <p class="card-text">{{description}}</p>
-            <a href="/event/read/{{id}}" class="btn btnOrange float-end">Voir l'event</a>
+<div class="container-fluid">
+    <h2 class="m-5">Vos résultats de recherche</h2> <br>
+    <h3 class="text-center">Il y a {{eventCount}} résultat(s) parmi les évènements organisés :</h3>
+    <div class="row flex-row d-flex justify-content-center">
+        {{#each eventResults }}
+        <div class="col-sm-12 col-md-4 col-lg-3 mx-auto mt-2 mb-2">
+            <div class="card" style="width: 18rem;">
+                <img src="{{game.imageUrl}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title blueFont">{{name}}</h5>
+                    <h6 class="card-title orangeFont">Le {{event_date}} à {{event_time}} pour {{players_number}} joueurs
+                    </h6>
+                    <p class="card-text">{{description}}</p>
+                    <a href="/event/read/{{id}}" class="btn btnOrange float-end">Voir l'event</a>
+                </div>
+            </div>
         </div>
+        {{/each}}
     </div>
-
-    {{/each}}
-
-    <h3>Il y a {{gameCount}} résultat(s) parmi les jeux disponibles :</h3>
-    {{#each gameResults }}
-    <div class="card" style="width: 18rem;">
-        <img src="https://images.unsplash.com/photo-1549056572-75914d5d5fd4?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">{{game_name}}</h5>
-            <h6 class="card-title">{{player_number}} joueurs</h6>
-            <p class="card-text">{{game_desc}}</p>
-            <a href="/game/read{{id}}" class="btn btnOrange">Voir le jeu</a>
+    <h3 class="text-center">Il y a {{gameCount}} résultat(s) parmi les jeux disponibles :</h3>
+    <div class="row flex-row d-flex justify-content-center">
+        {{#each gameResults }}
+        <div class="col-sm-12 col-md-4 col-lg-3 mx-auto mt-2 mb-2">
+            <div class="card" style="width: 18rem;">
+                <img src="{{imageUrl}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{game_name}}</h5>
+                    <h6 class="card-title">{{player_number}} joueurs</h6>
+                    <p class="card-text">{{game_desc}}</p>
+                    <a href="/game/read{{id}}" class="btn btnOrange">Voir le jeu</a>
+                </div>
+            </div>
         </div>
+        {{/each}}
     </div>
-    {{/each}}
-</div>

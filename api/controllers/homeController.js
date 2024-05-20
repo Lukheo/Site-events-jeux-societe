@@ -1,6 +1,6 @@
 const { Op } = require('sequelize')
 const Event = require('../models/eventModel')
-const Game = require('../models/gameModel')
+const Game = require('../models/taskModel')
 
 
 module.exports = {

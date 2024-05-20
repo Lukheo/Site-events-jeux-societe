@@ -2,28 +2,60 @@ main {
     margin: 3em 0;
 }
 
+/* à consulter https://stackoverflow.com/questions/5181845/git-push-existing-repo-to-a-new-and-different-remote-repo-server */
+
 :root {
 
     --bg-light: #F8F8F8;
-    --bg-light-grey: #f4f4f4;
+    --bg-light-grey: #fbf5f5;
     --bg-grey: #c3c3c3;
-    --bg-orange: #FFAE35;
-    --bg-orange-light: rgba(255, 174, 53, 0.7);
-    --bg-darkblue: #0064A3;
+    --bg-orange: #ac3448;
+    --bg-orange-light: #ac3448bc;
+    --bg-darkblue: #606569;
     --bg-darkred: #A30000;
     --bg-green: #5CD451;
     --bg-black: #222222;
-    --title-font: "DynaPuff", system-ui;
-    --main-font: "Roboto", sans-serif;
+    --title-font: "Luckiest Guy", cursive;
+    --main-font: "Maven Pro", sans-serif;
+    --bg-gradient-base:rgb(172,52,72);
+    --bg-gradient: linear-gradient(131deg, rgba(172,52,72,1) 37%, rgba(0,163,147,1) 100%);
+    --bg-gradient-base-reverse:rgb(0,163,147);
+    --bg-gradient-reverse: linear-gradient(131deg, rgba(0,163,147,1) 0%, rgba(172,52,72,1) 90%);
+    --bg-gradient-base-orange: rgb(253,29,29);
+    /* background: linear-gradient(90deg, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%); */
+}
+
+.luckiest-guy-regular {
+    font-family: "Luckiest Guy", cursive;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  /* // <uniquifier>: Use a unique and descriptive class name
+  // <weight>: Use a value from 400 to 900 */
+  
+  .maven-pro {
+    font-family: "Maven Pro", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+  }
+/* // <uniquifier>: Use a unique and descriptive class name
+// <weight>: Use a value from 400 to 800 */
+
+.teachers {
+  font-family: "Teachers", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
 }
 
 body {
     background-color: var(--bg-light);
 }
 
-.dynapuff,
 h1 {
-    font-family: "DynaPuff", system-ui;
+    font-family: "Luckiest Guy", cursive;
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
@@ -32,7 +64,7 @@ h1 {
 }
 
 h2 {
-    font-family: "DynaPuff", system-ui;
+    font-family: "Luckiest Guy", cursive;
     text-align: center;
 }
 
@@ -41,11 +73,41 @@ h3 {
 }
 
 .navStyle {
-    background-color: var(--bg-orange);
+    background-color: var(--bg-gradient-base); 
+    background: var(--bg-gradient);
+    transition: 0.5s ease;
+
+}
+.navStyle:hover {
+    background-color: var(--bg-gradient-base-reverse);
+    background: var(--bg-gradient-reverse);
+    transition: 0.5s ease;
+}
+
+.nav-item a{
+    color: var(--bg-light);
+}
+
+.NavlinkStyle{
+    text-align: left;
+    margin: 10px;
+    padding: 10px 5px;
+    transition: 0.5s ease;
+}
+.NavlinkStyle::before{
+    content:'♦';
+    color: white;
+    padding-right: 5px;
+}
+.NavlinkStyle:hover{
+    background: var(--bg-gradient-reverse);
+    color: white;
+    transition: 0.5s ease;
 }
 
 .footerStyle {
-    background-color: var(--bg-darkblue);
+    background-color: var(--bg-gradient-base-reverse);
+    background: var(--bg-gradient-reverse);
     color: var(--bg-light);
 }
 
@@ -90,6 +152,12 @@ h3 {
 .navOverlap {
     height: 60px;
 }
+.accordionTitle{
+    font-family: "Teachers", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+  }
 
 .btnOrange {
     background-color: var(--bg-orange);
@@ -143,40 +211,6 @@ h3 {
 .imgCover {
     object-fit: cover;
     height: 200px;
-}
-
-/* Etoiles de notation (game_list)*/
-.rating-stars {
-    border: thin solid #999;
-    display: inline-block;
-    margin-bottom: 20px;
-}
-
-.gameRate {
-    display: flex;
-    flex-direction: row-reverse;
-}
-
-.gameRate span {
-    cursor: pointer;
-    transition: color .2s;
-    font-size: 50px;
-}
-
-.gameRate span:hover {
-    color: orange;
-}
-
-.gameRate span:hover~span {
-    color: orange;
-}
-
-.gameRate span[data-clicked] {
-    color: orange;
-}
-
-.gameRate span[data-clicked]~span {
-    color: orange;
 }
 
 #img-container {

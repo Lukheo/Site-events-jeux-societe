@@ -48,7 +48,7 @@ module.exports = {
                 email: email,
                 password: password
             })
-            return res.redirect('/')
+            return res.redirect('/user/personal_board')
         }
     },
     getAccount: async (req, res) => { 
@@ -99,7 +99,7 @@ module.exports = {
                     if(user.isAdmin) {
                         req.session.isAdmin = true
                     }
-                    res.redirect('/')
+                    res.redirect('/user/personal_board')
                 }
             })
 

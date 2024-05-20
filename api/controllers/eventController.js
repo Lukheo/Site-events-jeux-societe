@@ -1,7 +1,7 @@
 const { Op } = require('sequelize')
 
 const Event = require('../models/eventModel')
-const Game = require('../models/gameModel')
+const Game = require('../models/taskModel')
 const User = require('../models/userModel')
 const Categorie = require('../models/categorieModel')
 const EventUser = require('../models/eventUserModel')

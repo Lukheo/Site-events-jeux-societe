@@ -1,35 +1,29 @@
 <nav class="navbar navbar-expand-lg navStyle sticky-top mb-2">
     <div class="container-fluid">
-        <a class="navbar-brand dynapuff" href="/">La table à jeux</a>
+        <a class="navbar-brand luckiest-guy-regular" href="/"><img src="./../pictures/picture_test.jpg" width="50px">OSEVC</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link dynapuff {{#if navHome}}active{{/if}}" aria-current="FAQ page" href="/FAQ">FAQ</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link dynapuff {{#if navHome}}active{{/if}}" aria-current="Game list"
-                        href="/game/list/">Jeux</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link dynapuff {{#if navList}}active{{/if}}" href="/events/list">Évènements</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link dynapuff {{#if navInscription}}active{{/if}}"
-                        href="/user/register">Inscription</a>
-                </li>
+                
                 {{#if isAdmin}}
+                <li class="nav-item">
+                    <a class="nav-link NavlinkStyle{{#if navHome}}active{{/if}}" aria-current="Game list"
+                        href="/game/list/">Activités</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link NavlinkStyle {{#if navList}}active{{/if}}" href="/events/list">Planning</a>
+                </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                    <a class="nav-link NavlinkStyle dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
                         admin
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item {{#if navEventCreate}} active {{/if}}"  href="/event/create">Créer un event</a></li>
-                        <li><a class="dropdown-item {{#if navGameCreate}} active {{/if}}"  href="/game/create">Créer un jeu</a></li>
+                        <li><a class="dropdown-item {{#if navEventCreate}} active {{/if}}"  href="/event/create">Créer une tâche</a></li>
+                        <li><a class="dropdown-item {{#if navGameCreate}} active {{/if}}"  href="/game/create">Créer une liste</a></li>
                         <li><a class="dropdown-item {{#if navCatCreate}} active {{/if}}"  href="/category/create">Créer une catégorie</a></li>
                         <li><a class="dropdown-item {{#if navCatList}}active{{/if}}" href="/category/list">Liste des catégories</a></li>
                         <li><a class="dropdown-item {{#if navUserList}}active{{/if}}" href="/user/list">Voir les utilisateurs</a></li>
@@ -45,7 +39,7 @@
                 {{/if}}
                 {{#if uid}}
                 <li class="nav-item">
-                    <a class="nav-link dynapuff"
+                    <a class="nav-link NavlinkStyle"
                         href="/user/read/{{uid}}">Mon compte</a>
                 </li>
                 {{/if}}
@@ -54,19 +48,26 @@
             <li class="nav-item">
                 <a class="nav-link text-danger" href="/user/logout"><span class="badge rounded-pill text-bg-danger m-2"> <i
                             class="bi bi-box-arrow-right text-light"></i>Se déconnecter</span></a>
-
             </li>
             {{else}}
             <li class="nav-item">
-                <a class="nav-link {{#if navLogin}} active {{/if}} text-info" href="/user/login"> <span class="badge rounded-pill text-bg-success m-2"><i
+                    <a class="nav-link NavlinkStyle {{#if navInscription}}active{{/if}}"
+                        href="/user/register">Créez son espace</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link NavlinkStyle{{#if navHome}}active{{/if}}" aria-current="FAQ page" href="/FAQ">FAQ</a>
+                </li>
+            <li class="nav-item">
+                <a class="nav-link NavlinkStyle{{#if navLogin}} active {{/if}} text-info" href="/user/login"> <span class="badge rounded-pill text-bg-success m-2"><i
                             class="bi bi-box-arrow-right text-light"></i>Se connecter</span></a>
             </li>
+            
             {{/if}}
-            <form class="d-flex" role="search" action="/search/results" method="post">
+            {{!-- <form class="d-flex" role="search" action="/search/results" method="post">
                 <input class="form-control me-2" type="search" placeholder="Un jeu ou un évènement" id="searchInput"
                     name="search" aria-label="Search">
                 <button class="btn btn-success" type="submit">Rechercher</button>
-            </form>
+            </form> --}}
         </div>
     </div>
 </nav>

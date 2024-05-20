@@ -2,10 +2,11 @@ const express = require('express')
 const router = express.Router()
 const homeController = require('../api/controllers/homeController')
 const userController = require('../api/controllers/userController')
-const gameController = require('../api/controllers/gameController')
+const taskController = require('./controllers/taskController')
 const eventController = require('../api/controllers/eventController')
 const searchController = require('./controllers/searchController')
 const categorieController = require('./controllers/categorieController')
+const personalboardController = require('./controllers/personalboardController')
 const { body, param } = require('express-validator')
 
 const isAdminMW = require("./middleware/isAdmin")
@@ -17,6 +18,7 @@ const authenticateUser = require('./middleware/authenticateUser')
 
 router.route('/')
     .get(homeController.get)
+    
 
 //<-----------  User Routes   ----------->
 
@@ -63,7 +65,6 @@ router.route('/user/login')
             .trim()
     ,userController.postLogin)
 
-
 router.route('/user/logout')
     .get(userController.logout)
 
@@ -89,27 +90,32 @@ router.route('/user/delete/:id')
 router.route('/user/list')
     .get(userController.list)
 
-//<---------  Game Routes   ----------->
 
-router.route('/game/read/:id')
-    .get(gameController.read);
+//<---------  Personal Board Routes   ----------->
+router.route('/user/personal_board')
+   .get(personalboardController.personalBoard);
 
-router.route('/game/list')
-    .get(gameController.list)
+//<---------  Tasks Routes   ----------->
 
-router.route('/game/read/:id')
-    .get(gameController.read)
+router.route('/task/read/:id')
+    .get(taskController.read);
 
-router.route('/game/create')
-    .get(gameController.createGame)
+router.route('/task/list')
+    .get(taskController.list)
+
+router.route('/task/read/:id')
+    .get(taskController.read)
+
+router.route('/task/create')
+    .get(taskController.createTask)
     .post(
-        body('gameName')
+        body('taskName')
             .exists().trim()
             .isLength({ min: 2, max: 50 }).withMessage('les données entrées sont incorrectes.')
             .notEmpty().withMessage('Ce champ ne doit pas être vide.')
             .escape(),
 
-        body('gameDescription')
+        body('taskDescription')
             .exists().trim()
             .notEmpty().withMessage('Ce champ ne doit pas être vide.')
             .isLength({ max: 400 }).withMessage('Le contenu incorrect')
@@ -118,25 +124,25 @@ router.route('/game/create')
         body('playerNumber')
             .isInt({ min: 1, max: 60 }).withMessage('Nombre de joueur incorrect')
         ,
-        gameController.postGame)
+        taskController.postTask)
 
-router.route('/game/rate/')
-    .post(gameController.rate)
+router.route('/task/rate/')
+    .post(taskController.rate)
 
-router.route('/game/page/:id')
-    .get(gameController.getGameDetail)
+router.route('/task/page/:id')
+    .get(taskController.getTaskDetail)
 
-router.route('/game/update/:id')
-    .get(gameController.getGameUpdate)
+router.route('/task/update/:id')
+    .get(taskController.getTaskUpdate)
     .post([
         // utilisation du middleware pour n'autoriser la modification qu'à l'admin
-        body('gameName')
+        body('taskName')
             .exists().trim()
             .isLength({ min: 2, max: 50 }).withMessage('les données entrées sont incorrectes')
             .notEmpty().withMessage('Ce champ ne doit pas être vide.')
             .escape(),
 
-        body('gameDescription')
+        body('taskDescription')
             .exists().trim()
             .notEmpty().withMessage('Ce champ ne doit pas être vide.')
             .isLength({ max: 400 }).withMessage('Contenu incorrect')
@@ -145,14 +151,14 @@ router.route('/game/update/:id')
         body('playerNumber')
             .isInt({ min: 1, max: 60 }).withMessage('Nombre de joueurs incorrect')
         ,
-    ], gameController.postGameUpdate)
+    ], taskController.postTaskUpdate)
 
 
 
-router.route('/game/delete/:id')
-    .post(gameController.gameDelete)
+router.route('/task/delete/:id')
+    .post(taskController.taskDelete)
 
-//<-----------  Event Routes   ----------->
+//<-----------  Events Routes   ----------->
 
 router.route('/event/create')
     .get(eventController.createEvent)

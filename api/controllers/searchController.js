@@ -1,4 +1,4 @@
-const Game = require('../models/gameModel')
+const Game = require('../models/taskModel')
 const Event = require('../models/eventModel')
 const { Op } = require("sequelize");
 
@@ -28,7 +28,10 @@ module.exports = {
             ]
             },
             raw: true
-        })
+        });
+        const events = await Event.findAll({
+            include: Game
+          })
         
         res.render('search_results', {gameResults, gameCount, eventResults, eventCount});
 

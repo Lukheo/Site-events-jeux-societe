@@ -1,85 +1,33 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-8 mx-auto">
-            <h1>Bienvenue sur La Table à Jeux</h1>
+            <h1>Organise le meilleur EVJF/EVJG</h1>
         </div>
     </div>
     <div class="row dispNoneMob">
         <div class="col-md-8 mx-auto">
-            <p>Des jeux coopératifs aux jeux compétitifs, que vous soyez en autonomie ou guidés par un MJ, nous vous
-                proposons des soirées ou des après-midi jeux de société sur table ! Entre amis, en famille, ou même en solo, n'hésitez pas
-                à vous inscrire pour jouer à votre jeu préféré ou pour découvrir celui qui le deviendra ! <br>
+            <p>Vous devez organiser ce fameux séjour pour célébrer la fin du célibat de votre ami.e ? Cet espace est
+                fait pour vous et votre team ! Des outils essentiels, un tableau de bord qui regroupe les infos
+                essentielles, un décompte pour faire monter la pression... <br>
             </p>
         </div>
     </div>
     <div class="row lightGreyBg">
         <div class="col-md-8 mx-auto">
             <div style="height: 20px"></div>
+            <p>blabla</p>
 
-            <div class="wiper">
-                <button class="wiper-button wiper-button__right">
-                    <img src="https://www.iconpacks.net/icons/2/free-arrow-left-icon-3099-thumb.png" alt="left" />
-                </button>
-                <div class="wiper-wrapper">
-                    <ul class="wiper-track">
-                        {{#each events}}
-                        <li class="wiper-item">
-                            <img class="wiper__image" src="{{dataValues.game.dataValues.imageUrl}}"
-                                alt="background-image" />
-                            <a href="/event/read/{{dataValues.id}}" class="swiper__image-button">{{dataValues.name}} le
-                        {{moment dataValues.event_date format="DD/MM/YYYY"}} <br> à {{dataValues.event_time}}</a>
-                        </li>
-                        {{/each}}
-                        {{!-- <li class="wiper-item active-swipe">
-                            <img class="wiper__image"
-                                src="https://cherry.img.pmdstatic.net/fit/https.3A.2F.2Fimg.2Egaming.2Egentside.2Ecom.2Fs3.2Ffrgsg.2F1280.2Fpokemon.2Fdefault_2021-09-17_71ac89a8-ee41-4567-a8be-75a41188302a.2Epng/1200x675/quality/80/cartes-pokemon.jpg"
-                                alt="background-image" />
-                            <a href="#" class="swiper__image-button">Soirée Pokémon le 22 mars à 18h !</a>
-                        </li>
-                        <li class="wiper-item">
-                            <img class="wiper__image"
-                                src="https://leszexpertsfle.com/wp-content/uploads/2017/05/lgt10.jpg"
-                                alt="background-image" />
-                            <a href="#" class="swiper__image-button">Soirée Loup Garou le 2 avril à 20h !</a>
-                        </li>
-                        <li class="wiper-item">
-                            <img class="wiper__image"
-                                src="https://www.numerama.com/wp-content/uploads/2017/10/galerapagos-cover.jpg"
-                                alt="background-image" />
-                            <a href="#" class="swiper__image-button">Soirée Galérapagos le XX mars à XXh !</a>
-                        </li>
-                        <li class="wiper-item">
-                            <img class="wiper__image"
-                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTznMdLhl-LNCG6BvoN5cj_TC3EdVVaJOC4ng&usqp=CAU"
-                                alt="background-image" />
-                            <a href="#" class="swiper__image-button">Soirée jeux au choix le XX mars à XXh !</a>
-                        </li>
-                        <li class="wiper-item">
-                            <img class="wiper__image"
-                                src="https://m.media-amazon.com/images/I/91CmDNtRSOL._AC_UF1000,1000_QL80_.jpg"
-                                alt="background-image" />
-                            <a href="#" class="swiper__image-button">Soirée Zombicide le XX mars à XXh !</a>
-                        </li> --}}
-                    </ul>
-                </div>
-                <button class="wiper-button wiper-button__left">
-                    <img src="https://www.iconpacks.net/icons/2/free-arrow-left-icon-3099-thumb.png" alt="right" />
-                </button>
-            </div>
-            <div style="height: 30px"></div>
         </div>
-
     </div>
 
     <div class="row mt-5">
         <div class="col-md-8 mx-auto">
-            <h3>Des questions à propos de l'organisation et du fonctionnement ? Consultez notre foire aux questions !</h3>
+            <h3>Des questions à propos de l'organisation et du fonctionnement ? Consultez notre foire aux questions !
+            </h3>
             <a href="/FAQ" class="btn btnOrange float-end mt-5 me-5"> Consulter la FAQ &#x279b;</a>
         </div>
-        <div class="row p-0 m-0 mt-5">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m23!1m12!1m3!1d85408.77522179545!2d0.06992895697208282!3d48.01324183748621!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m8!3e6!4m0!4m5!1s0x47e287d94e50ed35%3A0x63480a74544cb644!2s4%20Rue%20Hector%20Berlioz%2C%2072000%20Le%20Mans!3m2!1d48.0132713!2d0.1523294!5e0!3m2!1sfr!2sfr!4v1710498643927!5m2!1sfr!2sfr" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
-        
+
     </div>
+   
 </div>
-    <script src="/js/slider.js" defer></script>
+{{!-- <script src="/js/slider.js" defer></script> --}}
